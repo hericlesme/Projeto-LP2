@@ -1,4 +1,4 @@
-package quemmeajuda;
+package br.edu.ufcg.entities;
 
 public class Aluno {
 	private String matricula;
