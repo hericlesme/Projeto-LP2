@@ -1,13 +1,15 @@
-package quemmeajuda;
+package br.edu.ufcg.entities;
 
 public class Aluno {
+	
 	private String matricula;
 	private String nome;
 	private int codigoCurso;
 	private String telefone;
 	private String email;
 	private int notaAvaliacao;
-
+	private Tutoria papel;
+	
 	public Aluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
 		nomeInvalido(nome);
 		emailInvalido(email);
@@ -17,6 +19,10 @@ public class Aluno {
 		this.telefone = telefone;
 		this.email = email;
 		this.notaAvaliacao = 5;
+	}
+
+	public void tonarTutor()  {
+		
 	}
 
 	public String toString() {
