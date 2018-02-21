@@ -7,3 +7,4 @@ Projeto Final - Laboratório de Programação II
 * Eduardo Macedo Cavalcanti Freitas
 * Henrique Castro Arriel
 
+![logo](http://www.dsc.ufcg.edu.br/~sacc/img/logo-topo2.png)
