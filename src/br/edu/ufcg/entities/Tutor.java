@@ -2,7 +2,7 @@ package br.edu.ufcg.entities;
 
 import java.util.List;
 
-public class Tutoria {
+public class Tutor {
 
 	private String disciplina;
 	private int proeficiencia;
@@ -11,7 +11,7 @@ public class Tutoria {
 	private List<String> locaisDisponiveis;
 	private int quantidadeEmDinheiro;
 	
-	public Tutoria() {
+	public Tutor() {
 		// TODO Auto-generated constructor stub
 	}
 	
