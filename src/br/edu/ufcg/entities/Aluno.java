@@ -6,9 +6,9 @@ public class Aluno {
 	private String matricula;
 	private String telefone;
 	private int codigoCurso;
-	private Tutoria papel;
 	private String email;
 	private String nome;
+	private Funcao funcao;
 
 	public Aluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
 		this.codigoCurso = codigoCurso;
@@ -17,10 +17,6 @@ public class Aluno {
 		this.notaAvaliacao = 5;
 		this.email = email;
 		this.nome = nome;
-	}
-
-	public void tonarTutor() {
-
 	}
 
 	public String toString() {
@@ -40,5 +36,17 @@ public class Aluno {
 
 	public int getAvaliacao() {
 		return this.notaAvaliacao;
+	}
+
+	public void tornarTutor(String disciplina, int proficiencia) {
+		this.funcao = new Tutor(disciplina, proficiencia);
+	}
+
+	public void cadastrarHorario(String horario, String dia) {
+		this.funcao.cadastrarHorario(horario, dia);
+	}
+
+	public void cadastrarLocalDeAtendimento(String email, String local) {
+		this.funcao.cadastrarLocalDeAtendimento(email, local);
 	}
 }

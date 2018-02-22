@@ -10,8 +10,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="2" language="java" name="br.edu.ufcg.controllers.QmdSistema" project="Projeto-LP2" 
-    file="/Projeto-LP2/src/br/edu/ufcg/controllers/QmdSistema.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="2" language="java" name="br.edu.ufcg.controllers.QmaSistema" project="Projeto-LP2" 
+    file="/Projeto-LP2/src/br/edu/ufcg/controllers/QmaSistema.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="279" width="267" x="98" y="356"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -28,8 +28,8 @@
       <operations public="true" package="true" protected="true" private="true" static="true"/>    
     </display>  
   </class>  
-  <class id="4" language="java" name="br.edu.ufcg.entities.Tutoria" project="Projeto-LP2" 
-    file="/Projeto-LP2/src/br/edu/ufcg/entities/Tutoria.java" binary="false" corner="BOTTOM_RIGHT">    
+  <class id="4" language="java" name="br.edu.ufcg.entities.Tutor" project="Projeto-LP2" 
+    file="/Projeto-LP2/src/br/edu/ufcg/entities/Tutor.java" binary="false" corner="BOTTOM_RIGHT">    
     <position height="-1" width="-1" x="558" y="814"/>    
     <display autosize="true" stereotype="true" package="true" initial-value="false" signature="true" 
       sort-features="false" accessors="true" visibility="true">      
@@ -47,47 +47,23 @@
     </display>  
   </class>  
   <association id="6">    
-    <end type="SOURCE" refId="3" navigable="false">      
-      <attribute id="7" name="papel">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="8" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="4" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="9">    
     <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="10" name="alunos">        
+      <attribute id="7" name="alunos">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="11" minimum="0" maximum="2147483647">        
+      <multiplicity id="8" minimum="0" maximum="2147483647">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
     <end type="TARGET" refId="3" navigable="true"/>    
     <display labels="true" multiplicity="true"/>  
   </association>  
-  <association id="12">    
-    <end type="SOURCE" refId="2" navigable="false">      
-      <attribute id="13" name="check">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </attribute>      
-      <multiplicity id="14" minimum="0" maximum="1">        
-        <position height="0" width="0" x="0" y="0"/>      
-      </multiplicity>    
-    </end>    
-    <end type="TARGET" refId="5" navigable="true"/>    
-    <display labels="true" multiplicity="true"/>  
-  </association>  
-  <association id="15">    
+  <association id="9">    
     <end type="SOURCE" refId="1" navigable="false">      
-      <attribute id="16" name="sys">        
+      <attribute id="10" name="sys">        
         <position height="0" width="0" x="0" y="0"/>      
       </attribute>      
-      <multiplicity id="17" minimum="0" maximum="1">        
+      <multiplicity id="11" minimum="0" maximum="1">        
         <position height="0" width="0" x="0" y="0"/>      
       </multiplicity>    
     </end>    
