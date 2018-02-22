@@ -2,7 +2,7 @@ package br.edu.ufcg.entities;
 
 import java.util.List;
 
-public class Tutor {
+public class Tutor implements Funcao{
 
 	private String disciplina;
 	private int proeficiencia;
