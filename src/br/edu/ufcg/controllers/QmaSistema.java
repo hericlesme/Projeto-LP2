@@ -8,13 +8,13 @@ import java.util.Map;
 import br.edu.ufcg.entities.Aluno;
 import br.edu.ufcg.util.Validador;
 
-public class QmdSistema {
+public class QmaSistema {
 
 	private Validador validador;
 	Map<String, Aluno> alunos;
 	private List<String> matriculasDosTutores;
 
-	public QmdSistema() {
+	public QmaSistema() {
 		this.validador = new Validador();
 		alunos = new HashMap<>();
 		matriculasDosTutores = new ArrayList<>();
