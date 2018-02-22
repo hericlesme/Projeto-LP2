@@ -1,8 +1,15 @@
 package br.edu.ufcg.controllers;
 
+import easyaccept.EasyAccept;
+
 public class Facade {
 
 	QmdSistema sys = new QmdSistema();
+
+	public static void main(String[] args) {
+		args = new String[] { "br.edu.ufcg.controllers.Facade", "EasyAccept//us1_test.txt", "EasyAccept//us1_test.txt" };
+		EasyAccept.main(args);
+	}
 
 	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
 		sys.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
@@ -45,7 +52,7 @@ public class Facade {
 	}
 
 	public boolean consultaLocal(String email, String local) {
-		return sys.consultaLocal(email,local);
+		return sys.consultaLocal(email, local);
 	}
 
 }

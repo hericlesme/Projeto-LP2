@@ -4,21 +4,21 @@ import java.util.List;
 import java.util.Map;
 
 import br.edu.ufcg.entities.Aluno;
-import br.edu.ufcg.util.Checks;
+import br.edu.ufcg.util.Validador;
 
 public class QmdSistema {
-	
-	private Checks check = new Checks();
+
+	private Validador validador;
 	Map<String, Aluno> alunos;
 	private List<String> matriculasDosTutores;
-	
+
 	public QmdSistema() {
-		
+		this.validador = new Validador();
 	}
-	
+
 	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
-		// TODO Auto-generated method stub
-		
+		validador.cadastroInvalido(nome, email, telefone);
+		alunos.put(matricula, new Aluno(nome, matricula, codigoCurso, telefone, email));
 	}
 
 	public String recuperaAluno(String matricula) {
@@ -38,7 +38,7 @@ public class QmdSistema {
 
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public String recuperaTutor(String matricula) {
@@ -53,12 +53,12 @@ public class QmdSistema {
 
 	public void cadastrarHorario(String email, String horario, String dias) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public void cadastrarLocalDeAtendimento(String email, String local) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	public boolean consultaHorario(String email, String horario, String dias) {

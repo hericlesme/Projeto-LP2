@@ -1,36 +1,37 @@
 package br.edu.ufcg.entities;
 
 public class Aluno {
-	
-	private String matricula;
-	private String nome;
-	private int codigoCurso;
-	private String telefone;
-	private String email;
+
 	private int notaAvaliacao;
+	private String matricula;
+	private String telefone;
+	private int codigoCurso;
 	private Tutoria papel;
-	
+	private String email;
+	private String nome;
+
 	public Aluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
-		nomeInvalido(nome);
-		emailInvalido(email);
-		this.nome = nome;
-		this.matricula = matricula;
 		this.codigoCurso = codigoCurso;
+		this.matricula = matricula;
 		this.telefone = telefone;
-		this.email = email;
 		this.notaAvaliacao = 5;
+		this.email = email;
+		this.nome = nome;
 	}
 
-	public void tonarTutor()  {
-		
+	public void tonarTutor() {
+
 	}
 
 	public String toString() {
-		if (this.telefone.isEmpty() || this.telefone == null) {
-			return this.matricula + " - " + this.nome + " - " + this.codigoCurso + " - " + this.email;
+		return this.matricula + " - " + this.nome + " - " + this.codigoCurso + " - " + toStringComplemento();
+	}
+
+	private String toStringComplemento() {
+		if (telefone.trim().isEmpty()) {
+			return this.email;
 		}
-		return this.matricula + " - " + this.nome + " - " + this.codigoCurso + " - " + this.telefone + " - "
-				+ this.email;
+		return this.telefone + " - " + this.email;
 	}
 
 	public void setAvaliacao(int nota) {
@@ -39,20 +40,5 @@ public class Aluno {
 
 	public int getAvaliacao() {
 		return this.notaAvaliacao;
-	}
-
-	private void nomeInvalido(String nome) {
-		if (nome == null) {
-			throw new NullPointerException("Nome nulo");
-		}
-		if (nome.trim().isEmpty()) {
-			throw new IllegalArgumentException("Nome em branco");
-		}
-	}
-
-	private void emailInvalido(String email) {
-		if (!email.contains("@") || email.startsWith("@") || email.endsWith("@")) {
-			throw new IllegalArgumentException("Email invalido");
-		}
 	}
 }
