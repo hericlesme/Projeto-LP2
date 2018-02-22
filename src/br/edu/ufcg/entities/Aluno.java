@@ -47,6 +47,6 @@ public class Aluno {
 	}
 
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		this.funcao.cadastrarLocalDeAtendimento(email, local);
+		this.funcao.cadastrarLocalDeAtendimento(local);
 	}
 }
