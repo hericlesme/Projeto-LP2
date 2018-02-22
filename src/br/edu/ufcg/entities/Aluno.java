@@ -1,6 +1,8 @@
 package br.edu.ufcg.entities;
 
-public class Aluno {
+import java.util.Comparator;
+
+public class Aluno implements Comparable<Aluno> {
 
 	private int notaAvaliacao;
 	private String matricula;
@@ -11,12 +13,13 @@ public class Aluno {
 	private Funcao funcao;
 
 	public Aluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
-		this.codigoCurso = codigoCurso;
+		this.notaAvaliacao = 5;
 		this.matricula = matricula;
 		this.telefone = telefone;
-		this.notaAvaliacao = 5;
+		this.codigoCurso = codigoCurso;
 		this.email = email;
 		this.nome = nome;
+		this.funcao = new Nagato();
 	}
 
 	public String toString() {
@@ -30,12 +33,40 @@ public class Aluno {
 		return this.telefone + " - " + this.email;
 	}
 
-	public void setAvaliacao(int nota) {
-		this.notaAvaliacao = nota;
+	public String getInfoAluno(String atributo) {
+		switch (atributo.toLowerCase()) {
+		case "notavaliacao":
+			return Integer.toString(this.notaAvaliacao);
+			break;
+		case "matricula":
+			return this.matricula;
+			break;
+		case "telefone":
+			return this.telefone;
+			break;
+		case "codigocurso":
+			return Integer.toString(this.codigoCurso);
+			break;
+		case "email":
+			return this.email;
+			break;
+		case "nome":
+			return this.nome;
+			break;
+		default:
+			return "Invalido/alguma excecao plz";
+			break;
+		}
 	}
 
-	public int getAvaliacao() {
-		return this.notaAvaliacao;
+	@Override
+	public int compareTo(Aluno a) {
+		return this.email.compareTo(a.getEmail());
+
+	}
+
+	public String getEmail() {
+		return this.email;
 	}
 
 	public void tornarTutor(String disciplina, int proficiencia) {
@@ -46,7 +77,16 @@ public class Aluno {
 		this.funcao.cadastrarHorario(horario, dia);
 	}
 
-	public void cadastrarLocalDeAtendimento(String email, String local) {
-		this.funcao.cadastrarLocalDeAtendimento(email, local);
+	public void cadastrarLocalDeAtendimento(String local) {
+		this.funcao.cadastrarLocalDeAtendimento(local);
 	}
+
+	public boolean consultaHorario(String horario, String dia) {
+		return this.funcao.consultaHorario(horario, dia);
+	}
+
+	public boolean consultaLocal(String local) {
+		return this.funcao.consultaLocal(local);
+	}
+
 }
