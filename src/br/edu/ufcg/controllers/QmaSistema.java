@@ -1,5 +1,7 @@
 package br.edu.ufcg.controllers;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -14,14 +16,24 @@ public class QmaSistema {
 
 	public QmaSistema() {
 		this.validador = new Validador();
+		alunos = new HashMap<>();
+		matriculasDosTutores = new ArrayList<>();
 	}
 
 	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
-		validador.cadastroInvalido(nome, email, telefone);
+		validador.cadastroInvalido(nome, matricula, codigoCurso, telefone, email);
+		
+		if (alunos.containsKey(matricula)) {
+			validador.matriculaCadastrada();
+		}
+		
 		alunos.put(matricula, new Aluno(nome, matricula, codigoCurso, telefone, email));
 	}
 
 	public String recuperaAluno(String matricula) {
+		if (!alunos.containsKey(matricula)) {
+			validador.alunoInexistente("Erro na busca por aluno");
+		}
 		// TODO Auto-generated method stub
 		return null;
 	}
@@ -32,7 +44,10 @@ public class QmaSistema {
 	}
 
 	public String getInfoAluno(String matricula, String atributo) {
-		// TODO Auto-generated method stub
+		if (!alunos.containsKey(matricula)) {
+			validador.alunoInexistente("Erro na obtencao de informacao de aluno");
+		}
+		
 		return null;
 	}
 
