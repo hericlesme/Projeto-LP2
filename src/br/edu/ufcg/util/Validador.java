@@ -5,11 +5,6 @@ package br.edu.ufcg.util;
  * Classe de Validação do Sistema
  * 
  * Projeto de Laboratório - Programação II
- * 
- * @author Rafael da Silva Pereira - 117110921
- * @author Eduardo Macedo Cavalcanti Freitas
- * @author Henrique Castro Arriel
- * @author Héricles Emanuel Gomes da Silva - 117110647
  *
  */
 public class Validador {
