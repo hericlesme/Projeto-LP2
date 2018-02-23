@@ -7,7 +7,7 @@ public class Facade {
 	QmaSistema sys = new QmaSistema();
 
 	public static void main(String[] args) {
-		args = new String[] { "br.edu.ufcg.controllers.Facade", "EasyAccept//us1_test.txt", "EasyAccept//us1_test.txt" };
+		args = new String[] { "br.edu.ufcg.controllers.Facade", "EasyAccept//us1_test.txt", "EasyAccept//us2_test.txt" };
 		EasyAccept.main(args);
 	}
 
