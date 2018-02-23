@@ -1,18 +1,24 @@
 package br.edu.ufcg.entities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Tutor implements Funcao {
 
 	private String disciplina;
-	private int proeficiencia;
-	private int novaAvaliacao;
+	private int proficiencia;
+	private int notaTutor;
 	private List<String> diasDisponiveis;
 	private List<String> locaisDisponiveis;
 	private int quantidadeEmDinheiro;
 
-	public Tutor() {
-		// TODO Auto-generated constructor stub
+	public Tutor(String disciplina, int proficiencia) {
+		this.disciplina = disciplina;
+		this.proficiencia = proficiencia;
+		this.notaTutor = 4;
+		this.diasDisponiveis = new ArrayList<>();
+		this.locaisDisponiveis = new ArrayList<>();
+		this.quantidadeEmDinheiro = 0;
 	}
 
 	public String getDisciplina() {
@@ -20,11 +26,11 @@ public class Tutor implements Funcao {
 	}
 
 	public int getProeficiencia() {
-		return this.proeficiencia;
+		return this.proficiencia;
 	}
 
 	public int getNovaAvaliacao() {
-		return this.novaAvaliacao;
+		return this.notaTutor;
 	}
 
 	public List<String> getDiasDisponiveis() {

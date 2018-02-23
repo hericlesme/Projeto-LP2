@@ -1,7 +1,5 @@
 package br.edu.ufcg.entities;
 
-import java.util.Comparator;
-
 public class Aluno implements Comparable<Aluno> {
 
 	private int notaAvaliacao;
@@ -19,7 +17,7 @@ public class Aluno implements Comparable<Aluno> {
 		this.codigoCurso = codigoCurso;
 		this.email = email;
 		this.nome = nome;
-		this.funcao = new Nagato();
+		this.funcao = new Tutelado();
 	}
 
 	public String toString() {
@@ -37,25 +35,18 @@ public class Aluno implements Comparable<Aluno> {
 		switch (atributo.toLowerCase()) {
 		case "notavaliacao":
 			return Integer.toString(this.notaAvaliacao);
-			break;
 		case "matricula":
 			return this.matricula;
-			break;
 		case "telefone":
 			return this.telefone;
-			break;
 		case "codigocurso":
 			return Integer.toString(this.codigoCurso);
-			break;
 		case "email":
 			return this.email;
-			break;
 		case "nome":
 			return this.nome;
-			break;
 		default:
-			return "Invalido/alguma excecao plz";
-			break;
+			throw new IllegalArgumentException("Atributo invalido");
 		}
 	}
 
