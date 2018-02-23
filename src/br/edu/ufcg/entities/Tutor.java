@@ -21,30 +21,6 @@ public class Tutor implements Funcao {
 		this.quantidadeEmDinheiro = 0;
 	}
 
-	public String getDisciplina() {
-		return disciplina;
-	}
-
-	public int getProeficiencia() {
-		return this.proficiencia;
-	}
-
-	public int getNovaAvaliacao() {
-		return this.notaTutor;
-	}
-
-	public List<String> getDiasDisponiveis() {
-		return this.diasDisponiveis;
-	}
-
-	public List<String> getLocaisDisponiveis() {
-		return this.locaisDisponiveis;
-	}
-
-	public int getQuantidadeEmDinheiro() {
-		return quantidadeEmDinheiro;
-	}
-
 	@Override
 	public void cadastrarHorario(String horario, String dia) {
 		this.diasDisponiveis.add(String.format("%s, %s", dia, horario));
