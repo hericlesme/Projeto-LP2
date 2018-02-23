@@ -6,9 +6,9 @@ public class Aluno implements Comparable<Aluno> {
 	private String matricula;
 	private String telefone;
 	private int codigoCurso;
+	private Funcao funcao;
 	private String email;
 	private String nome;
-	private Funcao funcao;
 
 	public Aluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
 		this.notaAvaliacao = 5;
@@ -33,18 +33,25 @@ public class Aluno implements Comparable<Aluno> {
 
 	public String getInfoAluno(String atributo) {
 		switch (atributo.toLowerCase()) {
+
 		case "notavaliacao":
 			return Integer.toString(this.notaAvaliacao);
+
 		case "matricula":
 			return this.matricula;
+
 		case "telefone":
 			return this.telefone;
+
 		case "codigocurso":
 			return Integer.toString(this.codigoCurso);
+
 		case "email":
 			return this.email;
+
 		case "nome":
 			return this.nome;
+
 		default:
 			throw new IllegalArgumentException("Atributo invalido");
 		}
