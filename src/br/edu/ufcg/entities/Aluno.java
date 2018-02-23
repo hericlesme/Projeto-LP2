@@ -17,7 +17,7 @@ public class Aluno implements Comparable<Aluno> {
 		this.codigoCurso = codigoCurso;
 		this.email = email;
 		this.nome = nome;
-		this.funcao = new Nagato();
+		this.funcao = new Tutelado();
 	}
 
 	public String toString() {
@@ -46,7 +46,7 @@ public class Aluno implements Comparable<Aluno> {
 		case "nome":
 			return this.nome;
 		default:
-			return "Atributo invalido";
+			throw new IllegalArgumentException("Atributo invalido");
 		}
 	}
 
