@@ -111,28 +111,4 @@ public class Tutor implements Funcao {
 		return true;
 	}
 
-	public String getDisciplina() {
-		return disciplina;
-	}
-
-	public int getProeficiencia() {
-		return this.proficiencia;
-	}
-
-	public int getNovaAvaliacao() {
-		return this.notaTutor;
-	}
-
-	public List<String> getDiasDisponiveis() {
-		return this.diasDisponiveis;
-	}
-
-	public List<String> getLocaisDisponiveis() {
-		return this.locaisDisponiveis;
-	}
-
-	public int getQuantidadeEmDinheiro() {
-		return quantidadeEmDinheiro;
-	}
-
 }
