@@ -4,7 +4,7 @@ import easyaccept.EasyAccept;
 
 public class Facade {
 
-	QmaSistema sys = new QmaSistema();
+	QmdSistema sys = new QmdSistema();
 
 	public static void main(String[] args) {
 		args = new String[] { "br.edu.ufcg.controllers.Facade", "EasyAccept//us1_test.txt", "EasyAccept//us2_test.txt" };
