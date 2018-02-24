@@ -1,7 +1,7 @@
 package br.edu.ufcg.entities;
 
 /**
- * Classe que representa um aluno no sistema. Todo aluno possui uma nota de
+ * Representação de um aluno no sistema. Todo aluno possui uma nota de
  * avaliação, uma matrícula que o identifica, o codigo do seu curso, email, nome
  * e opcionalmente um telefone. Um aluno pode ter como função ser tutor ou
  * tutelado.
