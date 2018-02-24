@@ -9,13 +9,13 @@ import java.util.Map;
 import br.edu.ufcg.entities.Aluno;
 import br.edu.ufcg.util.Validador;
 
-public class QmdSistema {
+public class QmaSistema {
 
 	private Validador validador;
 	private Map<String, Aluno> alunos;
 	private Map<String,String> tutores;
 
-	public QmdSistema() {
+	public QmaSistema() {
 		this.validador = new Validador();
 		this.alunos = new HashMap<String,Aluno>();
 		this.tutores = new HashMap<String,String>();
