@@ -37,6 +37,7 @@ public class Tutor implements Funcao {
 		this.quantidadeEmDinheiro = 0;
 	}
 
+<<<<<<< HEAD
 	/**
 	 * O Tutor cadastra um novo horario de atendimento.
 	 * 
@@ -45,6 +46,8 @@ public class Tutor implements Funcao {
 	 * @param dia
 	 *            indica em qual dia acontecera o atendimento.
 	 */
+=======
+>>>>>>> master
 	@Override
 	public void cadastrarHorario(String horario, String dia) {
 		this.diasDisponiveis.add(String.format("%s, %s", dia, horario)); /* Sugeito a alterações */
