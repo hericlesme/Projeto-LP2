@@ -111,7 +111,7 @@ public class Aluno implements Comparable<Aluno> {
 	 */
 	@Override
 	public int compareTo(Aluno a) {
-		return this.email.compareTo(a.getNome());
+		return this.nome.compareTo(a.getNome());
 
 	}
 
@@ -210,6 +210,8 @@ public class Aluno implements Comparable<Aluno> {
 	/**
 	 * Retorna um boolean que diz se esse objeto é igual a outro. Caso seja igual,
 	 * retorna true, caso não, false. Leva em consideração a matrícula do aluno.
+	 * 
+	 * @return um boolean.
 	 */
 	@Override
 	public boolean equals(Object obj) {
