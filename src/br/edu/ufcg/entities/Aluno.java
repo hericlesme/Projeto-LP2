@@ -83,7 +83,6 @@ public class Aluno implements Comparable<Aluno> {
 
 		case "notavaliacao":
 			return Integer.toString(this.notaAvaliacao);
-
 		case "matricula":
 			return this.matricula;
 

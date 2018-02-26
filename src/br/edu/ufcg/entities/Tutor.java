@@ -13,7 +13,7 @@ import java.util.List;
 public class Tutor implements Funcao {
 
 	private String disciplina;
-	private int proficiencia;
+	private int proficiencia; 
 	private int notaTutor;
 	private List<String> diasDisponiveis;
 	private List<String> locaisDisponiveis;

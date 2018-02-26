@@ -36,15 +36,15 @@ public class Validador {
 	 * 
 	 * @param matricula
 	 *            a matrícula do aluno.
-	 * @param msg
+	 * @param mensagem
 	 *            a mensagem a ser exibida na exceção.
 	 */
-	private void matriculaInvalida(String matricula, String msg) {
+	private void matriculaInvalida(String matricula, String mensagem) {
 		if (matricula == null) {
-			throw new NullPointerException(msg + ": matricula nao pode ser vazia ou nula");
+			throw new NullPointerException(mensagem + ": matricula nao pode ser vazia ou nula");
 		}
 		if (matricula.trim().isEmpty()) {
-			throw new IllegalArgumentException(msg + ": matricula nao pode ser vazio ou nula");
+			throw new IllegalArgumentException(mensagem + ": matricula nao pode ser vazio ou nula");
 		}
 	}
 
@@ -54,12 +54,12 @@ public class Validador {
 	 * 
 	 * @param telefone
 	 *            o telefone do aluno.
-	 * @param msg
+	 * @param mensagem
 	 *            a mensagem a ser exibida na exceção.
 	 */
-	private void telefoneNulo(String telefone, String msg) {
+	private void telefoneNulo(String telefone, String mensagem) {
 		if (telefone == null) {
-			throw new NullPointerException(msg + ": Telefone nao pode ser nulo");
+			throw new NullPointerException(mensagem + ": Telefone nao pode ser nulo");
 		}
 	}
 
@@ -69,15 +69,15 @@ public class Validador {
 	 * 
 	 * @param nome
 	 *            o nome do aluno.
-	 * @param msg
+	 * @param mensagem
 	 *            a mensagem a ser exibida na exceção.
 	 */
-	private void nomeInvalido(String nome, String msg) {
+	private void nomeInvalido(String nome, String mensagem) {
 		if (nome == null) {
-			throw new NullPointerException(msg + ": Nome nao pode ser vazio ou nulo");
+			throw new NullPointerException(mensagem + ": Nome nao pode ser vazio ou nulo");
 		}
 		if (nome.trim().isEmpty()) {
-			throw new IllegalArgumentException(msg + ": Nome nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException(mensagem + ": Nome nao pode ser vazio ou nulo");
 		}
 	}
 
@@ -87,12 +87,12 @@ public class Validador {
 	 * 
 	 * @param email
 	 *            o email do aluno.
-	 * @param msg
+	 * @param mensagem
 	 *            a mensagem a ser exibida na exceção.
 	 */
-	private void emailInvalido(String email, String msg) {
+	private void emailInvalido(String email, String mensagem) {
 		if (!email.contains("@") || email.startsWith("@") || email.endsWith("@")) {
-			throw new IllegalArgumentException(msg + ": Email invalido");
+			throw new IllegalArgumentException(mensagem + ": Email invalido");
 		}
 	}
 
@@ -102,12 +102,12 @@ public class Validador {
 	 * 
 	 * @param inteiro
 	 *            o inteiro a ser validado.
-	 * @param msg
+	 * @param mensagem
 	 *            a mensagem a ser exibida na exceção.
 	 */
-	private void validaInteiro(int inteiro, String msg) {
+	private void validaInteiro(int inteiro, String mensagem) {
 		if (inteiro <= 0) {
-			throw new IllegalArgumentException(msg + " : numero invalido");
+			throw new IllegalArgumentException(mensagem + " : numero invalido");
 		}
 	}
 
@@ -123,11 +123,11 @@ public class Validador {
 	/**
 	 * Lança uma exceção sob tentativa de acesso de aluno não cadastrado.
 	 * 
-	 * @param msg
+	 * @param mensagem
 	 *            a mensagem a ser exibida na exceção.
 	 */
-	public void alunoInexistente(String msg) {
-		throw new IllegalArgumentException(msg + ": Aluno nao encontrado");
+	public void alunoInexistente(String mensagem) {
+		throw new IllegalArgumentException(mensagem + ": Aluno nao encontrado");
 
 	}
 }
