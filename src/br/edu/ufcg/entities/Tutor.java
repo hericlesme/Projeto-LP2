@@ -1,12 +1,14 @@
 package br.edu.ufcg.entities;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Classe que implementa Funcao. Define os métodos para a função Tutor. Um tutor
  * é um aluno que pode dar aulas sobre alguma disciplina especifica. A classe
- * tem como atributos a disciplina a ser ensinada, a proficiência nessa
+ * tem como atributos um mapa que liga o nome da disciplina ao objeto
  * disciplina, a nota do tutor, os dias e locais disponíveis para atendimento e
  * o dinheiro recebido.
  * 
@@ -16,9 +18,8 @@ import java.util.List;
 public class Tutor implements Funcao {
 
 	private int notaTutor;
-	private int proficiencia;
 	private int quantidadeEmDinheiro;
-	private List<String> disciplinas;
+	private Map<String, Disciplina> disciplinas;
 	private List<String> diasDisponiveis;
 	private List<String> locaisDisponiveis;
 
@@ -34,11 +35,35 @@ public class Tutor implements Funcao {
 	public Tutor(String disciplina, int proficiencia) {
 		this.locaisDisponiveis = new ArrayList<>();
 		this.diasDisponiveis = new ArrayList<>();
-		this.disciplinas = new ArrayList<>();
-		this.proficiencia = proficiencia;
-		this.disciplinas.add(disciplina);
+		this.disciplinas = new HashMap<>();
+		adicionaDisciplina(disciplina, proficiencia);
 		this.quantidadeEmDinheiro = 0;
 		this.notaTutor = 4;
+	}
+
+	/**
+	 * Adiciona um objeto disciplina no mapa disciplinas que liga o nome da
+	 * disciplina ao objeto.
+	 * 
+	 * @param disciplina
+	 *            o nome da disciplina.
+	 * @param proficiencia
+	 *            a proficiencia na disciplina.
+	 */
+	@Override
+	public void adicionaDisciplina(String disciplina, int proficiencia) {
+		this.disciplinas.put(disciplina, new Disciplina(disciplina, proficiencia));
+	}
+
+	/**
+	 * Retorna um booleano dizendo se a disciplina com o nome dado já existe no map
+	 * de disciplinas do Tutor.
+	 * 
+	 * @return um boolean.
+	 */
+	@Override
+	public boolean containsDisciplina(String disciplina) {
+		return this.disciplinas.containsKey(disciplina);
 	}
 
 	/**
@@ -53,19 +78,6 @@ public class Tutor implements Funcao {
 	@Override
 	public void cadastrarHorario(String horario, String dia) {
 		this.diasDisponiveis.add(String.format("%s, %s", dia, horario)); /* Sugeito a alterações */
-	}
-
-	/**
-	 * Verifica a existência de uma Disciplina agregada ao tutor.
-	 * 
-	 * @param disciplina
-	 *            a disciplina a ser verificada.
-	 * @return um valor booleano indicando a existência da disciplina.
-	 */
-	@Override
-	public boolean containsDisciplina(String disciplina) {
-		System.out.println(disciplina);
-		return this.disciplinas.contains(disciplina);
 	}
 
 	/**
@@ -92,14 +104,7 @@ public class Tutor implements Funcao {
 	 */
 	@Override
 	public boolean consultaHorario(String horario, String dia) {
-
-		/*
-		 * Esta verificação está sujeita a variações dependendo dos testes de aceitação.
-		 */
-		if (!this.diasDisponiveis.contains(String.format("%s, %s", dia, horario))) {
-			return false;
-		}
-		return true;
+		return this.diasDisponiveis.contains(String.format("%s, %s", dia, horario));
 	}
 
 	/**
@@ -112,10 +117,7 @@ public class Tutor implements Funcao {
 	 */
 	@Override
 	public boolean consultaLocal(String local) {
-		if (!this.locaisDisponiveis.contains(local)) {
-			return false;
-		}
-		return true;
+		return this.locaisDisponiveis.contains(local);
 	}
 
 }

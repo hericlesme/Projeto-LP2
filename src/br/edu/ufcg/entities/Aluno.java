@@ -145,6 +145,14 @@ public class Aluno implements Comparable<Aluno> {
 		this.funcao = new Tutor(disciplina, proficiencia);
 	}
 
+	public void adicionaDisciplina(String disciplina, int proficiencia) {
+		this.funcao.adicionaDisciplina(disciplina, proficiencia);
+	}
+
+	public boolean containsDisciplina(String disciplina) {
+		return this.funcao.containsDisciplina(disciplina);
+	}
+
 	/**
 	 * Cadastra um horário e dia que o Tutor esteja disponível para ajudar
 	 * 
@@ -193,19 +201,6 @@ public class Aluno implements Comparable<Aluno> {
 		return this.funcao.consultaLocal(local);
 	}
 
-	
-	/**
-	 * Verifica a existência de uma Disciplina agregada a um tutor.
-	 * 
-	 * @param disciplina
-	 *            a disciplina a ser verificada.
-	 * @return um valor booleano indicando a existência da disciplina.
-	 */
-	public boolean containsDisciplina(String disciplina) {
-		System.out.println(disciplina);
-		return this.funcao.containsDisciplina(disciplina);
-	}
-	
 	/**
 	 * Retorna um int que representa o hashCode do objeto Aluno.
 	 * 
