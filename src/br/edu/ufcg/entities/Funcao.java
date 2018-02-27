@@ -21,6 +21,15 @@ public interface Funcao {
 	public void cadastrarHorario(String horario, String dia) throws IllegalThreadStateException;
 
 	/**
+	 * Verifica a existência de uma Disciplina agregada ao tutor.
+	 * 
+	 * @param disciplina
+	 *            a disciplina a ser verificada.
+	 * @return um valor booleano indicando a existência da disciplina.
+	 */
+	public boolean containsDisciplina(String disciplina) throws IllegalThreadStateException;
+
+	/**
 	 * Cadastra em um tutor um novo local de atendimento.
 	 * 
 	 * @param local:
