@@ -11,6 +11,25 @@ package br.edu.ufcg.entities;
 public interface Funcao {
 
 	/**
+	 * Adiciona um objeto disciplina no mapa disciplinas que liga o nome da
+	 * disciplina ao objeto.
+	 * 
+	 * @param disciplina
+	 *            o nome da disciplina.
+	 * @param proficiencia
+	 *            a proficiencia na disciplina.
+	 */
+	public void adicionaDisciplina(String disciplina, int proficiencia) throws IllegalThreadStateException;
+
+	/**
+	 * Retorna um booleano dizendo se a disciplina com o nome dado já existe no map
+	 * de disciplinas do Tutor.
+	 * 
+	 * @return um boolean.
+	 */
+	public boolean containsDisciplina(String disciplina) throws IllegalThreadStateException;
+
+	/**
 	 * Cadastra em um tutor um novo horario de atendimento.
 	 * 
 	 * @param horario
@@ -19,15 +38,6 @@ public interface Funcao {
 	 *            indica em qual dia acontecera o atendimento.
 	 */
 	public void cadastrarHorario(String horario, String dia) throws IllegalThreadStateException;
-
-	/**
-	 * Verifica a existência de uma Disciplina agregada ao tutor.
-	 * 
-	 * @param disciplina
-	 *            a disciplina a ser verificada.
-	 * @return um valor booleano indicando a existência da disciplina.
-	 */
-	public boolean containsDisciplina(String disciplina) throws IllegalThreadStateException;
 
 	/**
 	 * Cadastra em um tutor um novo local de atendimento.

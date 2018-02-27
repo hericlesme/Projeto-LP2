@@ -50,6 +50,11 @@ public class Tutelado implements Funcao {
 	 * função tente utilizar um método apenas permitido ao tutor.
 	 */
 	@Override
+	public void adicionaDisciplina(String disciplina, int proficiencia) {
+		throw new IllegalThreadStateException("Chamada ao metodo invalida, este aluno não é tutor.");
+	}
+
+	@Override
 	public boolean containsDisciplina(String disciplina) throws IllegalThreadStateException {
 		throw new IllegalThreadStateException("Chamada ao metodo invalida, este aluno não é tutor.");
 	}
