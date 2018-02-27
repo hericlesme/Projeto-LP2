@@ -96,4 +96,24 @@ public class TutorTest {
 		assertFalse(tutor.consultaLocal("Lcc1"));
 	}
 
+	/**
+	 * Testa o método adicionaDisciplina de um tutor.
+	 */
+	@Test
+	public void testAdicionaDisciplina() {
+		tutor.adicionaDisciplina("teste", 5);
+		assertTrue(tutor.containsDisciplina("teste"));
+	}
+
+	/**
+	 * Testa o método containsDisciplina de tutor, para o caso dele ensinar a
+	 * disciplina e não.
+	 */
+	@Test
+	public void testContainsDisciplina() {
+		tutor.adicionaDisciplina("teste", 4);
+		assertTrue(tutor.containsDisciplina("teste"));
+		assertFalse(tutor.containsDisciplina("aquinao"));
+	}
+
 }

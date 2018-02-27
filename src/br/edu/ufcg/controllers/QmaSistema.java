@@ -70,6 +70,7 @@ public class QmaSistema {
 	 * @return O toString do aluno.
 	 */
 	public String recuperaAluno(String matricula) {
+		validador.matriculaInvalida(matricula, "Erro na busca por aluno");
 		if (!alunos.containsKey(matricula)) {
 			validador.alunoInexistente("Erro na busca por aluno");
 		}
@@ -99,6 +100,7 @@ public class QmaSistema {
 	 * @return uma String que representa o atributo em questão.
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
+		validador.matriculaInvalida(matricula, "Erro na obtencao de informacao de aluno");
 		if (!alunos.containsKey(matricula)) {
 			validador.alunoInexistente("Erro na obtencao de informacao de aluno");
 		}
@@ -117,6 +119,7 @@ public class QmaSistema {
 	 *            de 1 a 5.
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
+		validador.disciplinaInvalida(disciplina, "Erro na definicao de papel");
 		if (!this.alunos.containsKey(matricula)) {
 			validador.tutorNaoEncontrado("Erro na definicao de papel");
 		}
@@ -239,11 +242,11 @@ public class QmaSistema {
 		validador.emailInvalido(email, "Erro na consulta de horario");
 		validador.diaInvalido(dia, "Erro na consulta de horario");
 		validador.horarioInvalido(horario, "Erro na consulta de horario");
-		
+
 		if (!tutores.containsKey(email)) {
 			return false;
 		}
-		
+
 		return this.alunos.get(this.tutores.get(email)).consultaHorario(horario, dia);
 	}
 
@@ -261,7 +264,7 @@ public class QmaSistema {
 	public boolean consultaLocal(String email, String local) {
 		validador.emailInvalido(email, "Erro na consulta de local");
 		validador.localInvalido(local, "Erro na consulta de local");
-		
+
 		if (!tutores.containsKey(email)) {
 			return false;
 		}
