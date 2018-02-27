@@ -118,22 +118,21 @@ public class QmaSistema {
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 		if (!this.alunos.containsKey(matricula)) {
-			validador.alunoInexistente("Erro no cadastro de tutor");
+			validador.tutorNaoEncontrado("Erro na definicao de papel");
 		}
 
-		if (this.tutores.containsValue(matricula)) {
-			if (alunos.get(matricula).containsDisciplina(disciplina)) {
-				System.out.println(disciplina);
-				validador.tornarTutorInvalido("Erro na definicao de papel");				
-      }
-		}
+		validador.proficienciaInvalida(proficiencia, "Erro na definicao de papel");
+		if (!this.tutores.containsValue(matricula)) {
+			this.alunos.get(matricula).tornarTutor(disciplina, proficiencia);
+			this.tutores.put(this.alunos.get(matricula).getEmail(), matricula);
 
-		if (proficiencia <= 0 || proficiencia > 5) {
-			// criar "Proficiencia invalida"
-		}
+		} else {
 
-    this.alunos.get(matricula).tornarTutor(disciplina, proficiencia);
-		this.tutores.put(this.alunos.get(matricula).getEmail(), matricula);
+			if (this.alunos.get(matricula).containsDisciplina(disciplina)) {
+				validador.tornarTutorInvalido("Erro na definicao de papel");
+			}
+			this.alunos.get(matricula).adicionaDisciplina(disciplina, proficiencia);
+		}
 	}
 
 	/**
@@ -185,9 +184,17 @@ public class QmaSistema {
 	 *            String do dia do atendimento do tutor.
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
-		if (!tutores.containsKey(email)) {
-			validador.horarioInvalido(horario, "Erro no cadastrar horario");
+		validador.emailInvalido(email, "Erro no cadastrar horario");
+		validador.horarioInvalido(horario, "Erro no cadastrar horario");
+		validador.diaInvalido(dia, "Erro no cadastrar horario");
+		if (!alunos.containsKey(tutores.get(email))) {
+			validador.tutorNaoCadastrado("Erro no cadastrar horario");
 		}
+
+		if (!tutores.containsKey(email)) {
+			validador.tutorNaoEncontrado("Erro no cadastrar horario");
+		}
+
 		this.alunos.get(this.tutores.get(email)).cadastrarHorario(horario, dia);
 	}
 
@@ -200,9 +207,17 @@ public class QmaSistema {
 	 *            String do local do atendimento do tutor.
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		if (!tutores.containsKey(email)) {
-			validador.tutorNaoEncontrado("Erro ainda não listado");
+		validador.emailInvalido(email, "Erro no cadastrar local de atendimento");
+		validador.localInvalido(local, "Erro no cadastrar local de atendimento");
+
+		if (!alunos.containsKey(tutores.get(email))) {
+			validador.tutorNaoCadastrado("Erro no cadastrar local de atendimento");
 		}
+
+		if (!tutores.containsKey(email)) {
+			validador.tutorNaoEncontrado("Erro no cadastrar local de atendimento");
+		}
+
 		this.alunos.get(this.tutores.get(email)).cadastrarLocalDeAtendimento(local);
 
 	}
@@ -221,9 +236,14 @@ public class QmaSistema {
 	 *         atendimento de um tutor.
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
+		validador.emailInvalido(email, "Erro na consulta de horario");
+		validador.diaInvalido(dia, "Erro na consulta de horario");
+		validador.horarioInvalido(horario, "Erro na consulta de horario");
+		
 		if (!tutores.containsKey(email)) {
-			validador.tutorNaoEncontrado("Erro ainda não listado");
+			return false;
 		}
+		
 		return this.alunos.get(this.tutores.get(email)).consultaHorario(horario, dia);
 	}
 
@@ -239,8 +259,11 @@ public class QmaSistema {
 	 *         tutor.
 	 */
 	public boolean consultaLocal(String email, String local) {
+		validador.emailInvalido(email, "Erro na consulta de local");
+		validador.localInvalido(local, "Erro na consulta de local");
+		
 		if (!tutores.containsKey(email)) {
-			validador.tutorNaoEncontrado("Erro ainda não listado");
+			return false;
 		}
 		return this.alunos.get(this.tutores.get(email)).consultaLocal(local);
 	}

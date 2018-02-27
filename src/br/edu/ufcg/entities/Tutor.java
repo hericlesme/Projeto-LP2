@@ -63,7 +63,7 @@ public class Tutor implements Funcao {
 	 */
 	@Override
 	public boolean containsDisciplina(String disciplina) {
-		return this.disciplinas.containsKey(disciplina);
+		return disciplinas.containsKey(disciplina);
 	}
 
 	/**

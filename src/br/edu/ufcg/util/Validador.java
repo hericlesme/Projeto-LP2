@@ -90,14 +90,19 @@ public class Validador {
 	 * @param mensagem
 	 *            a mensagem a ser exibida na exceção.
 	 */
-	private void emailInvalido(String email, String mensagem) {
+	public void emailInvalido(String email, String mensagem) {
+		if (email == null) {
+			throw new NullPointerException(mensagem + ": email nao pode ser nulo");
+		}
+
+		if (email.trim().equals("")) {
+			throw new IllegalArgumentException(mensagem + ": email nao pode ser vazio ou em branco");
+		}
+
 		if (!email.contains("@") || email.startsWith("@") || email.endsWith("@")) {
 			throw new IllegalArgumentException(mensagem + ": Email invalido");
 		}
 
-		if (email.trim().equals("") || email == null) {
-			throw new IllegalArgumentException(mensagem + ": email nao pode ser vazio ou em branco");
-		}
 	}
 
 	/**
@@ -153,7 +158,7 @@ public class Validador {
 	 *            a mensagem a ser exibida na exceção.
 	 */
 	public void tutorNaoCadastrado(String mensagem) {
-		throw new IllegalArgumentException(mensagem + ": Tutor nao cadastrado");
+		throw new IllegalArgumentException(mensagem + ": tutor nao cadastrado");
 	}
 
 	public void horarioInvalido(String horario, String mensagem) {
@@ -185,7 +190,14 @@ public class Validador {
 			throw new IllegalArgumentException(mensagem + ": local nao pode ser vazio ou em branco");
 		}
 	}
+
 	public void tornarTutorInvalido(String mensagem) {
-		throw new IllegalArgumentException(mensagem + ": papel ja cadastrado");
+		throw new IllegalArgumentException(mensagem + ": Ja eh tutor dessa disciplina");
+	}
+
+	public void proficienciaInvalida(int proficiencia, String mensagem) {
+		if (proficiencia <= 0 || proficiencia > 5) {
+			throw new IllegalArgumentException(mensagem + ": Proficiencia invalida");
+		}
 	}
 }
