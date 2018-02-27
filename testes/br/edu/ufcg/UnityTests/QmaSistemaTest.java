@@ -64,7 +64,7 @@ public class QmaSistemaTest {
 	@Test
 	public void testGetInfoAlunoNota() {
 		sys.cadastrarAluno("Fulano", "123", 1456, "88621845", "fulanim@umdois.tres");
-		assertEquals("5", sys.getInfoAluno("123", "notavaliacao"));
+		assertEquals("5", sys.getInfoAluno("123", "notaavaliacao"));
 	}
 
 	/**
@@ -188,23 +188,306 @@ public class QmaSistemaTest {
 		sys.cadastrarAluno("", "156165", 1645, "", "eae@men.kk");
 		sys.cadastrarAluno("   ", "156165", 1645, "", "eae@men.kk");
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoMatriculaVazia() {
 		sys.cadastrarAluno("FruFru", "", 1645, "", "fru@fru.kk");
 		sys.cadastrarAluno("FruFru", "   ", 1645, "", "fru@fru.kk");
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoEmailVazio() {
 		sys.cadastrarAluno("FruFru", "1453", 1645, "", "");
 		sys.cadastrarAluno("FruFru", "1453", 1645, "", "    ");
 	}
-	
+
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoCodigoCursoInvalido() {
 		sys.cadastrarAluno("FruFru", "1453", 0, "", "hello@com.br");
 		sys.cadastrarAluno("FruFru", "1453", -1, "", "hello@com.br");
 	}
-	
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testRecuperaAlunoInexistente() {
+		sys.recuperaAluno("213212");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAlunoInexistente() {
+		sys.getInfoAluno("2121", "matricula");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoInexistente() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.getInfoAluno("2121", "altura");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testTornarTutorAlunoInexistente() {
+		sys.tornarTutor("2020220", "LP2", 10);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testRecuperaTutorInexistente() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.recuperaTutor("2121");
+
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCadastrarHorarioTutelado() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.cadastrarHorario("HAHA@OTAKU.COM", "15:16", "DOMINGAO DO FAUSTAO");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCadastrarLocalDeAtendimentoTutelado() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.cadastrarLocalDeAtendimento("HAHA@OTAKU.COM", "na sua casa ;)");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testConsultaHorarioTutelado() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.consultaHorario("HAHA@OTAKU.COM", "321:12", "sabado-feira");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testConsultaLocalTutelado() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.consultaLocal("HAHA@OTAKU.COM", "pode ser na minha tambem hahaha. wink");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testRecuperaAlunoVazio() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.recuperaAluno("");
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testRecuperaAlunoNulo() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.recuperaAluno(null);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testGeInfoAlunoMatriculaVazia() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.getInfoAluno("", "matricula");
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testGetInfoAlunoMatriculaNula() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.getInfoAluno(null, "matricula");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAlunoAtributoVazio() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.getInfoAluno("2121", "");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoAlunoAtributoNulo() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.getInfoAluno("2121", null);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testTornarTutorMatriculaVazia() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("", "aah", 2);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testTornarTutorDisciplinaVazia() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "", 2);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testTornarTutorMatriculaNula() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor(null, "aah", 2);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testTornarTutorDisciplinaNula() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", null, 2);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testTornarTutorProficienciaInvalida() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", -1);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testRecuperaTutorVazio() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.recuperaTutor("");
+
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testRecuperaTutorNulo() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.recuperaTutor(null);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCadastrarHorarioEmailVazio() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarHorario("", "21:21", "hoje");
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testCadastrarHorarioEmailNulo() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarHorario(null, "21:21", "hoje");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCadastrarHorarioHoraVazia() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarHorario("HAHA@OTAKU.COM", "", "hoje");
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testCadastrarHorarioHoraNula() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarHorario("HAHA@OTAKU.COM", null, "hoje");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCadastrarHorarioDiaVazio() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarHorario("HAHA@OTAKU.COM", "21:21", "");
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testCadastrarHorarioDiaNulo() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarHorario("HAHA@OTAKU.COM", "21:21", null);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCadastrarLocalEmailVazio() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarLocalDeAtendimento("", "la");
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testCadastrarLocalEmailNulo() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarLocalDeAtendimento(null, "la");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testCadastrarLocalVazio() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarLocalDeAtendimento("HAHA@OTAKU.COM", "");
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testCadastrarLocalNulo() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarLocalDeAtendimento("HAHA@OTAKU.COM", null);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testConsultaHorarioEmailVazio() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarHorario("HAHA@OTAKU.COM", "21:21", "amanha");
+		sys.consultaHorario("", "21:21", "amanha");
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testConsultahorarioEmailnulo() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarHorario("HAHA@OTAKU.COM", "21:21", "amanha");
+		sys.consultaHorario(null, "21:21", "amanha");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testConsultaHorarioVazio() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarHorario("HAHA@OTAKU.COM", "21:21", "amanha");
+		sys.consultaHorario("HAHA@OTAKU.COM", "", "amanha");
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testConsultaHorarioNulo() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarHorario("HAHA@OTAKU.COM", "21:21", "amanha");
+		sys.consultaHorario("HAHA@OTAKU.COM", null, "amanha");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testConsultaHorarioDiaVazio() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarHorario("HAHA@OTAKU.COM", "21:21", "amanha");
+		sys.consultaHorario("HAHA@OTAKU.COM", "21:21", "");
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testConsultaHorarioDiaNulo() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarHorario("HAHA@OTAKU.COM", "21:21", "amanha");
+		sys.consultaHorario("HAHA@OTAKU.COM", "21:21", null);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testConsultaLocalEmailVazio() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarLocalDeAtendimento("HAHA@OTAKU.COM", "la");
+		sys.consultaLocal("", "la");
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testConsultaLocalEmailNulo() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarLocalDeAtendimento("HAHA@OTAKU.COM", "la");
+		sys.consultaLocal(null, "la");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testConsultaLocalVazio() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarLocalDeAtendimento("HAHA@OTAKU.COM", "la");
+		sys.consultaLocal("HAHA@OTAKU.COM", "");
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testConsultaLocalNulo() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.tornarTutor("2121", "aah", 5);
+		sys.cadastrarLocalDeAtendimento("HAHA@OTAKU.COM", "la");
+		sys.consultaLocal("HAHA@OTAKU.COM", null);
+	}
+
 }
