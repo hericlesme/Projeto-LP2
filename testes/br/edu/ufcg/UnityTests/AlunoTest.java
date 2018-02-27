@@ -9,7 +9,7 @@ import br.edu.ufcg.entities.Aluno;
 
 /**
  * 
- * Classe de Testes de Unidade da classe Aluno.
+ * Formulário de Testes de Unidade da classe Aluno.
  * 
  * Projeto de Laboratório - Programação II
  *
