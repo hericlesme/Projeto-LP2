@@ -39,7 +39,7 @@ public class Validador {
 	 * @param mensagem
 	 *            a mensagem a ser exibida na exceção.
 	 */
-	private void matriculaInvalida(String matricula, String mensagem) {
+	public void matriculaInvalida(String matricula, String mensagem) {
 		if (matricula == null) {
 			throw new NullPointerException(mensagem + ": matricula nao pode ser vazia ou nula");
 		}
@@ -94,6 +94,10 @@ public class Validador {
 		if (!email.contains("@") || email.startsWith("@") || email.endsWith("@")) {
 			throw new IllegalArgumentException(mensagem + ": Email invalido");
 		}
+
+		if (email.trim().equals("") || email == null) {
+			throw new IllegalArgumentException(mensagem + ": email nao pode ser vazio ou em branco");
+		}
 	}
 
 	/**
@@ -129,5 +133,61 @@ public class Validador {
 	public void alunoInexistente(String mensagem) {
 		throw new IllegalArgumentException(mensagem + ": Aluno nao encontrado");
 
+	}
+
+	/**
+	 * Lança uma exceção quando o tutor não é encontrado.
+	 * 
+	 * @param mensagem
+	 *            a mensagem a ser exibida na exceção.
+	 */
+	public void tutorNaoEncontrado(String mensagem) {
+		throw new IllegalArgumentException(mensagem + ": Tutor nao encontrado");
+
+	}
+
+	/**
+	 * Lança uma exceção quando o tutor não está cadastrado.
+	 * 
+	 * @param mensagem
+	 *            a mensagem a ser exibida na exceção.
+	 */
+	public void tutorNaoCadastrado(String mensagem) {
+		throw new IllegalArgumentException(mensagem + ": Tutor nao cadastrado");
+	}
+
+	public void horarioInvalido(String horario, String dia, String mensagem) {
+		if (horario == null) {
+			throw new NullPointerException(mensagem + ": horario nao pode ser nulo");
+		}
+		
+		if (horario.trim().equals("")) {
+			throw new IllegalArgumentException(mensagem + ": horario nao pode ser vazio ou em branco");
+		}
+
+		if (dia.trim().equals("")) {
+			throw new IllegalArgumentException(mensagem + ": dia nao pode ser vazio ou em branco");
+		}
+	}
+
+	public void diaInvalido(String dia, String mensagem) {
+		if (dia == null) {
+			throw new NullPointerException(mensagem + ": dia nao pode ser nulo");
+		}
+
+		
+		if (dia.trim().equals("")) {
+			throw new IllegalArgumentException(mensagem + ": dia nao pode ser vazio ou em branco");
+		}
+	}
+
+	public void localInvalido(String local, String mensagem) {
+		if (local == null) {
+			throw new NullPointerException(mensagem + ": local nao pode ser nulo");
+		}
+		
+		if (local.trim().equals("")) {
+			throw new IllegalArgumentException(mensagem + ": local nao pode ser vazio ou em branco");
+		}
 	}
 }
