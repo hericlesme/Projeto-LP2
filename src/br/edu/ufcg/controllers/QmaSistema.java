@@ -125,14 +125,14 @@ public class QmaSistema {
 			if (alunos.get(matricula).containsDisciplina(disciplina)) {
 				System.out.println(disciplina);
 				validador.tornarTutorInvalido("Erro na definicao de papel");				
-			}
+      }
 		}
 
 		if (proficiencia <= 0 || proficiencia > 5) {
-			// Proficiencia invalida
+			// criar "Proficiencia invalida"
 		}
 
-		this.alunos.get(matricula).tornarTutor(disciplina, proficiencia);
+    this.alunos.get(matricula).tornarTutor(disciplina, proficiencia);
 		this.tutores.put(this.alunos.get(matricula).getEmail(), matricula);
 	}
 
@@ -159,7 +159,6 @@ public class QmaSistema {
 	public String listarTutores() {
 		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(alunos.values());
 		Collections.sort(alunosOrdenados);
-
 		return mapToString(alunosOrdenados.stream().filter(aluno -> tutores.containsKey(aluno.getEmail())));
 	}
 
@@ -202,7 +201,7 @@ public class QmaSistema {
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
 		if (!tutores.containsKey(email)) {
-			// Badabom badabam, ur pussy smells like ham.
+			validador.tutorNaoEncontrado("Erro ainda não listado");
 		}
 		this.alunos.get(this.tutores.get(email)).cadastrarLocalDeAtendimento(local);
 
@@ -223,7 +222,7 @@ public class QmaSistema {
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
 		if (!tutores.containsKey(email)) {
-			// Skidaddle skidoddle, ur dick is now a noodle.
+			validador.tutorNaoEncontrado("Erro ainda não listado");
 		}
 		return this.alunos.get(this.tutores.get(email)).consultaHorario(horario, dia);
 	}
@@ -241,10 +240,7 @@ public class QmaSistema {
 	 */
 	public boolean consultaLocal(String email, String local) {
 		if (!tutores.containsKey(email)) {
-			// Roses are red
-			// violets are blue
-			// the comment is in english
-			// so why aren't you?
+			validador.tutorNaoEncontrado("Erro ainda não listado");
 		}
 		return this.alunos.get(this.tutores.get(email)).consultaLocal(local);
 	}
