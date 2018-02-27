@@ -31,8 +31,8 @@ public class Validador {
 	}
 
 	/**
-	 * Método que realiza a verificação da validade da matrícula, e lança
-	 * uma exceção, caso seja inválida.
+	 * Método que realiza a verificação da validade da matrícula, e lança uma
+	 * exceção, caso seja inválida.
 	 * 
 	 * @param matricula
 	 *            a matrícula do aluno.
@@ -82,8 +82,8 @@ public class Validador {
 	}
 
 	/**
-	 * Método que realiza a verificação da validade do email, e lança uma
-	 * exceção, caso seja inválido.
+	 * Método que realiza a verificação da validade do email, e lança uma exceção,
+	 * caso seja inválido.
 	 * 
 	 * @param email
 	 *            o email do aluno.
@@ -256,6 +256,24 @@ public class Validador {
 		}
 		if (disciplina.trim().isEmpty()) {
 			throw new IllegalArgumentException(mensagem + ": Disciplina nao pode ser vazio ou em branco");
+		}
+	}
+
+	/**
+	 * Método utilizado para verificar se determinado atributo é inválido, lançando
+	 * exceção caso seja.
+	 * 
+	 * @param atributo
+	 *            atributo a ser checado.
+	 * @param mensagem
+	 *            mensagem a ser exibida na exceção.
+	 */
+	public void atributoInvalido(String atributo, String mensagem) {
+		if (atributo == null) {
+			throw new NullPointerException(mensagem + ": atributo nao pode ser nulo");
+		}
+		if (atributo.trim().isEmpty()) {
+			throw new IllegalArgumentException(mensagem + ": atributo nao pode ser vazio ou nulo");
 		}
 	}
 }
