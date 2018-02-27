@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import br.edu.ufcg.entities.Aluno;
 import br.edu.ufcg.util.Validador;
@@ -84,7 +85,7 @@ public class QmaSistema {
 		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(alunos.values());
 		Collections.sort(alunosOrdenados);
 
-		return alunosOrdenados.stream().map(Aluno::toString).collect(Collectors.joining(", "));
+		return mapToString(alunosOrdenados.stream());
 	}
 
 	/**
@@ -142,7 +143,6 @@ public class QmaSistema {
 			// Throw a exception here,something like "This student isn't a tutor".
 		}
 		return this.alunos.get(matricula).toString();
-
 	}
 
 	/**
@@ -154,8 +154,19 @@ public class QmaSistema {
 		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(alunos.values());
 		Collections.sort(alunosOrdenados);
 
-		return alunosOrdenados.stream().filter(aluno -> tutores.containsKey(aluno.getEmail())).map(Aluno::toString)
-				.collect(Collectors.joining(", "));
+		return mapToString(alunosOrdenados.stream().filter(aluno -> tutores.containsKey(aluno.getEmail())));
+	}
+
+	/**
+	 * Recebe um objeto Stream de Aluno, e realiza o mapeamento encadeado do
+	 * toString do aluno, adicionando a String ", " a cada iteração.
+	 * 
+	 * @param alunos
+	 *            Stream de alunos.
+	 * @return uma String contendo o toString encadeado dos alunos.
+	 */
+	private String mapToString(Stream<Aluno> alunos) {
+		return alunos.map(Aluno::toString).collect(Collectors.joining(", "));
 	}
 
 	/**
