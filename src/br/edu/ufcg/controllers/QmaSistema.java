@@ -81,13 +81,10 @@ public class QmaSistema {
 	 * @return O toString de todos os alunos
 	 */
 	public String listarAlunos() {
-		String out = new String();
 		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(alunos.values());
 		Collections.sort(alunosOrdenados);
-		for (Aluno aluno : alunosOrdenados) {
-			out += aluno.toString() + ", ";
-		}
-		return out.substring(0, out.length() - 2);
+
+		return alunosOrdenados.stream().map(Aluno::toString).collect(Collectors.joining(", "));
 	}
 
 	/**
@@ -146,7 +143,6 @@ public class QmaSistema {
 	 */
 	public String listarTutores() {
 		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(alunos.values());
-
 		Collections.sort(alunosOrdenados);
 
 		return alunosOrdenados.stream().filter(aluno -> tutores.containsKey(aluno.getEmail())).map(Aluno::toString)
