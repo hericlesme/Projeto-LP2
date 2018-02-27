@@ -156,17 +156,13 @@ public class Validador {
 		throw new IllegalArgumentException(mensagem + ": Tutor nao cadastrado");
 	}
 
-	public void horarioInvalido(String horario, String dia, String mensagem) {
+	public void horarioInvalido(String horario, String mensagem) {
 		if (horario == null) {
 			throw new NullPointerException(mensagem + ": horario nao pode ser nulo");
 		}
-		
+
 		if (horario.trim().equals("")) {
 			throw new IllegalArgumentException(mensagem + ": horario nao pode ser vazio ou em branco");
-		}
-
-		if (dia.trim().equals("")) {
-			throw new IllegalArgumentException(mensagem + ": dia nao pode ser vazio ou em branco");
 		}
 	}
 
@@ -184,9 +180,12 @@ public class Validador {
 		if (local == null) {
 			throw new NullPointerException(mensagem + ": local nao pode ser nulo");
 		}
-		
+
 		if (local.trim().equals("")) {
 			throw new IllegalArgumentException(mensagem + ": local nao pode ser vazio ou em branco");
 		}
+	}
+	public void tornarTutorInvalido(String mensagem) {
+		throw new IllegalArgumentException(mensagem + ": papel ja cadastrado");
 	}
 }

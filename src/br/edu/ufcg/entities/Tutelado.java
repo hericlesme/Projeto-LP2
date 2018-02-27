@@ -45,4 +45,13 @@ public class Tutelado implements Funcao {
 		throw new IllegalThreadStateException("Chamada ao metodo invalida, este aluno não é tutor.");
 	}
 
+	/**
+	 * Lança uma exceção do tipo IllegalThreadStateException caso um Aluno com essa
+	 * função tente utilizar um método apenas permitido ao tutor.
+	 */
+	@Override
+	public boolean containsDisciplina(String disciplina) throws IllegalThreadStateException {
+		throw new IllegalThreadStateException("Chamada ao metodo invalida, este aluno não é tutor.");
+	}
+
 }

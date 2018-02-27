@@ -15,12 +15,12 @@ import java.util.List;
  */
 public class Tutor implements Funcao {
 
-	private String disciplina;
-	private int proficiencia;
 	private int notaTutor;
+	private int proficiencia;
+	private int quantidadeEmDinheiro;
+	private List<String> disciplinas;
 	private List<String> diasDisponiveis;
 	private List<String> locaisDisponiveis;
-	private int quantidadeEmDinheiro;
 
 	/**
 	 * Inicializa um objeto da classe Tutor.
@@ -32,12 +32,13 @@ public class Tutor implements Funcao {
 	 *            Tutor se considera.
 	 */
 	public Tutor(String disciplina, int proficiencia) {
-		this.disciplina = disciplina;
-		this.proficiencia = proficiencia;
-		this.notaTutor = 4;
-		this.diasDisponiveis = new ArrayList<>();
 		this.locaisDisponiveis = new ArrayList<>();
+		this.diasDisponiveis = new ArrayList<>();
+		this.disciplinas = new ArrayList<>();
+		this.proficiencia = proficiencia;
+		this.disciplinas.add(disciplina);
 		this.quantidadeEmDinheiro = 0;
+		this.notaTutor = 4;
 	}
 
 	/**
@@ -52,6 +53,19 @@ public class Tutor implements Funcao {
 	@Override
 	public void cadastrarHorario(String horario, String dia) {
 		this.diasDisponiveis.add(String.format("%s, %s", dia, horario)); /* Sugeito a alterações */
+	}
+
+	/**
+	 * Verifica a existência de uma Disciplina agregada ao tutor.
+	 * 
+	 * @param disciplina
+	 *            a disciplina a ser verificada.
+	 * @return um valor booleano indicando a existência da disciplina.
+	 */
+	@Override
+	public boolean containsDisciplina(String disciplina) {
+		System.out.println(disciplina);
+		return this.disciplinas.contains(disciplina);
 	}
 
 	/**
@@ -73,8 +87,8 @@ public class Tutor implements Funcao {
 	 *            atendimento.
 	 * @param dia:
 	 *            indica em qual dia em que possivelmente acontecera o atendimento.
-	 * @return true - se o horario ja tiver sido cadastrado;
-	 *         false - se o horario nao tiver sido cadastrado.
+	 * @return true - se o horario ja tiver sido cadastrado; false - se o horario
+	 *         nao tiver sido cadastrado.
 	 */
 	@Override
 	public boolean consultaHorario(String horario, String dia) {
@@ -93,9 +107,8 @@ public class Tutor implements Funcao {
 	 * 
 	 * @param local
 	 *            onde deve ter sido alocado o local de atendimento.
-	 * @return
-	 *         true - se o local ja tiver sido cadastrado;
-	 *         false - se o local nao tiver sido cadastrado.
+	 * @return true - se o local ja tiver sido cadastrado; false - se o local nao
+	 *         tiver sido cadastrado.
 	 */
 	@Override
 	public boolean consultaLocal(String local) {

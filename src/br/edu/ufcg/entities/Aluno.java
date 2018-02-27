@@ -193,6 +193,19 @@ public class Aluno implements Comparable<Aluno> {
 		return this.funcao.consultaLocal(local);
 	}
 
+	
+	/**
+	 * Verifica a existência de uma Disciplina agregada a um tutor.
+	 * 
+	 * @param disciplina
+	 *            a disciplina a ser verificada.
+	 * @return um valor booleano indicando a existência da disciplina.
+	 */
+	public boolean containsDisciplina(String disciplina) {
+		System.out.println(disciplina);
+		return this.funcao.containsDisciplina(disciplina);
+	}
+	
 	/**
 	 * Retorna um int que representa o hashCode do objeto Aluno.
 	 * 
