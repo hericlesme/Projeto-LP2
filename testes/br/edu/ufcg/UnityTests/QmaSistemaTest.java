@@ -281,7 +281,6 @@ public class QmaSistemaTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoNomeVazio() {
-		sys.cadastrarAluno("", "156165", 1645, "", "eae@men.kk");
 		sys.cadastrarAluno("   ", "156165", 1645, "", "eae@men.kk");
 	}
 
@@ -291,7 +290,6 @@ public class QmaSistemaTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoMatriculaVazia() {
-		sys.cadastrarAluno("FruFru", "", 1645, "", "fru@fru.kk");
 		sys.cadastrarAluno("FruFru", "   ", 1645, "", "fru@fru.kk");
 	}
 
@@ -301,7 +299,6 @@ public class QmaSistemaTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoEmailVazio() {
-		sys.cadastrarAluno("FruFru", "1453", 1645, "", "");
 		sys.cadastrarAluno("FruFru", "1453", 1645, "", "    ");
 	}
 
@@ -311,7 +308,6 @@ public class QmaSistemaTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoCodigoCursoInvalido() {
-		sys.cadastrarAluno("FruFru", "1453", 0, "", "hello@com.br");
 		sys.cadastrarAluno("FruFru", "1453", -1, "", "hello@com.br");
 	}
 
@@ -341,6 +337,24 @@ public class QmaSistemaTest {
 	public void testGetInfoInexistente() {
 		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
 		sys.getInfoAluno("2121", "altura");
+	}
+
+	/**
+	 * Testa getInfo com atributo vazio.
+	 */
+	@Test(expected = IllegalArgumentException.class)
+	public void testGetInfoVazia() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.getInfoAluno("2121", "");
+	}
+
+	/**
+	 * Testa getInfo com atributo nulo.
+	 */
+	@Test(expected = NullPointerException.class)
+	public void testGetInfoNula() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		sys.getInfoAluno("2121", null);
 	}
 
 	/**

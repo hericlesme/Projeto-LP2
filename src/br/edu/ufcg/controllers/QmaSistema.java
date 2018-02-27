@@ -100,6 +100,7 @@ public class QmaSistema {
 	 * @return uma String que representa o atributo em questão.
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
+		validador.atributoInvalido(atributo, "Erro na obtencao de informacao de aluno");
 		validador.matriculaInvalida(matricula, "Erro na obtencao de informacao de aluno");
 		if (!alunos.containsKey(matricula)) {
 			validador.alunoInexistente("Erro na obtencao de informacao de aluno");
