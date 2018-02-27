@@ -4,16 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Classe implementa Funcao. Define uma estratégia expecifica de Funcao.
+ * Classe que implementa Funcao. Define os métodos para a função Tutor. Um tutor
+ * é um aluno que pode dar aulas sobre alguma disciplina especifica. A classe
+ * tem como atributos a disciplina a ser ensinada, a proficiência nessa
+ * disciplina, a nota do tutor, os dias e locais disponíveis para atendimento e
+ * o dinheiro recebido.
  * 
  * Projeto de Laboratório - Programação II
  * 
- * @author Rafael da Silva Pereira.
  */
 public class Tutor implements Funcao {
 
 	private String disciplina;
-	private int proficiencia; 
+	private int proficiencia;
 	private int notaTutor;
 	private List<String> diasDisponiveis;
 	private List<String> locaisDisponiveis;
@@ -25,7 +28,7 @@ public class Tutor implements Funcao {
 	 * @param disciplina
 	 *            a disciplina que o Tutor vai ensinar.
 	 * @param proficiencia
-	 *            um numero entre um e cinco indicando o quão habil na disciplica o
+	 *            um numero entre um e cinco indicando o quão habil na disciplina o
 	 *            Tutor se considera.
 	 */
 	public Tutor(String disciplina, int proficiencia) {
@@ -70,19 +73,14 @@ public class Tutor implements Funcao {
 	 *            atendimento.
 	 * @param dia:
 	 *            indica em qual dia em que possivelmente acontecera o atendimento.
-	 * @return
-	 *         <p>
-	 *         true - se o horario ja tiver sido cadastrado;
-	 *         </p>
-	 *         <p>
+	 * @return true - se o horario ja tiver sido cadastrado;
 	 *         false - se o horario nao tiver sido cadastrado.
-	 *         </p>
 	 */
 	@Override
 	public boolean consultaHorario(String horario, String dia) {
 
 		/*
-		 * Está verificação está sugeita a variações dependendo dos testes de aceitação.
+		 * Esta verificação está sujeita a variações dependendo dos testes de aceitação.
 		 */
 		if (!this.diasDisponiveis.contains(String.format("%s, %s", dia, horario))) {
 			return false;
@@ -96,12 +94,8 @@ public class Tutor implements Funcao {
 	 * @param local
 	 *            onde deve ter sido alocado o local de atendimento.
 	 * @return
-	 *         <p>
 	 *         true - se o local ja tiver sido cadastrado;
-	 *         </p>
-	 *         <p>
 	 *         false - se o local nao tiver sido cadastrado.
-	 *         </p>
 	 */
 	@Override
 	public boolean consultaLocal(String local) {

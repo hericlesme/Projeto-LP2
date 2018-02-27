@@ -47,9 +47,8 @@ public class Aluno implements Comparable<Aluno> {
 
 	/**
 	 * Retorna uma String com algumas informações do Aluno. Com telefone, caso tenha
-	 * sido passado, ou sem. Segue o formato: 
-	 * 1. "Matricula - Nome - Código do Curso - Email" 
-	 * 2. "Matricula - Nome - Código do Curso - Telefone - Email"
+	 * sido passado, ou sem. Segue o formato: 1. "Matricula - Nome - Código do Curso
+	 * - Email" 2. "Matricula - Nome - Código do Curso - Telefone - Email"
 	 * 
 	 * @return uma String.
 	 */
@@ -79,23 +78,24 @@ public class Aluno implements Comparable<Aluno> {
 	 * @return uma String.
 	 */
 	public String getInfoAluno(String atributo) {
-		switch (atributo.toLowerCase()) {
+		switch (Informacao.valueOf(atributo.toUpperCase())) {
 
-		case "notavaliacao":
+		case NOTAAVALIACAO:
 			return Integer.toString(this.notaAvaliacao);
-		case "matricula":
+
+		case MATRICULA:
 			return this.matricula;
 
-		case "telefone":
+		case TELEFONE:
 			return this.telefone;
 
-		case "codigocurso":
+		case CODIGOCURSO:
 			return Integer.toString(this.codigoCurso);
 
-		case "email":
+		case EMAIL:
 			return this.email;
 
-		case "nome":
+		case NOME:
 			return this.nome;
 
 		default:

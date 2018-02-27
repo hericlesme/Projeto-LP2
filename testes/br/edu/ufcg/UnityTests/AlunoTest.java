@@ -60,7 +60,7 @@ public class AlunoTest {
 	 */
 	@Test
 	public void testGetInfoAlunoNota() {
-		assertEquals("5", aluno.getInfoAluno("notavaliacao"));
+		assertEquals("5", aluno.getInfoAluno("notaavaliacao"));
 	}
 
 	/**

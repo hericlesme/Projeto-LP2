@@ -2,12 +2,11 @@ package br.edu.ufcg.entities;
 
 /**
  * 
- * Interface Funcao permite as classes que se compor com esta realize operações
- * como o cadastro e verificacao, de horarios e locais.
+ * Interface que representa a função de um Aluno. Classes que a implementam
+ * definem como seus métodos funcionam.
  * 
  * Projeto de Laboratório - Programação II
  * 
- * @author Rafael da Silva Pereira.
  */
 public interface Funcao {
 
@@ -18,8 +17,6 @@ public interface Funcao {
 	 *            indica em qual horario acontecera o atendimento.
 	 * @param dia
 	 *            indica em qual dia acontecera o atendimento.
-	 * @throws IllegalThreadStateException:
-	 *             caso a funcao desse aluno nao seja Tutor.
 	 */
 	public void cadastrarHorario(String horario, String dia) throws IllegalThreadStateException;
 
@@ -28,8 +25,6 @@ public interface Funcao {
 	 * 
 	 * @param local:
 	 *            indica o local onde sera o atendimento.
-	 * @throws IllegalThreadStateException:
-	 *             caso a funcao desse aluno nao seja Tutor.
 	 */
 	public void cadastrarLocalDeAtendimento(String local) throws IllegalThreadStateException;
 
@@ -41,8 +36,6 @@ public interface Funcao {
 	 *            atendimento.
 	 * @param dia:
 	 *            indica em qual dia em que possivelmente acontecera o atendimento.
-	 * @throws IllegalThreadStateException:
-	 *             caso a funcao desse aluno nao seja Tutor.
 	 */
 	public boolean consultaHorario(String horario, String dia) throws IllegalThreadStateException;
 
@@ -51,8 +44,6 @@ public interface Funcao {
 	 * 
 	 * @param local:
 	 *            indica o local onde deve ser o atendimento.
-	 * @throws IllegalThreadStateException:
-	 *             caso a funcao desse aluno nao seja Tutor.
 	 */
 	public boolean consultaLocal(String local) throws IllegalThreadStateException;
 
