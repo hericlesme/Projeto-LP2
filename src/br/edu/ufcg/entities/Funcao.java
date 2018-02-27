@@ -25,6 +25,9 @@ public interface Funcao {
 	 * Retorna um booleano dizendo se a disciplina com o nome dado já existe no map
 	 * de disciplinas do Tutor.
 	 * 
+	 * @param disciplina
+	 *            a disciplina a ser verificada.
+	 * 
 	 * @return um boolean.
 	 */
 	public boolean containsDisciplina(String disciplina) throws IllegalThreadStateException;
@@ -55,6 +58,8 @@ public interface Funcao {
 	 *            atendimento.
 	 * @param dia:
 	 *            indica em qual dia em que possivelmente acontecera o atendimento.
+	 * @return um valor booleano indicando se o horário passado está marcado como
+	 *         atendimento.
 	 */
 	public boolean consultaHorario(String horario, String dia) throws IllegalThreadStateException;
 
@@ -63,6 +68,7 @@ public interface Funcao {
 	 * 
 	 * @param local:
 	 *            indica o local onde deve ser o atendimento.
+	 * @return um valor booleano indicando a existência de um local marcado.
 	 */
 	public boolean consultaLocal(String local) throws IllegalThreadStateException;
 

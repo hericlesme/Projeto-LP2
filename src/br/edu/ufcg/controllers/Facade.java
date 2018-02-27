@@ -31,7 +31,7 @@ public class Facade {
 	 *            nome do aluno.
 	 * @param matricula
 	 *            matricula do aluno.
-	 * @param codigoCuro
+	 * @param codigoCurso
 	 *            codigo do curso.
 	 * @param telefone
 	 *            telefone do aluno.
