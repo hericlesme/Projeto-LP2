@@ -31,7 +31,7 @@ public class Validador {
 	}
 
 	/**
-	 * Método privado que realiza a verificação da validade da matrícula, e lança
+	 * Método que realiza a verificação da validade da matrícula, e lança
 	 * uma exceção, caso seja inválida.
 	 * 
 	 * @param matricula
@@ -82,7 +82,7 @@ public class Validador {
 	}
 
 	/**
-	 * Método privado que realiza a verificação da validade do email, e lança uma
+	 * Método que realiza a verificação da validade do email, e lança uma
 	 * exceção, caso seja inválido.
 	 * 
 	 * @param email
@@ -161,6 +161,14 @@ public class Validador {
 		throw new IllegalArgumentException(mensagem + ": tutor nao cadastrado");
 	}
 
+	/**
+	 * Verifica se o horário passado é inválido, caso seja, lança uma exceção.
+	 * 
+	 * @param horario
+	 *            horario a ser checado.
+	 * @param mensagem
+	 *            mensagem a ser exibida na exceção.
+	 */
 	public void horarioInvalido(String horario, String mensagem) {
 		if (horario == null) {
 			throw new NullPointerException(mensagem + ": horario nao pode ser nulo");
@@ -171,6 +179,14 @@ public class Validador {
 		}
 	}
 
+	/**
+	 * Verifica se o dia passado é inválido, caso seja, lança uma exceção.
+	 * 
+	 * @param dia
+	 *            dia a ser checado.
+	 * @param mensagem
+	 *            mensagem a ser exibida na exceção
+	 */
 	public void diaInvalido(String dia, String mensagem) {
 		if (dia == null) {
 			throw new NullPointerException(mensagem + ": dia nao pode ser nulo");
@@ -181,6 +197,14 @@ public class Validador {
 		}
 	}
 
+	/**
+	 * Verifica se o local passo é inválido, caso seja, lança uma exceção.
+	 * 
+	 * @param local
+	 *            local a ser checado.
+	 * @param mensagem
+	 *            mensagem a ser exibida na exceção.
+	 */
 	public void localInvalido(String local, String mensagem) {
 		if (local == null) {
 			throw new NullPointerException(mensagem + ": local nao pode ser nulo");
@@ -191,13 +215,47 @@ public class Validador {
 		}
 	}
 
+	/**
+	 * Método utilizado para quando se tenta cadastrar um tutor que já ensina essa
+	 * disciplina.
+	 * 
+	 * @param mensagem
+	 *            mensagem a ser exibida na exceção.
+	 */
 	public void tornarTutorInvalido(String mensagem) {
 		throw new IllegalArgumentException(mensagem + ": Ja eh tutor dessa disciplina");
 	}
 
+	/**
+	 * Método utilizado para checar se a proficiencia passada é inválida, caso seja,
+	 * lança uma exceção.
+	 * 
+	 * @param proficiencia
+	 *            proficiencia a ser checada.
+	 * @param mensagem
+	 *            mensagem a ser exibida na exceção.
+	 */
 	public void proficienciaInvalida(int proficiencia, String mensagem) {
 		if (proficiencia <= 0 || proficiencia > 5) {
 			throw new IllegalArgumentException(mensagem + ": Proficiencia invalida");
+		}
+	}
+
+	/**
+	 * Método utilizado para checar se uma disciplina passada é invalida, caso seja,
+	 * lança uma exceção.
+	 * 
+	 * @param disciplina
+	 *            disciplina a ser checada.
+	 * @param mensagem
+	 *            mensagem a ser exibida na exceção.
+	 */
+	public void disciplinaInvalida(String disciplina, String mensagem) {
+		if (disciplina == null) {
+			throw new NullPointerException(mensagem + ": disciplina nao pode ser nula");
+		}
+		if (disciplina.trim().isEmpty()) {
+			throw new IllegalArgumentException(mensagem + ": Disciplina nao pode ser vazio ou em branco");
 		}
 	}
 }

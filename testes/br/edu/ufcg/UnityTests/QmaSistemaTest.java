@@ -21,8 +21,7 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica que o outroSys era que no primeiro assert era um objeto nulo, depois
-	 * de sua criação deixa de ser.
+	 * Testa o construtor de QmaSistema.
 	 */
 	@Test
 	public void testQmaSistema() {
@@ -131,13 +130,13 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * HUEUHEHUUHEUHEEHUEHEUHEHUEHUEHEHHEHEUEUHEHEUEHUEUHEHUEUHUHHEHUHEHEHUEHUEHKEUEUH
+	 * Testa o método tornarTutor.
 	 */
 	@Test
 	public void testTornarTutor() {
 		sys.cadastrarAluno("Hemi", "564", 12516, "", "hemists@monitor.ia");
 		sys.tornarTutor("564", "EDA", 1);
-		assertFalse(sys.consultaLocal("hemists@monitor.ia", "Lá na esquina")); // Verificar este teste.
+		assertFalse(sys.consultaLocal("hemists@monitor.ia", "Lá na esquina"));
 	}
 
 	/**
@@ -169,20 +168,20 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Cadastra um aluno, e então torna-lhe tutor. em seguida verifica se o metodo
-	 * cadastrarHorario ===={ }====
+	 * Cadastra um aluno, e então torna-lhe tutor. em seguida verifica o metodo
+	 * cadastrarHorario.
 	 */
 	@Test
 	public void testCadastrarHorario() {
 		sys.cadastrarAluno("Anne amorzinho", "4321", 1456, "", "anne@mor.zinho");
 		sys.tornarTutor("4321", "LP2", 5);
 		sys.cadastrarHorario("anne@mor.zinho", "18:00", "seg");
-		// Teste não possui assert::? isso é uma demonstração que não gera nenhum bug?
+		assertTrue(sys.consultaHorario("anne@mor.zinho", "18:00", "seg"));
 	}
 
 	/**
-	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida verifica se o metodo
-	 * cadastrarLocalDeAtendimento ===={ }====
+	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida verifica o metodo
+	 * cadastrarLocalDeAtendimento.
 	 */
 	@Test
 	public void testCadastrarLocalDeAtendimento() {
@@ -219,6 +218,25 @@ public class QmaSistemaTest {
 		sys.cadastrarLocalDeAtendimento("anne@mor.zinho", "lcchouse");
 		assertTrue(sys.consultaLocal("anne@mor.zinho", "lcchouse"));
 		assertFalse(sys.consultaLocal("anne@mor.zinho", "lugar nenhum"));
+	}
+
+	/**
+	 * Verifica se retorna false quando se tenta usar o metodo consultaHorario em um
+	 * aluno que não é tutor.
+	 */
+
+	public void testConsultaHorarioTutelado() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		assertFalse(sys.consultaHorario("HAHA@OTAKU.COM", "321:12", "sabado-feira"));
+	}
+
+	/**
+	 * Verifica se retorna false quando se tenta usar o metodo consultaLocal em um
+	 * aluno que não é tutor.
+	 */
+	public void testConsultaLocalTutelado() {
+		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		assertFalse(sys.consultaLocal("HAHA@OTAKU.COM", "pode ser na minha tambem hahaha. wink"));
 	}
 
 	/**
@@ -366,26 +384,6 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
-	 * consultaHorario em um aluno que não é tutor.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void testConsultaHorarioTutelado() {
-		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
-		sys.consultaHorario("HAHA@OTAKU.COM", "321:12", "sabado-feira");
-	}
-
-	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
-	 * consultaLocal em um aluno que não é tutor.
-	 */
-	@Test(expected = IllegalArgumentException.class)
-	public void testConsultaLocalTutelado() {
-		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
-		sys.consultaLocal("HAHA@OTAKU.COM", "pode ser na minha tambem hahaha. wink");
-	}
-
-	/**
 	 * Verifica {@link IllegalArgumentException} quando se tenta recuperarAluno
 	 * passando uma string vazia.
 	 */
@@ -439,7 +437,7 @@ public class QmaSistemaTest {
 	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
 	 * getInfo passando o parametro atributo igual a um null.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NullPointerException.class)
 	public void testGetInfoAlunoAtributoNulo() {
 		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
 		sys.getInfoAluno("2121", null);
@@ -479,7 +477,7 @@ public class QmaSistemaTest {
 	 * Verifica {@link IllegalArgumentException} quando se tenta tornar tutor
 	 * passando como parametro disciplina um null.
 	 */
-	@Test(expected = IllegalArgumentException.class)
+	@Test(expected = NullPointerException.class)
 	public void testTornarTutorDisciplinaNula() {
 		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
 		sys.tornarTutor("2121", null, 2);

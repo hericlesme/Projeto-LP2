@@ -73,4 +73,22 @@ public class TuteladoTest {
 		aluno.consultaLocal("sua residencia");
 	}
 
+	/**
+	 * Assegura o lançamento de uma exceção na tentativa de uma adição de
+	 * disciplina, quando o aluno é tutelado.
+	 */
+	@Test(expected = IllegalThreadStateException.class)
+	public void testAdicionaDisciplina() {
+		aluno.adicionaDisciplina("aah", 5);
+	}
+
+	/**
+	 * Assegura o lançamento de uma exceção na tentativa do uso de
+	 * containsDisciplina, quando o aluno é tutelado.
+	 */
+	@Test(expected = IllegalThreadStateException.class)
+	public void testContainsDisciplina() {
+		aluno.containsDisciplina("aah");
+	}
+
 }
