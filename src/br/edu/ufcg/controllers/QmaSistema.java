@@ -116,6 +116,15 @@ public class QmaSistema {
 	 *            de 1 a 5.
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
+		if (this.tutores.containsValue(matricula)) {
+			// Tutor repetido
+		}
+		if (proficiencia <= 0 || proficiencia > 5) {
+			// Proficiencia invalida
+		}
+		if (!this.alunos.containsKey(matricula)) {
+			// Nem é aluno
+		}
 		this.alunos.get(matricula).tornarTutor(disciplina, proficiencia);
 		this.tutores.put(this.alunos.get(matricula).getEmail(), matricula);
 	}
@@ -129,7 +138,7 @@ public class QmaSistema {
 	 * @return o toString do tutor.
 	 */
 	public String recuperaTutor(String matricula) {
-		if (!tutores.containsValue(matricula)) {
+		if (!this.tutores.containsValue(matricula)) {
 			// Throw a exception here,something like "This student isn't a tutor".
 		}
 		return this.alunos.get(matricula).toString();
