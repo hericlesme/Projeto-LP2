@@ -118,13 +118,13 @@ public class QmaSistema {
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 		if (this.tutores.containsValue(matricula)) {
-			// Tutor repetido
+			// criar "Ja eh tutor dessa disciplina"
 		}
 		if (proficiencia <= 0 || proficiencia > 5) {
-			// Proficiencia invalida
+			// criar "Proficiencia invalida"
 		}
 		if (!this.alunos.containsKey(matricula)) {
-			// Nem é aluno
+			validador.tutorNaoEncontrado("Erro na definicao de papel:");
 		}
 		this.alunos.get(matricula).tornarTutor(disciplina, proficiencia);
 		this.tutores.put(this.alunos.get(matricula).getEmail(), matricula);
@@ -140,7 +140,7 @@ public class QmaSistema {
 	 */
 	public String recuperaTutor(String matricula) {
 		if (!this.tutores.containsValue(matricula)) {
-			// Throw a exception here,something like "This student isn't a tutor".
+			validador.tutorNaoEncontrado("Erro ainda não listado");
 		}
 		return this.alunos.get(matricula).toString();
 	}
@@ -153,7 +153,6 @@ public class QmaSistema {
 	public String listarTutores() {
 		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(alunos.values());
 		Collections.sort(alunosOrdenados);
-
 		return mapToString(alunosOrdenados.stream().filter(aluno -> tutores.containsKey(aluno.getEmail())));
 	}
 
@@ -181,7 +180,7 @@ public class QmaSistema {
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
 		if (!tutores.containsKey(email)) {
-			// Throw a exception, come on ya know what to do.
+			validador.tutorNaoCadastrado("Erro ainda não listado");
 		}
 		this.alunos.get(this.tutores.get(email)).cadastrarHorario(horario, dia);
 	}
@@ -196,7 +195,7 @@ public class QmaSistema {
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
 		if (!tutores.containsKey(email)) {
-			// Badabom badabam, ur pussy smells like ham.
+			validador.tutorNaoEncontrado("Erro ainda não listado");
 		}
 		this.alunos.get(this.tutores.get(email)).cadastrarLocalDeAtendimento(local);
 
@@ -217,7 +216,7 @@ public class QmaSistema {
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
 		if (!tutores.containsKey(email)) {
-			// Skidaddle skidoddle, ur dick is now a noodle.
+			validador.tutorNaoEncontrado("Erro ainda não listado");
 		}
 		return this.alunos.get(this.tutores.get(email)).consultaHorario(horario, dia);
 	}
@@ -235,10 +234,7 @@ public class QmaSistema {
 	 */
 	public boolean consultaLocal(String email, String local) {
 		if (!tutores.containsKey(email)) {
-			// Roses are red
-			// violets are blue
-			// the comment is in english
-			// so why aren't you?
+			validador.tutorNaoEncontrado("Erro ainda não listado");
 		}
 		return this.alunos.get(this.tutores.get(email)).consultaLocal(local);
 	}

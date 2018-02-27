@@ -175,7 +175,6 @@ public class Validador {
 			throw new NullPointerException(mensagem + ": dia nao pode ser nulo");
 		}
 
-		
 		if (dia.trim().equals("")) {
 			throw new IllegalArgumentException(mensagem + ": dia nao pode ser vazio ou em branco");
 		}
