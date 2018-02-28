@@ -22,7 +22,8 @@ public class Validador {
 	 * @param email
 	 *            o email do aluno.
 	 */
-	public void cadastroInvalido(String nome, String matricula, int codigoCurso, String telefone, String email) {
+	public void cadastroInvalido(String nome, String matricula, int codigoCurso,
+	        String telefone, String email) {
 		nomeInvalido(nome, "Erro no cadastro de aluno");
 		matriculaInvalida(matricula, "Erro no cadastro de aluno");
 		emailInvalido(email, "Erro no cadastro de aluno");
@@ -31,8 +32,8 @@ public class Validador {
 	}
 
 	/**
-	 * Método que realiza a verificação da validade da matrícula, e lança uma
-	 * exceção, caso seja inválida.
+	 * Método que realiza a verificação da validade da matrícula, e lança
+	 * uma exceção, caso seja inválida.
 	 * 
 	 * @param matricula
 	 *            a matrícula do aluno.
@@ -41,16 +42,18 @@ public class Validador {
 	 */
 	public void matriculaInvalida(String matricula, String mensagem) {
 		if (matricula == null) {
-			throw new NullPointerException(mensagem + ": matricula nao pode ser vazia ou nula");
+			throw new NullPointerException(
+			        mensagem + ": matricula nao pode ser vazia ou nula");
 		}
 		if (matricula.trim().isEmpty()) {
-			throw new IllegalArgumentException(mensagem + ": matricula nao pode ser vazio ou nula");
+			throw new IllegalArgumentException(
+			        mensagem + ": matricula nao pode ser vazio ou nula");
 		}
 	}
 
 	/**
-	 * Método privado que realiza a verificação da validade do telefone, e lança uma
-	 * exceção, caso seja inválido.
+	 * Método privado que realiza a verificação da validade do telefone, e
+	 * lança uma exceção, caso seja inválido.
 	 * 
 	 * @param telefone
 	 *            o telefone do aluno.
@@ -59,13 +62,14 @@ public class Validador {
 	 */
 	private void telefoneNulo(String telefone, String mensagem) {
 		if (telefone == null) {
-			throw new NullPointerException(mensagem + ": Telefone nao pode ser nulo");
+			throw new NullPointerException(
+			        mensagem + ": Telefone nao pode ser nulo");
 		}
 	}
 
 	/**
-	 * Método privado que realiza a verificação da validade do nome, e lança uma
-	 * exceção, caso seja inválido.
+	 * Método privado que realiza a verificação da validade do nome, e
+	 * lança uma exceção, caso seja inválido.
 	 * 
 	 * @param nome
 	 *            o nome do aluno.
@@ -74,16 +78,18 @@ public class Validador {
 	 */
 	private void nomeInvalido(String nome, String mensagem) {
 		if (nome == null) {
-			throw new NullPointerException(mensagem + ": Nome nao pode ser vazio ou nulo");
+			throw new NullPointerException(
+			        mensagem + ": Nome nao pode ser vazio ou nulo");
 		}
 		if (nome.trim().isEmpty()) {
-			throw new IllegalArgumentException(mensagem + ": Nome nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException(
+			        mensagem + ": Nome nao pode ser vazio ou nulo");
 		}
 	}
 
 	/**
-	 * Método que realiza a verificação da validade do email, e lança uma exceção,
-	 * caso seja inválido.
+	 * Método que realiza a verificação da validade do email, e lança uma
+	 * exceção, caso seja inválido.
 	 * 
 	 * @param email
 	 *            o email do aluno.
@@ -92,22 +98,25 @@ public class Validador {
 	 */
 	public void emailInvalido(String email, String mensagem) {
 		if (email == null) {
-			throw new NullPointerException(mensagem + ": email nao pode ser nulo");
+			throw new NullPointerException(
+			        mensagem + ": email nao pode ser nulo");
 		}
 
 		if (email.trim().equals("")) {
-			throw new IllegalArgumentException(mensagem + ": email nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+			        mensagem + ": email nao pode ser vazio ou em branco");
 		}
 
-		if (!email.contains("@") || email.startsWith("@") || email.endsWith("@")) {
+		if (!email.contains("@") || email.startsWith("@")
+		        || email.endsWith("@")) {
 			throw new IllegalArgumentException(mensagem + ": Email invalido");
 		}
 
 	}
 
 	/**
-	 * Método privado que realiza a verificação da validade de inteiros, e lança uma
-	 * exceção, caso sejam inválidos.
+	 * Método privado que realiza a verificação da validade de inteiros, e
+	 * lança uma exceção, caso sejam inválidos.
 	 * 
 	 * @param inteiro
 	 *            o inteiro a ser validado.
@@ -121,11 +130,12 @@ public class Validador {
 	}
 
 	/**
-	 * Lança uma exceção sob tentativa de cadastro de aluno com matrícula já
-	 * cadastrada.
+	 * Lança uma exceção sob tentativa de cadastro de aluno com matrícula
+	 * já cadastrada.
 	 */
 	public void matriculaCadastrada() {
-		throw new IllegalArgumentException("Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
+		throw new IllegalArgumentException(
+		        "Erro no cadastro de aluno: Aluno de mesma matricula ja cadastrado");
 
 	}
 
@@ -162,7 +172,8 @@ public class Validador {
 	}
 
 	/**
-	 * Verifica se o horário passado é inválido, caso seja, lança uma exceção.
+	 * Verifica se o horário passado é inválido, caso seja, lança uma
+	 * exceção.
 	 * 
 	 * @param horario
 	 *            horario a ser checado.
@@ -171,11 +182,13 @@ public class Validador {
 	 */
 	public void horarioInvalido(String horario, String mensagem) {
 		if (horario == null) {
-			throw new NullPointerException(mensagem + ": horario nao pode ser nulo");
+			throw new NullPointerException(
+			        mensagem + ": horario nao pode ser nulo");
 		}
 
 		if (horario.trim().equals("")) {
-			throw new IllegalArgumentException(mensagem + ": horario nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+			        mensagem + ": horario nao pode ser vazio ou em branco");
 		}
 	}
 
@@ -189,11 +202,13 @@ public class Validador {
 	 */
 	public void diaInvalido(String dia, String mensagem) {
 		if (dia == null) {
-			throw new NullPointerException(mensagem + ": dia nao pode ser nulo");
+			throw new NullPointerException(
+			        mensagem + ": dia nao pode ser nulo");
 		}
 
 		if (dia.trim().equals("")) {
-			throw new IllegalArgumentException(mensagem + ": dia nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+			        mensagem + ": dia nao pode ser vazio ou em branco");
 		}
 	}
 
@@ -207,28 +222,31 @@ public class Validador {
 	 */
 	public void localInvalido(String local, String mensagem) {
 		if (local == null) {
-			throw new NullPointerException(mensagem + ": local nao pode ser nulo");
+			throw new NullPointerException(
+			        mensagem + ": local nao pode ser nulo");
 		}
 
 		if (local.trim().equals("")) {
-			throw new IllegalArgumentException(mensagem + ": local nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+			        mensagem + ": local nao pode ser vazio ou em branco");
 		}
 	}
 
 	/**
-	 * Método utilizado para quando se tenta cadastrar um tutor que já ensina essa
-	 * disciplina.
+	 * Método utilizado para quando se tenta cadastrar um tutor que já
+	 * ensina essa disciplina.
 	 * 
 	 * @param mensagem
 	 *            mensagem a ser exibida na exceção.
 	 */
 	public void tornarTutorInvalido(String mensagem) {
-		throw new IllegalArgumentException(mensagem + ": Ja eh tutor dessa disciplina");
+		throw new IllegalArgumentException(
+		        mensagem + ": Ja eh tutor dessa disciplina");
 	}
 
 	/**
-	 * Método utilizado para checar se a proficiencia passada é inválida, caso seja,
-	 * lança uma exceção.
+	 * Método utilizado para checar se a proficiencia passada é inválida,
+	 * caso seja, lança uma exceção.
 	 * 
 	 * @param proficiencia
 	 *            proficiencia a ser checada.
@@ -237,13 +255,14 @@ public class Validador {
 	 */
 	public void proficienciaInvalida(int proficiencia, String mensagem) {
 		if (proficiencia <= 0 || proficiencia > 5) {
-			throw new IllegalArgumentException(mensagem + ": Proficiencia invalida");
+			throw new IllegalArgumentException(
+			        mensagem + ": Proficiencia invalida");
 		}
 	}
 
 	/**
-	 * Método utilizado para checar se uma disciplina passada é invalida, caso seja,
-	 * lança uma exceção.
+	 * Método utilizado para checar se uma disciplina passada é invalida,
+	 * caso seja, lança uma exceção.
 	 * 
 	 * @param disciplina
 	 *            disciplina a ser checada.
@@ -252,16 +271,18 @@ public class Validador {
 	 */
 	public void disciplinaInvalida(String disciplina, String mensagem) {
 		if (disciplina == null) {
-			throw new NullPointerException(mensagem + ": disciplina nao pode ser nula");
+			throw new NullPointerException(
+			        mensagem + ": disciplina nao pode ser nula");
 		}
 		if (disciplina.trim().isEmpty()) {
-			throw new IllegalArgumentException(mensagem + ": Disciplina nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(
+			        mensagem + ": Disciplina nao pode ser vazio ou em branco");
 		}
 	}
 
 	/**
-	 * Método utilizado para verificar se determinado atributo é inválido, lançando
-	 * exceção caso seja.
+	 * Método utilizado para verificar se determinado atributo é inválido,
+	 * lançando exceção caso seja.
 	 * 
 	 * @param atributo
 	 *            atributo a ser checado.
@@ -270,10 +291,12 @@ public class Validador {
 	 */
 	public void atributoInvalido(String atributo, String mensagem) {
 		if (atributo == null) {
-			throw new NullPointerException(mensagem + ": atributo nao pode ser nulo");
+			throw new NullPointerException(
+			        mensagem + ": atributo nao pode ser nulo");
 		}
 		if (atributo.trim().isEmpty()) {
-			throw new IllegalArgumentException(mensagem + ": atributo nao pode ser vazio ou nulo");
+			throw new IllegalArgumentException(
+			        mensagem + ": atributo nao pode ser vazio ou nulo");
 		}
 	}
 }

@@ -10,7 +10,7 @@ import org.junit.Test;
 import br.edu.ufcg.controllers.QmaSistema;
 
 public class QmaSistemaTest {
-	QmaSistema sys, outroSys; /* Variavel do QmaSistema */
+	private QmaSistema sys, outroSys; /* Variavel do QmaSistema */
 
 	/**
 	 * Inicializa a variavel sys.
@@ -32,37 +32,45 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Cria um aluno, e o cadastra no sistema. - Verifica se a criação é dada com
-	 * sucesso através do metodo "recuperaAluno".
+	 * Cria um aluno, e o cadastra no sistema. - Verifica se a criação é
+	 * dada com sucesso através do metodo "recuperaAluno".
 	 */
 	@Test
 	public void testCadastrarAluno() {
-		sys.cadastrarAluno("faela <3", "123451234", 54321, "40028922", "faela@rafa.pocutom");
-		assertEquals("123451234 - faela <3 - 54321 - 40028922 - faela@rafa.pocutom", sys.recuperaAluno("123451234"));
+		sys.cadastrarAluno("faela <3", "123451234", 54321, "40028922",
+		        "faela@rafa.pocutom");
+		assertEquals(
+		        "123451234 - faela <3 - 54321 - 40028922 - faela@rafa.pocutom",
+		        sys.recuperaAluno("123451234"));
 	}
 
 	/**
-	 * Mostra o uso correto metodo "recuperaAluno" quando o aluno cadastrado possui
-	 * um numero de telefone.
+	 * Mostra o uso correto metodo "recuperaAluno" quando o aluno
+	 * cadastrado possui um numero de telefone.
 	 */
 	@Test
 	public void testRecuperaAlunoComTelefone() {
-		sys.cadastrarAluno("Fulano", "123", 1456, "88621845", "fulanim@umdois.tres");
-		assertEquals("123 - Fulano - 1456 - 88621845 - fulanim@umdois.tres", sys.recuperaAluno("123"));
+		sys.cadastrarAluno("Fulano", "123", 1456, "88621845",
+		        "fulanim@umdois.tres");
+		assertEquals("123 - Fulano - 1456 - 88621845 - fulanim@umdois.tres",
+		        sys.recuperaAluno("123"));
 	}
 
 	/**
-	 * Mostra o funcionamento do metodo "recuperaAluno" quando o aluno cadastrado
-	 * não possui um numero de telefone.
+	 * Mostra o funcionamento do metodo "recuperaAluno" quando o aluno
+	 * cadastrado não possui um numero de telefone.
 	 */
 	@Test
 	public void testRecuperaAlunoSemTelefone() {
-		sys.cadastrarAluno("Beltrano", "124", 1456, "", "beltranin@umdois.tres");
-		assertEquals("124 - Beltrano - 1456 - beltranin@umdois.tres", sys.recuperaAluno("124"));
+		sys.cadastrarAluno("Beltrano", "124", 1456, "",
+		        "beltranin@umdois.tres");
+		assertEquals("124 - Beltrano - 1456 - beltranin@umdois.tres",
+		        sys.recuperaAluno("124"));
 	}
 
 	/**
-	 * Mostra o funcionamento do metodo "listarAlunos" quando não há alunos.
+	 * Mostra o funcionamento do metodo "listarAlunos" quando não há
+	 * alunos.
 	 */
 	@Test
 	public void testListarAlunosSemAlunos() {
@@ -70,8 +78,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Mostra o funcionamento do metodo "listarAlunos" quando há alunos um ou mais
-	 * alunos.
+	 * Mostra o funcionamento do metodo "listarAlunos" quando há alunos um
+	 * ou mais alunos.
 	 */
 	@Test
 	public void testListarAlunos() {
@@ -79,8 +87,9 @@ public class QmaSistemaTest {
 		assertEquals("1 - hulk - 12 - hulk@avenger.com", sys.listarAlunos());
 
 		sys.cadastrarAluno("stark", "2", 12, "40028922", "stark@avenger.com");
-		assertEquals("1 - hulk - 12 - hulk@avenger.com, 2 - stark - 12 - 40028922 - stark@avenger.com",
-				sys.listarAlunos());
+		assertEquals(
+		        "1 - hulk - 12 - hulk@avenger.com, 2 - stark - 12 - 40028922 - stark@avenger.com",
+		        sys.listarAlunos());
 	}
 
 	/**
@@ -88,8 +97,9 @@ public class QmaSistemaTest {
 	 */
 	@Test
 	public void testGetInfoAlunoNota() {
-		sys.cadastrarAluno("Fulano", "123", 1456, "88621845", "fulanim@umdois.tres");
-		assertEquals("5", sys.getInfoAluno("123", "notaavaliacao"));
+		sys.cadastrarAluno("Fulano", "123", 1456, "88621845",
+		        "fulanim@umdois.tres");
+		assertEquals("5", sys.getInfoAluno("123", "nota_avaliacao"));
 	}
 
 	/**
@@ -97,7 +107,8 @@ public class QmaSistemaTest {
 	 */
 	@Test
 	public void testGetInfoAlunoMatricula() {
-		sys.cadastrarAluno("Fulano", "123", 1456, "88621845", "fulanim@umdois.tres");
+		sys.cadastrarAluno("Fulano", "123", 1456, "88621845",
+		        "fulanim@umdois.tres");
 		assertEquals("123", sys.getInfoAluno("123", "matricula"));
 	}
 
@@ -106,7 +117,8 @@ public class QmaSistemaTest {
 	 */
 	@Test
 	public void testGetInfoAlunoTelefone() {
-		sys.cadastrarAluno("Fulano", "123", 1456, "88621845", "fulanim@umdois.tres");
+		sys.cadastrarAluno("Fulano", "123", 1456, "88621845",
+		        "fulanim@umdois.tres");
 		assertEquals("88621845", sys.getInfoAluno("123", "telefone"));
 
 	}
@@ -116,8 +128,9 @@ public class QmaSistemaTest {
 	 */
 	@Test
 	public void testGetInfoAlunoCodigoCurso() {
-		sys.cadastrarAluno("Fulano", "123", 1456, "88621845", "fulanim@umdois.tres");
-		assertEquals("1456", sys.getInfoAluno("123", "codigocurso"));
+		sys.cadastrarAluno("Fulano", "123", 1456, "88621845",
+		        "fulanim@umdois.tres");
+		assertEquals("1456", sys.getInfoAluno("123", "codigo_curso"));
 	}
 
 	/**
@@ -125,7 +138,8 @@ public class QmaSistemaTest {
 	 */
 	@Test
 	public void testGetInfoAlunoNome() {
-		sys.cadastrarAluno("Fulano", "123", 1456, "88621845", "fulanim@umdois.tres");
+		sys.cadastrarAluno("Fulano", "123", 1456, "88621845",
+		        "fulanim@umdois.tres");
 		assertEquals("Fulano", sys.getInfoAluno("123", "nome"));
 	}
 
@@ -140,21 +154,22 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida verifica se o metodo
-	 * recuperaTutor, retorna a representação do aluno correto.
+	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida verifica se
+	 * o metodo recuperaTutor, retorna a representação do aluno correto.
 	 */
 	@Test
 	public void testRecuperaTutor() {
 		sys.cadastrarAluno("Gauds", "1234", 1456, "", "gauds@dsc.top");
 		sys.tornarTutor("1234", "APLP", 5);
-		assertEquals("1234 - Gauds - 1456 - gauds@dsc.top", sys.recuperaTutor("1234"));
+		assertEquals("1234 - Gauds - 1456 - gauds@dsc.top",
+		        sys.recuperaTutor("1234"));
 	}
 
 	/**
-	 * Cadastra dois aluno, em seguida os torna tutores, e então verifica se o
-	 * metodos listarTutores, retorna a representação adequada isto é: a toString do
-	 * primeiro tutor e a toString do segundo tutor separadas por uma virgula e
-	 * espaço.
+	 * Cadastra dois aluno, em seguida os torna tutores, e então verifica
+	 * se o metodos listarTutores, retorna a representação adequada isto
+	 * é: a toString do primeiro tutor e a toString do segundo tutor
+	 * separadas por uma virgula e espaço.
 	 */
 	@Test
 	public void testListarTutores() {
@@ -164,40 +179,46 @@ public class QmaSistemaTest {
 		sys.tornarTutor("1234", "P2", 5);
 		sys.tornarTutor("1235", "P2", 4);
 
-		assertEquals("1234 - Gauds - 1456 - gauds@dsc.top, 1235 - Livia - 1456 - livia@dsc.top", sys.listarTutores());
+		assertEquals(
+		        "1234 - Gauds - 1456 - gauds@dsc.top, 1235 - Livia - 1456 - livia@dsc.top",
+		        sys.listarTutores());
 	}
 
 	/**
-	 * Cadastra um aluno, e então torna-lhe tutor. em seguida verifica o metodo
-	 * cadastrarHorario.
+	 * Cadastra um aluno, e então torna-lhe tutor. em seguida verifica o
+	 * metodo cadastrarHorario.
 	 */
 	@Test
 	public void testCadastrarHorario() {
-		sys.cadastrarAluno("Anne amorzinho", "4321", 1456, "", "anne@mor.zinho");
+		sys.cadastrarAluno("Anne amorzinho", "4321", 1456, "",
+		        "anne@mor.zinho");
 		sys.tornarTutor("4321", "LP2", 5);
 		sys.cadastrarHorario("anne@mor.zinho", "18:00", "seg");
 		assertTrue(sys.consultaHorario("anne@mor.zinho", "18:00", "seg"));
 	}
 
 	/**
-	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida verifica o metodo
-	 * cadastrarLocalDeAtendimento.
+	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida verifica o
+	 * metodo cadastrarLocalDeAtendimento.
 	 */
 	@Test
 	public void testCadastrarLocalDeAtendimento() {
-		sys.cadastrarAluno("Anne amorzinho", "4321", 1456, "", "anne@mor.zinho");
+		sys.cadastrarAluno("Anne amorzinho", "4321", 1456, "",
+		        "anne@mor.zinho");
 		sys.tornarTutor("4321", "LP2", 5);
 		sys.cadastrarLocalDeAtendimento("anne@mor.zinho", "la no lab ne");
 	}
 
 	/**
-	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida cadastra um horario de
-	 * atendimento, então verifica se o metodo "consultaHorario" retorna o valor
-	 * true em caso do horario estar cadastrado, e false em caso contrario.
+	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida cadastra um
+	 * horario de atendimento, então verifica se o metodo
+	 * "consultaHorario" retorna o valor true em caso do horario estar
+	 * cadastrado, e false em caso contrario.
 	 */
 	@Test
 	public void testConsultaHorario() {
-		sys.cadastrarAluno("Anne amorzinho", "4321", 1456, "", "anne@mor.zinho");
+		sys.cadastrarAluno("Anne amorzinho", "4321", 1456, "",
+		        "anne@mor.zinho");
 		sys.tornarTutor("4321", "LP2", 5);
 
 		sys.cadastrarHorario("anne@mor.zinho", "18:00", "seg");
@@ -207,13 +228,15 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida cadastra um local de
-	 * atendimento, então verifica se o metodo "consultaLocal" retorna o valor true
-	 * em caso do local estar cadastrado, e false em caso contrario.
+	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida cadastra um
+	 * local de atendimento, então verifica se o metodo "consultaLocal"
+	 * retorna o valor true em caso do local estar cadastrado, e false em
+	 * caso contrario.
 	 */
 	@Test
 	public void testConsultaLocal() {
-		sys.cadastrarAluno("Anne amorzinho", "4321", 1456, "", "anne@mor.zinho");
+		sys.cadastrarAluno("Anne amorzinho", "4321", 1456, "",
+		        "anne@mor.zinho");
 		sys.tornarTutor("4321", "LP2", 5);
 		sys.cadastrarLocalDeAtendimento("anne@mor.zinho", "lcchouse");
 		assertTrue(sys.consultaLocal("anne@mor.zinho", "lcchouse"));
@@ -221,27 +244,29 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica se retorna false quando se tenta usar o metodo consultaHorario em um
-	 * aluno que não é tutor.
+	 * Verifica se retorna false quando se tenta usar o metodo
+	 * consultaHorario em um aluno que não é tutor.
 	 */
 
 	public void testConsultaHorarioTutelado() {
 		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
-		assertFalse(sys.consultaHorario("HAHA@OTAKU.COM", "321:12", "sabado-feira"));
+		assertFalse(sys.consultaHorario("HAHA@OTAKU.COM", "321:12",
+		        "sabado-feira"));
 	}
 
 	/**
-	 * Verifica se retorna false quando se tenta usar o metodo consultaLocal em um
-	 * aluno que não é tutor.
+	 * Verifica se retorna false quando se tenta usar o metodo
+	 * consultaLocal em um aluno que não é tutor.
 	 */
 	public void testConsultaLocalTutelado() {
 		sys.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
-		assertFalse(sys.consultaLocal("HAHA@OTAKU.COM", "pode ser na minha tambem hahaha. wink"));
+		assertFalse(sys.consultaLocal("HAHA@OTAKU.COM",
+		        "pode ser na minha tambem hahaha. wink"));
 	}
 
 	/**
-	 * Verifica {@link NullPointerException} quando é passado para criação de um
-	 * aluno o parametro nome: como um null.
+	 * Verifica {@link NullPointerException} quando é passado para criação
+	 * de um aluno o parametro nome: como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastraAlunoNomeNulo() {
@@ -249,8 +274,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link NullPointerException} quando é passado para criação de um
-	 * aluno o parametro matricula: como um null.
+	 * Verifica {@link NullPointerException} quando é passado para criação
+	 * de um aluno o parametro matricula: como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastraAlunoMatriculaNula() {
@@ -258,8 +283,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link NullPointerException} quando é passado para criação de um
-	 * aluno o parametro telefone: como um null.
+	 * Verifica {@link NullPointerException} quando é passado para criação
+	 * de um aluno o parametro telefone: como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastraAlunoTelefoneNulo() {
@@ -267,8 +292,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link NullPointerException} quando é passado para criação de um
-	 * aluno o parametro email: como um null.
+	 * Verifica {@link NullPointerException} quando é passado para criação
+	 * de um aluno o parametro email: como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastraAlunoEmailNulo() {
@@ -276,8 +301,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando é passado para criação de um
-	 * aluno o parametro nome: como uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando é passado para
+	 * criação de um aluno o parametro nome: como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoNomeVazio() {
@@ -285,8 +310,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando é passado para criação de um
-	 * aluno o parametro matricula: como uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando é passado para
+	 * criação de um aluno o parametro matricula: como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoMatriculaVazia() {
@@ -294,8 +319,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando é passado para criação de um
-	 * aluno o parametro email: como uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando é passado para
+	 * criação de um aluno o parametro email: como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoEmailVazio() {
@@ -303,8 +328,9 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando é passado para criação de um
-	 * aluno o parametro o codigo: com um numero menor ou igual a zero.
+	 * Verifica {@link IllegalArgumentException} quando é passado para
+	 * criação de um aluno o parametro o codigo: com um numero menor ou
+	 * igual a zero.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoCodigoCursoInvalido() {
@@ -312,8 +338,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta recuperar um aluno
-	 * não cadastrado.
+	 * Verifica {@link IllegalArgumentException} quando se tenta recuperar
+	 * um aluno não cadastrado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testRecuperaAlunoInexistente() {
@@ -331,7 +357,8 @@ public class QmaSistemaTest {
 
 	/**
 	 * Verifica {@link IllegalArgumentException} quando se tenta capturar
-	 * informações de um aluno com informações compostas por um string vazia.
+	 * informações de um aluno com informações compostas por um string
+	 * vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoInexistente() {
@@ -358,8 +385,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta tornar tutor
-	 * através de uma matricula não cadastrada.
+	 * Verifica {@link IllegalArgumentException} quando se tenta tornar
+	 * tutor através de uma matricula não cadastrada.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testTornarTutorAlunoInexistente() {
@@ -367,8 +394,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
-	 * recuperaTutor em um aluno que não é tutor.
+	 * Verifica {@link IllegalArgumentException} quando se tenta usar o
+	 * metodo recuperaTutor em um aluno que não é tutor.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testRecuperaTutorInexistente() {
@@ -378,8 +405,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
-	 * cadastrarHorario em um aluno que não é tutor.
+	 * Verifica {@link IllegalArgumentException} quando se tenta usar o
+	 * metodo cadastrarHorario em um aluno que não é tutor.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioTutelado() {
@@ -388,8 +415,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
-	 * cadastrarLocalDeAtendimento em um aluno que não é tutor.
+	 * Verifica {@link IllegalArgumentException} quando se tenta usar o
+	 * metodo cadastrarLocalDeAtendimento em um aluno que não é tutor.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarLocalDeAtendimentoTutelado() {
@@ -398,8 +425,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta recuperarAluno
-	 * passando uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * recuperarAluno passando uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testRecuperaAlunoVazio() {
@@ -408,8 +435,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta recuperarAluno
-	 * passando um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * recuperarAluno passando um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testRecuperaAlunoNulo() {
@@ -418,8 +445,9 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
-	 * getInfo passando o parametro matricula igual a uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta usar o
+	 * metodo getInfo passando o parametro matricula igual a uma string
+	 * vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGeInfoAlunoMatriculaVazia() {
@@ -428,8 +456,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
-	 * getInfo passando o parametro matricula igual a um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta usar o
+	 * metodo getInfo passando o parametro matricula igual a um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testGetInfoAlunoMatriculaNula() {
@@ -438,8 +466,9 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
-	 * getInfo passando o parametro atributo igual a uma string vazia
+	 * Verifica {@link IllegalArgumentException} quando se tenta usar o
+	 * metodo getInfo passando o parametro atributo igual a uma string
+	 * vazia
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAlunoAtributoVazio() {
@@ -448,8 +477,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
-	 * getInfo passando o parametro atributo igual a um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta usar o
+	 * metodo getInfo passando o parametro atributo igual a um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testGetInfoAlunoAtributoNulo() {
@@ -458,8 +487,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta tornar tutor
-	 * passando como parametro matricula uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta tornar
+	 * tutor passando como parametro matricula uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testTornarTutorMatriculaVazia() {
@@ -468,8 +497,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta tornar tutor
-	 * passando como parametro disciplina uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta tornar
+	 * tutor passando como parametro disciplina uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testTornarTutorDisciplinaVazia() {
@@ -478,8 +507,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta tornar tutor
-	 * passando como parametro matricula um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta tornar
+	 * tutor passando como parametro matricula um null.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testTornarTutorMatriculaNula() {
@@ -488,8 +517,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta tornar tutor
-	 * passando como parametro disciplina um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta tornar
+	 * tutor passando como parametro disciplina um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testTornarTutorDisciplinaNula() {
@@ -498,8 +527,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta cadatrar um tutor
-	 * com proeficiencia menor que zero.
+	 * Verifica {@link IllegalArgumentException} quando se tenta cadatrar
+	 * um tutor com proeficiencia menor que zero.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testTornarTutorProficienciaInvalida() {
@@ -508,8 +537,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta cadatrar um tutor
-	 * com proeficiencia maior que seis.
+	 * Verifica {@link IllegalArgumentException} quando se tenta cadatrar
+	 * um tutor com proeficiencia maior que seis.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testTornarTutorProficienciaInvalida2() {
@@ -518,8 +547,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta recuperarTutor
-	 * passando uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * recuperarTutor passando uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testRecuperaTutorVazio() {
@@ -530,8 +559,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta recuperarTutor
-	 * passando um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * recuperarTutor passando um null.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testRecuperaTutorNulo() {
@@ -541,8 +570,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta cadastrarHorario
-	 * passando o parametro email como uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * cadastrarHorario passando o parametro email como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioEmailVazio() {
@@ -552,8 +581,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta cadastrarHorario
-	 * passando o parametro email como um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * cadastrarHorario passando o parametro email como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastrarHorarioEmailNulo() {
@@ -563,8 +592,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta cadastrarHorario e
-	 * é passado no parametro hora uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * cadastrarHorario e é passado no parametro hora uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioHoraVazia() {
@@ -574,8 +603,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta cadastrarHorario e
-	 * é passado no parametro hora um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * cadastrarHorario e é passado no parametro hora um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastrarHorarioHoraNula() {
@@ -585,8 +614,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta cadastrarHorario e
-	 * é passado no parametro Dia é uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * cadastrarHorario e é passado no parametro Dia é uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioDiaVazio() {
@@ -596,8 +625,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta cadastrarHorario e
-	 * é passado no parametro dia um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * cadastrarHorario e é passado no parametro dia um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastrarHorarioDiaNulo() {
@@ -608,8 +637,8 @@ public class QmaSistemaTest {
 
 	/**
 	 * Verifica {@link IllegalArgumentException} quando o metodo
-	 * cadastrarLocalDeAtendimento é passado com o parametro email como uma string
-	 * vazia.
+	 * cadastrarLocalDeAtendimento é passado com o parametro email como
+	 * uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarLocalEmailVazio() {
@@ -620,7 +649,8 @@ public class QmaSistemaTest {
 
 	/**
 	 * Verifica {@link IllegalArgumentException} quando o metodo
-	 * cadastrarLocalDeAtendimento é passado com o parametro email como um null.
+	 * cadastrarLocalDeAtendimento é passado com o parametro email como um
+	 * null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastrarLocalEmailNulo() {
@@ -631,8 +661,8 @@ public class QmaSistemaTest {
 
 	/**
 	 * Verifica {@link IllegalArgumentException} quando o metodo
-	 * cadastrarLocalDeAtendimento é passado com o parametro local como uma string
-	 * vazia.
+	 * cadastrarLocalDeAtendimento é passado com o parametro local como
+	 * uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarLocalVazio() {
@@ -643,7 +673,8 @@ public class QmaSistemaTest {
 
 	/**
 	 * Verifica {@link IllegalArgumentException} quando o metodo
-	 * cadastrarLocalDeAtendimento é passado com o parametro local com um null.
+	 * cadastrarLocalDeAtendimento é passado com o parametro local com um
+	 * null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastrarLocalNulo() {
@@ -653,8 +684,9 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta consultarHorario e
-	 * se passa um parametro email igual a uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarHorario e se passa um parametro email igual a uma string
+	 * vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testConsultaHorarioEmailVazio() {
@@ -665,8 +697,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta consultarHorario e
-	 * se passa um parametro email igual a um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarHorario e se passa um parametro email igual a um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testConsultahorarioEmailnulo() {
@@ -677,8 +709,9 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta consultarHorario e
-	 * se passa um parametro horario igual a uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarHorario e se passa um parametro horario igual a uma string
+	 * vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testConsultaHorarioVazio() {
@@ -689,8 +722,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta consultarHorario e
-	 * se passa um parametro horario igual a um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarHorario e se passa um parametro horario igual a um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testConsultaHorarioNulo() {
@@ -701,8 +734,9 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta consultarHorario e
-	 * se passa um parametro dia igual a uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarHorario e se passa um parametro dia igual a uma string
+	 * vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testConsultaHorarioDiaVazio() {
@@ -713,8 +747,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta consultarHorario e
-	 * se passa um parametro dia igual a um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarHorario e se passa um parametro dia igual a um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testConsultaHorarioDiaNulo() {
@@ -725,8 +759,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta consultarLocal
-	 * passando o parametro email como uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarLocal passando o parametro email como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testConsultaLocalEmailVazio() {
@@ -737,8 +771,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta consultarLocal
-	 * passando o parametro email como um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarLocal passando o parametro email como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testConsultaLocalEmailNulo() {
@@ -749,8 +783,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta consultarLocal
-	 * passando o parametro local como uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarLocal passando o parametro local como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testConsultaLocalVazio() {
@@ -761,8 +795,8 @@ public class QmaSistemaTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta consultarLocal
-	 * passando o parametro local como um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarLocal passando o parametro local como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testConsultaLocalNulo() {
