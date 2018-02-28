@@ -9,8 +9,8 @@ import easyaccept.EasyAccept;
  */
 public class Facade {
 	/**
-	 * Inicializa um objeto da classe QmaSistema, controller do sistema Quem Me
-	 * Ajuda.
+	 * Inicializa um objeto da classe QmaSistema, controller do sistema
+	 * Quem Me Ajuda.
 	 */
 	QmaSistema sys = new QmaSistema();
 
@@ -21,13 +21,15 @@ public class Facade {
 	 *            array de testes.
 	 */
 	public static void main(String[] args) {
-		args = new String[] { "br.edu.ufcg.facade.Facade", "EasyAccept//us1_test.txt", "EasyAccept//us2_test.txt",
-				"EasyAccept//us3_test.txt" };
+		args = new String[] { "br.edu.ufcg.facade.Facade",
+		        "EasyAccept//us1_test.txt", "EasyAccept//us2_test.txt",
+		        "EasyAccept//us3_test.txt" };
 		EasyAccept.main(args);
 	}
 
 	/**
-	 * Chama o método cadastrarAluno de QmaSistema, cadastrando um aluno no sistema.
+	 * Chama o método cadastrarAluno de QmaSistema, cadastrando um aluno
+	 * no sistema.
 	 * 
 	 * @param nome
 	 *            nome do aluno.
@@ -40,13 +42,14 @@ public class Facade {
 	 * @param email
 	 *            email do aluno.
 	 */
-	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
+	public void cadastrarAluno(String nome, String matricula, int codigoCurso,
+	        String telefone, String email) {
 		sys.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
 	}
 
 	/**
-	 * Chama o método recuperaAluno de QmaSistema, mostrando a representação do
-	 * aluno a partir de sua matrícula.
+	 * Chama o método recuperaAluno de QmaSistema, mostrando a
+	 * representação do aluno a partir de sua matrícula.
 	 * 
 	 * @param matricula
 	 *            matrícula do aluno a ser mostrado.
@@ -57,8 +60,8 @@ public class Facade {
 	}
 
 	/**
-	 * Chama o método listarAlunos de QmaSistema, mostrando todos os alunos
-	 * cadastrados.
+	 * Chama o método listarAlunos de QmaSistema, mostrando todos os
+	 * alunos cadastrados.
 	 * 
 	 * @return uma String.
 	 */
@@ -67,8 +70,8 @@ public class Facade {
 	}
 
 	/**
-	 * Chama o método getInfoAluno de QmaSistema, mostrando o atributo passado como
-	 * parâmetro do aluno.
+	 * Chama o método getInfoAluno de QmaSistema, mostrando o atributo
+	 * passado como parâmetro do aluno.
 	 * 
 	 * @param matricula
 	 *            a matrícula do aluno.
@@ -81,8 +84,8 @@ public class Facade {
 	}
 
 	/**
-	 * Chama o método tornarTutor de QmaSistema, tornando um Aluno cadastrado um
-	 * Tutor.
+	 * Chama o método tornarTutor de QmaSistema, tornando um Aluno
+	 * cadastrado um Tutor.
 	 * 
 	 * @param matricula
 	 *            matrícula do aluno.
@@ -91,13 +94,14 @@ public class Facade {
 	 * @param proficiencia
 	 *            proficiência na disciplina.
 	 */
-	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
+	public void tornarTutor(String matricula, String disciplina,
+	        int proficiencia) {
 		sys.tornarTutor(matricula, disciplina, proficiencia);
 	}
 
 	/**
-	 * Chama o método recuperaTutor de QmaSistema, mostrando a representação do
-	 * Aluno tutor.
+	 * Chama o método recuperaTutor de QmaSistema, mostrando a
+	 * representação do Aluno tutor.
 	 * 
 	 * @param matricula
 	 *            matrícula do Aluno a ser mostrado.
@@ -108,8 +112,8 @@ public class Facade {
 	}
 
 	/**
-	 * Chama o método listarTutores de QmaSistema, mostrando todos os Alunos que são
-	 * tutores.
+	 * Chama o método listarTutores de QmaSistema, mostrando todos os
+	 * Alunos que são tutores.
 	 * 
 	 * @return uma String.
 	 */
@@ -118,8 +122,8 @@ public class Facade {
 	}
 
 	/**
-	 * Chama o método cadastrarHorario de QmaSistema, cadastrando um horário de
-	 * atendimento para o tutor.
+	 * Chama o método cadastrarHorario de QmaSistema, cadastrando um
+	 * horário de atendimento para o tutor.
 	 * 
 	 * @param email
 	 *            email do tutor.
@@ -133,8 +137,8 @@ public class Facade {
 	}
 
 	/**
-	 * Chama o método cadastrarLocalDeAtendimento de QmaSistema, cadastrando um
-	 * local disponível para atendimento do tutor.
+	 * Chama o método cadastrarLocalDeAtendimento de QmaSistema,
+	 * cadastrando um local disponível para atendimento do tutor.
 	 * 
 	 * @param email
 	 *            email do tutor.
@@ -146,8 +150,8 @@ public class Facade {
 	}
 
 	/**
-	 * Chama o método consultaHorario de QmaSistema, consultando se o tutor tem
-	 * determinado horário disponível para atendimento.
+	 * Chama o método consultaHorario de QmaSistema, consultando se o
+	 * tutor tem determinado horário disponível para atendimento.
 	 * 
 	 * @param email
 	 *            email do tutor
@@ -162,8 +166,8 @@ public class Facade {
 	}
 
 	/**
-	 * Chama o método consultaLocal de QmaSistema, consultando se o tutor tem
-	 * determinado local disponível para atendimento.
+	 * Chama o método consultaLocal de QmaSistema, consultando se o tutor
+	 * tem determinado local disponível para atendimento.
 	 * 
 	 * @param email
 	 *            email do tutor.

@@ -1,8 +1,9 @@
 package br.edu.ufcg.entities;
 
 /**
- * Classe que representa uma disciplina, armazenada por um Aluno Tutor. Uma
- * disciplina armazena seu nome e a proficiencia que o tutor tem nela.
+ * Classe que representa uma disciplina, armazenada por um Aluno
+ * Tutor. Uma disciplina armazena seu nome e a proficiencia que o
+ * tutor tem nela.
  * 
  * Projeto de Laboratório - Programação II.
  *
@@ -13,7 +14,8 @@ public class Disciplina {
 	private String nome;
 
 	/**
-	 * Constroi o objeto disciplina passado seu nome e a proficiencia do tutor.
+	 * Constroi o objeto disciplina passado seu nome e a proficiencia do
+	 * tutor.
 	 * 
 	 * @param nome
 	 *            nome da disciplina.

@@ -22,7 +22,8 @@ public class QmaSistema {
 	 */
 	private Validador validador;
 	/**
-	 * Mapa que relaciona a matricula de um aluno com seu objeto correspondente.
+	 * Mapa que relaciona a matricula de um aluno com seu objeto
+	 * correspondente.
 	 */
 	private Map<String, Aluno> alunos;
 	/**
@@ -37,8 +38,8 @@ public class QmaSistema {
 	}
 
 	/**
-	 * Cadastra um aluno a partir do nome,matricula,curso,email e telefone,sendo
-	 * oúltimo opcional.
+	 * Cadastra um aluno a partir do nome,matricula,curso,email e
+	 * telefone,sendo oúltimo opcional.
 	 * 
 	 * @param nome
 	 *            String que representa o nome do aluno
@@ -51,14 +52,17 @@ public class QmaSistema {
 	 * @param email
 	 *            String que representa o email do aluno
 	 */
-	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
-		this.validador.cadastroInvalido(nome, matricula, codigoCurso, telefone, email);
+	public void cadastrarAluno(String nome, String matricula, int codigoCurso,
+	        String telefone, String email) {
+		this.validador.cadastroInvalido(nome, matricula, codigoCurso, telefone,
+		        email);
 
 		if (alunos.containsKey(matricula)) {
 			validador.matriculaCadastrada();
 		}
 
-		this.alunos.put(matricula, new Aluno(nome, matricula, codigoCurso, telefone, email));
+		this.alunos.put(matricula,
+		        new Aluno(nome, matricula, codigoCurso, telefone, email));
 	}
 
 	/**
@@ -100,10 +104,13 @@ public class QmaSistema {
 	 * @return uma String que representa o atributo em questão.
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
-		validador.atributoInvalido(atributo, "Erro na obtencao de informacao de aluno");
-		validador.matriculaInvalida(matricula, "Erro na obtencao de informacao de aluno");
+		validador.atributoInvalido(atributo,
+		        "Erro na obtencao de informacao de aluno");
+		validador.matriculaInvalida(matricula,
+		        "Erro na obtencao de informacao de aluno");
 		if (!alunos.containsKey(matricula)) {
-			validador.alunoInexistente("Erro na obtencao de informacao de aluno");
+			validador.alunoInexistente(
+			        "Erro na obtencao de informacao de aluno");
 		}
 		return this.alunos.get(matricula).getInfoAluno(atributo);
 	}
@@ -116,16 +123,18 @@ public class QmaSistema {
 	 * @param disciplina
 	 *            String da disciplina em que o tutor pode ajudar.
 	 * @param proficiencia
-	 *            int que representa a proeficiência do tutor na disciplina, varia
-	 *            de 1 a 5.
+	 *            int que representa a proeficiência do tutor na
+	 *            disciplina, varia de 1 a 5.
 	 */
-	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
+	public void tornarTutor(String matricula, String disciplina,
+	        int proficiencia) {
 		validador.disciplinaInvalida(disciplina, "Erro na definicao de papel");
 		if (!this.alunos.containsKey(matricula)) {
 			validador.tutorNaoEncontrado("Erro na definicao de papel");
 		}
 
-		validador.proficienciaInvalida(proficiencia, "Erro na definicao de papel");
+		validador.proficienciaInvalida(proficiencia,
+		        "Erro na definicao de papel");
 		if (!this.tutores.containsValue(matricula)) {
 			this.alunos.get(matricula).tornarTutor(disciplina, proficiencia);
 			this.tutores.put(this.alunos.get(matricula).getEmail(), matricula);
@@ -135,7 +144,8 @@ public class QmaSistema {
 			if (this.alunos.get(matricula).containsDisciplina(disciplina)) {
 				validador.tornarTutorInvalido("Erro na definicao de papel");
 			}
-			this.alunos.get(matricula).adicionaDisciplina(disciplina, proficiencia);
+			this.alunos.get(matricula).adicionaDisciplina(disciplina,
+			        proficiencia);
 		}
 	}
 
@@ -162,12 +172,13 @@ public class QmaSistema {
 	public String listarTutores() {
 		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(alunos.values());
 		Collections.sort(alunosOrdenados);
-		return mapToString(alunosOrdenados.stream().filter(aluno -> tutores.containsKey(aluno.getEmail())));
+		return mapToString(alunosOrdenados.stream()
+		        .filter(aluno -> tutores.containsKey(aluno.getEmail())));
 	}
 
 	/**
-	 * Recebe um objeto Stream de Aluno, e realiza o mapeamento encadeado do
-	 * toString do aluno, adicionando a String ", " a cada iteração.
+	 * Recebe um objeto Stream de Aluno, e realiza o mapeamento encadeado
+	 * do toString do aluno, adicionando a String ", " a cada iteração.
 	 * 
 	 * @param alunos
 	 *            Stream de alunos.
@@ -211,18 +222,23 @@ public class QmaSistema {
 	 *            String do local do atendimento do tutor.
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		validador.emailInvalido(email, "Erro no cadastrar local de atendimento");
-		validador.localInvalido(local, "Erro no cadastrar local de atendimento");
+		validador.emailInvalido(email,
+		        "Erro no cadastrar local de atendimento");
+		validador.localInvalido(local,
+		        "Erro no cadastrar local de atendimento");
 
 		if (!alunos.containsKey(tutores.get(email))) {
-			validador.tutorNaoCadastrado("Erro no cadastrar local de atendimento");
+			validador.tutorNaoCadastrado(
+			        "Erro no cadastrar local de atendimento");
 		}
 
 		if (!tutores.containsKey(email)) {
-			validador.tutorNaoEncontrado("Erro no cadastrar local de atendimento");
+			validador.tutorNaoEncontrado(
+			        "Erro no cadastrar local de atendimento");
 		}
 
-		this.alunos.get(this.tutores.get(email)).cadastrarLocalDeAtendimento(local);
+		this.alunos.get(this.tutores.get(email))
+		        .cadastrarLocalDeAtendimento(local);
 
 	}
 
@@ -236,8 +252,8 @@ public class QmaSistema {
 	 * @param dia
 	 *            String do dia do atendimento do tutor.
 	 * 
-	 * @return um boolean que indica se o dia e o horário passados fazem parte do
-	 *         atendimento de um tutor.
+	 * @return um boolean que indica se o dia e o horário passados fazem
+	 *         parte do atendimento de um tutor.
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
 		validador.emailInvalido(email, "Erro na consulta de horario");
@@ -248,7 +264,8 @@ public class QmaSistema {
 			return false;
 		}
 
-		return this.alunos.get(this.tutores.get(email)).consultaHorario(horario, dia);
+		return this.alunos.get(this.tutores.get(email)).consultaHorario(horario,
+		        dia);
 	}
 
 	/**
@@ -259,8 +276,8 @@ public class QmaSistema {
 	 * @param local
 	 *            String do local do atendimento do tutor.
 	 * 
-	 * @return um boolean que indica se o local passado é o local de atendimento do
-	 *         tutor.
+	 * @return um boolean que indica se o local passado é o local de
+	 *         atendimento do tutor.
 	 */
 	public boolean consultaLocal(String email, String local) {
 		validador.emailInvalido(email, "Erro na consulta de local");
