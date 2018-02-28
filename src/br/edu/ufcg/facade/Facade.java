@@ -1,5 +1,6 @@
-package br.edu.ufcg.controllers;
+package br.edu.ufcg.facade;
 
+import br.edu.ufcg.controllers.QmaSistema;
 import easyaccept.EasyAccept;
 
 /**
@@ -8,7 +9,8 @@ import easyaccept.EasyAccept;
  */
 public class Facade {
 	/**
-	 * Inicializa um objeto da classe QmaSistema, controller do sistema Quem Me Ajuda.
+	 * Inicializa um objeto da classe QmaSistema, controller do sistema Quem Me
+	 * Ajuda.
 	 */
 	QmaSistema sys = new QmaSistema();
 
@@ -19,7 +21,7 @@ public class Facade {
 	 *            array de testes.
 	 */
 	public static void main(String[] args) {
-		args = new String[] { "br.edu.ufcg.controllers.Facade", "EasyAccept//us1_test.txt", "EasyAccept//us2_test.txt",
+		args = new String[] { "br.edu.ufcg.facade.Facade", "EasyAccept//us1_test.txt", "EasyAccept//us2_test.txt",
 				"EasyAccept//us3_test.txt" };
 		EasyAccept.main(args);
 	}
