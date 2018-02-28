@@ -66,7 +66,7 @@ public class AlunoTest {
 	 */
 	@Test
 	public void testGetInfoAlunoNota() {
-		assertEquals("5", aluno.getInfoAluno("notaavaliacao"));
+		assertEquals("5", aluno.getInfoAluno("nota_avaliacao"));
 	}
 
 	/**
@@ -94,7 +94,7 @@ public class AlunoTest {
 	 */
 	@Test
 	public void testGetInfoAlunoCodigoCurso() {
-		assertEquals("22345", aluno.getInfoAluno("codigocurso"));
+		assertEquals("22345", aluno.getInfoAluno("codigo_curso"));
 	}
 
 	/**
