@@ -1,5 +1,5 @@
 package br.edu.ufcg.entities;
 
-public enum InfoTutor {
+public enum AtributoAjuda {
 	MATR_TUTOR, MATR_ALUNO, LOCAL, HORARIO, DISCIPLINA, NOTA;
 }

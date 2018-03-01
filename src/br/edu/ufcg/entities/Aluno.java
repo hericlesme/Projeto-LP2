@@ -79,7 +79,7 @@ public class Aluno implements Comparable<Aluno> {
 	 * @return uma String.
 	 */
 	public String getInfoAluno(String atributo) {
-		switch (Informacao.valueOf(atributo.toUpperCase())) {
+		switch (AtributoAluno.valueOf(atributo.toUpperCase())) {
 
 		case NOTA_AVALIACAO:
 			return Integer.toString(this.notaAvaliacao);
