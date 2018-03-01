@@ -17,10 +17,9 @@ import java.util.Map;
  */
 public class Tutor {
 
-	private int proeficiencie;
-	private int quantidadeEmDinheiro;
+	private int notaTutor;
+	private double dinheiroDoacoes;
 	private double notaAvaliacao;
-	private String nivel;
 	private Map<String, Disciplina> disciplinas;
 	private List<String> diasDisponiveis;
 	private List<String> locaisDisponiveis;
@@ -39,10 +38,9 @@ public class Tutor {
 		this.diasDisponiveis = new ArrayList<>();
 		this.disciplinas = new HashMap<>();
 		adicionaDisciplina(disciplina, proficiencia);
-		this.quantidadeEmDinheiro = 0;
-		this.proeficiencie = 4;
+		this.setDinheiroDoacoes(0);
+		this.notaTutor = 4;
 		this.notaAvaliacao = 4;
-		this.nivel = "";
 
 	}
 
@@ -141,12 +139,16 @@ public class Tutor {
 		
 	}
 	
-	public double getNotaAvaliacao() {
+	public double pegarNota() {
 		return this.notaAvaliacao;
 	}
 	
-	public String getNivel() {
-		return this. nivel;
+	public String pegarNivel() {
+		return this.determinaNivel();
+	}
+
+	public void setDinheiroDoacoes(double dinheiroDoacoes) {
+		this.dinheiroDoacoes = dinheiroDoacoes;
 	}
 
 }
