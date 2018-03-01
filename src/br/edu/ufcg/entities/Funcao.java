@@ -2,8 +2,8 @@ package br.edu.ufcg.entities;
 
 /**
  * 
- * Interface que representa a função de um Aluno. Classes que a implementam
- * definem como seus métodos funcionam.
+ * Interface que representa a função de um Aluno. Classes que a
+ * implementam definem como seus métodos funcionam.
  * 
  * Projeto de Laboratório - Programação II
  * 
@@ -11,26 +11,28 @@ package br.edu.ufcg.entities;
 public interface Funcao {
 
 	/**
-	 * Adiciona um objeto disciplina no mapa disciplinas que liga o nome da
-	 * disciplina ao objeto.
+	 * Adiciona um objeto disciplina no mapa disciplinas que liga o nome
+	 * da disciplina ao objeto.
 	 * 
 	 * @param disciplina
 	 *            o nome da disciplina.
 	 * @param proficiencia
 	 *            a proficiencia na disciplina.
 	 */
-	public void adicionaDisciplina(String disciplina, int proficiencia) throws IllegalThreadStateException;
+	public void adicionaDisciplina(String disciplina, int proficiencia)
+	        throws IllegalThreadStateException;
 
 	/**
-	 * Retorna um booleano dizendo se a disciplina com o nome dado já existe no map
-	 * de disciplinas do Tutor.
+	 * Retorna um booleano dizendo se a disciplina com o nome dado já
+	 * existe no map de disciplinas do Tutor.
 	 * 
 	 * @param disciplina
 	 *            a disciplina a ser verificada.
 	 * 
 	 * @return um boolean.
 	 */
-	public boolean containsDisciplina(String disciplina) throws IllegalThreadStateException;
+	public boolean containsDisciplina(String disciplina)
+	        throws IllegalThreadStateException;
 
 	/**
 	 * Cadastra em um tutor um novo horario de atendimento.
@@ -40,7 +42,8 @@ public interface Funcao {
 	 * @param dia
 	 *            indica em qual dia acontecera o atendimento.
 	 */
-	public void cadastrarHorario(String horario, String dia) throws IllegalThreadStateException;
+	public void cadastrarHorario(String horario, String dia)
+	        throws IllegalThreadStateException;
 
 	/**
 	 * Cadastra em um tutor um novo local de atendimento.
@@ -48,7 +51,8 @@ public interface Funcao {
 	 * @param local:
 	 *            indica o local onde sera o atendimento.
 	 */
-	public void cadastrarLocalDeAtendimento(String local) throws IllegalThreadStateException;
+	public void cadastrarLocalDeAtendimento(String local)
+	        throws IllegalThreadStateException;
 
 	/**
 	 * Verifica se o horario de atendimento foi cadastrado para o tutor.
@@ -57,19 +61,23 @@ public interface Funcao {
 	 *            indica em qual horario em que possivelmente acontecera o
 	 *            atendimento.
 	 * @param dia:
-	 *            indica em qual dia em que possivelmente acontecera o atendimento.
-	 * @return um valor booleano indicando se o horário passado está marcado como
-	 *         atendimento.
+	 *            indica em qual dia em que possivelmente acontecera o
+	 *            atendimento.
+	 * @return um valor booleano indicando se o horário passado está
+	 *         marcado como atendimento.
 	 */
-	public boolean consultaHorario(String horario, String dia) throws IllegalThreadStateException;
+	public boolean consultaHorario(String horario, String dia)
+	        throws IllegalThreadStateException;
 
 	/**
 	 * Verifica se o local de atendimento foi cadastrado pelo Tutor.
 	 * 
 	 * @param local:
 	 *            indica o local onde deve ser o atendimento.
-	 * @return um valor booleano indicando a existência de um local marcado.
+	 * @return um valor booleano indicando a existência de um local
+	 *         marcado.
 	 */
-	public boolean consultaLocal(String local) throws IllegalThreadStateException;
+	public boolean consultaLocal(String local)
+	        throws IllegalThreadStateException;
 
 }

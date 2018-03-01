@@ -16,7 +16,7 @@ import br.edu.ufcg.entities.Tutelado;
  *
  */
 public class TuteladoTest {
-	Tutelado aluno, tutelado;
+	private Tutelado aluno, tutelado;
 
 	/**
 	 * Inicializa o Tutelado aluno, para a sessão de testes.
@@ -38,8 +38,8 @@ public class TuteladoTest {
 	}
 
 	/**
-	 * Assegura o lançamento de uma exceção na tentativa de um cadastro de horário
-	 * de atendimento, quando o aluno é tutelado.
+	 * Assegura o lançamento de uma exceção na tentativa de um cadastro de
+	 * horário de atendimento, quando o aluno é tutelado.
 	 */
 	@Test(expected = IllegalThreadStateException.class)
 	public void testCadastrarHorario() {
@@ -47,8 +47,8 @@ public class TuteladoTest {
 	}
 
 	/**
-	 * Assegura o lançamento de uma exceção na tentativa de um cadastro de local de
-	 * atendimento, quando o aluno é tutelado.
+	 * Assegura o lançamento de uma exceção na tentativa de um cadastro de
+	 * local de atendimento, quando o aluno é tutelado.
 	 */
 	@Test(expected = IllegalThreadStateException.class)
 	public void testCadastrarLocalDeAtendimento() {
@@ -56,8 +56,8 @@ public class TuteladoTest {
 	}
 
 	/**
-	 * Assegura o lançamento de uma exceção na tentativa de uma consulta de horário
-	 * de atendimento, quando o aluno é tutelado.
+	 * Assegura o lançamento de uma exceção na tentativa de uma consulta
+	 * de horário de atendimento, quando o aluno é tutelado.
 	 */
 	@Test(expected = IllegalThreadStateException.class)
 	public void testConsultaHorario() {
@@ -65,8 +65,8 @@ public class TuteladoTest {
 	}
 
 	/**
-	 * Assegura o lançamento de uma exceção na tentativa de um consulta de local de
-	 * atendimento, quando o aluno é tutelado.
+	 * Assegura o lançamento de uma exceção na tentativa de um consulta de
+	 * local de atendimento, quando o aluno é tutelado.
 	 */
 	@Test(expected = IllegalThreadStateException.class)
 	public void testConsultaLocal() {

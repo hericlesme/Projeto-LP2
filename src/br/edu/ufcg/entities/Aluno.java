@@ -2,9 +2,9 @@ package br.edu.ufcg.entities;
 
 /**
  * Representação de um aluno no sistema. Todo aluno possui uma nota de
- * avaliação, uma matrícula que o identifica, o codigo do seu curso, email, nome
- * e opcionalmente um telefone. Um aluno pode ter como função ser tutor ou
- * tutelado.
+ * avaliação, uma matrícula que o identifica, o codigo do seu curso,
+ * email, nome e opcionalmente um telefone. Um aluno pode ter como
+ * função ser tutor ou tutelado.
  * 
  * Projeto de Laboratório - Programação II.
  *
@@ -20,9 +20,9 @@ public class Aluno implements Comparable<Aluno> {
 	private String nome;
 
 	/**
-	 * Constrói um aluno inicializando seus atributos. A nota de avaliação por
-	 * padrão começa em 5, assim como sua função; tutelado. Uma String vazia é dada
-	 * quando o telefone não é passado.
+	 * Constrói um aluno inicializando seus atributos. A nota de avaliação
+	 * por padrão começa em 5, assim como sua função; tutelado. Uma String
+	 * vazia é dada quando o telefone não é passado.
 	 * 
 	 * @param nome
 	 *            nome do aluno.
@@ -35,7 +35,8 @@ public class Aluno implements Comparable<Aluno> {
 	 * @param email
 	 *            email do aluno.
 	 */
-	public Aluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
+	public Aluno(String nome, String matricula, int codigoCurso,
+	        String telefone, String email) {
 		this.notaAvaliacao = 5;
 		this.matricula = matricula;
 		this.telefone = telefone;
@@ -46,19 +47,21 @@ public class Aluno implements Comparable<Aluno> {
 	}
 
 	/**
-	 * Retorna uma String com algumas informações do Aluno. Com telefone, caso tenha
-	 * sido passado, ou sem. Segue o formato: 1. "Matricula - Nome - Código do Curso
-	 * - Email" 2. "Matricula - Nome - Código do Curso - Telefone - Email"
+	 * Retorna uma String com algumas informações do Aluno. Com telefone,
+	 * caso tenha sido passado, ou sem. Segue o formato: 1. "Matricula -
+	 * Nome - Código do Curso - Email" 2. "Matricula - Nome - Código do
+	 * Curso - Telefone - Email"
 	 * 
 	 * @return uma String.
 	 */
 	public String toString() {
-		return this.matricula + " - " + this.nome + " - " + this.codigoCurso + " - " + toStringComplemento();
+		return this.matricula + " - " + this.nome + " - " + this.codigoCurso
+		        + " - " + toStringComplemento();
 	}
 
 	/**
-	 * Método utilizado para decidir qual vai ser o complemento do toString, tendo
-	 * telefone ou não.
+	 * Método utilizado para decidir qual vai ser o complemento do
+	 * toString, tendo telefone ou não.
 	 * 
 	 * @return uma String.
 	 */
@@ -70,8 +73,8 @@ public class Aluno implements Comparable<Aluno> {
 	}
 
 	/**
-	 * Retorna uma String com uma informação do aluno. Lança uma exceção caso seja
-	 * um atributo não existente.
+	 * Retorna uma String com uma informação do aluno. Lança uma exceção
+	 * caso seja um atributo não existente.
 	 * 
 	 * @param atributo
 	 *            informação a ser mostrada.
@@ -80,7 +83,7 @@ public class Aluno implements Comparable<Aluno> {
 	public String getInfoAluno(String atributo) {
 		switch (Informacao.valueOf(atributo.toUpperCase())) {
 
-		case NOTAAVALIACAO:
+		case NOTA_AVALIACAO:
 			return Integer.toString(this.notaAvaliacao);
 
 		case MATRICULA:
@@ -89,7 +92,7 @@ public class Aluno implements Comparable<Aluno> {
 		case TELEFONE:
 			return this.telefone;
 
-		case CODIGOCURSO:
+		case CODIGO_CURSO:
 			return Integer.toString(this.codigoCurso);
 
 		case EMAIL:
@@ -104,7 +107,8 @@ public class Aluno implements Comparable<Aluno> {
 	}
 
 	/**
-	 * Compara o próprio objeto com outro da classe Aluno, de acordo com o nome.
+	 * Compara o próprio objeto com outro da classe Aluno, de acordo com o
+	 * nome.
 	 * 
 	 * @return um int.
 	 */
@@ -133,8 +137,8 @@ public class Aluno implements Comparable<Aluno> {
 	}
 
 	/**
-	 * Torna um aluno tutor. Muda o seu atributo funcão de Tutelado para Tutor,
-	 * possibilitando o uso de alguns métodos.
+	 * Torna um aluno tutor. Muda o seu atributo funcão de Tutelado para
+	 * Tutor, possibilitando o uso de alguns métodos.
 	 * 
 	 * @param disciplina
 	 *            disciplina que pode ensinar.
@@ -176,8 +180,8 @@ public class Aluno implements Comparable<Aluno> {
 	}
 
 	/**
-	 * Retorna um boolean indicando se o tutor está disponível em determinado
-	 * horário. Disponível: true. Ocupado: false.
+	 * Retorna um boolean indicando se o tutor está disponível em
+	 * determinado horário. Disponível: true. Ocupado: false.
 	 * 
 	 * @param horario
 	 *            horário a ser consultado.
@@ -190,8 +194,8 @@ public class Aluno implements Comparable<Aluno> {
 	}
 
 	/**
-	 * Retorna um boolean indicando se o tutor está disponível em determinado local
-	 * para atendimento.
+	 * Retorna um boolean indicando se o tutor está disponível em
+	 * determinado local para atendimento.
 	 * 
 	 * @param local
 	 *            local a ser consultado.
@@ -210,13 +214,15 @@ public class Aluno implements Comparable<Aluno> {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((matricula == null) ? 0 : matricula.hashCode());
+		result = prime * result
+		        + ((matricula == null) ? 0 : matricula.hashCode());
 		return result;
 	}
 
 	/**
-	 * Retorna um boolean que diz se esse objeto é igual a outro. Caso seja igual,
-	 * retorna true, caso não, false. Leva em consideração a matrícula do aluno.
+	 * Retorna um boolean que diz se esse objeto é igual a outro. Caso
+	 * seja igual, retorna true, caso não, false. Leva em consideração a
+	 * matrícula do aluno.
 	 * 
 	 * @return um boolean.
 	 */
