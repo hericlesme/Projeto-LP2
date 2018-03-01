@@ -94,6 +94,18 @@ public class QmaSistema {
 	}
 
 	/**
+	 * Recebe um objeto Stream de Aluno, e realiza o mapeamento encadeado
+	 * do toString do aluno, adicionando a String ", " a cada iteração.
+	 * 
+	 * @param alunos
+	 *            Stream de alunos.
+	 * @return uma String contendo o toString encadeado dos alunos.
+	 */
+	private String mapToString(Stream<Aluno> alunos) {
+		return alunos.map(Aluno::toString).collect(Collectors.joining(", "));
+	}
+
+	/**
 	 * Recupera um dos atributos de um aluno a partir da sua matricula.
 	 * 
 	 * @param matricula
@@ -176,17 +188,6 @@ public class QmaSistema {
 		        .filter(aluno -> tutores.containsKey(aluno.getEmail())));
 	}
 
-	*//**
-	 * Recebe um objeto Stream de Aluno, e realiza o mapeamento encadeado
-	 * do toString do aluno, adicionando a String ", " a cada iteração.
-	 * 
-	 * @param alunos
-	 *            Stream de alunos.
-	 * @return uma String contendo o toString encadeado dos alunos.
-	 *//*
-	private String mapToString(Stream<Aluno> alunos) {
-		return alunos.map(Aluno::toString).collect(Collectors.joining(", "));
-	}
 
 	*//**
 	 * Cadastra o dia e horário de atendimento de um tutor.
