@@ -14,7 +14,7 @@ public class AjudaOnline extends Ajuda {
 		case MATR_ALUNO:
 			return this.matrAluno;
 		default:
-			throw new IllegalArgumentException("nao man");
+			throw new IllegalArgumentException("Atributo invalido");
 		}
 	}
 }
