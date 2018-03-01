@@ -15,7 +15,7 @@ import java.util.Map;
  * Projeto de Laboratório - Programação II
  * 
  */
-public class Tutor implements Funcao {
+public class Tutor {
 
 	private int notaTutor;
 	private int quantidadeEmDinheiro;
@@ -50,7 +50,6 @@ public class Tutor implements Funcao {
 	 * @param proficiencia
 	 *            a proficiencia na disciplina.
 	 */
-	@Override
 	public void adicionaDisciplina(String disciplina, int proficiencia) {
 		this.disciplinas.put(disciplina,
 		        new Disciplina(disciplina, proficiencia));
@@ -62,7 +61,6 @@ public class Tutor implements Funcao {
 	 * 
 	 * @return um boolean.
 	 */
-	@Override
 	public boolean containsDisciplina(String disciplina) {
 		return disciplinas.containsKey(disciplina);
 	}
@@ -76,7 +74,6 @@ public class Tutor implements Funcao {
 	 *            indica em qual dia acontecera o atendimento.
 	 */
 
-	@Override
 	public void cadastrarHorario(String horario, String dia) {
 		this.diasDisponiveis.add(String.format("%s, %s", dia,
 		        horario)); /* Sugeito a alterações */
@@ -88,7 +85,6 @@ public class Tutor implements Funcao {
 	 * @param local:
 	 *            indica o local onde sera o atendimento.
 	 */
-	@Override
 	public void cadastrarLocalDeAtendimento(String local) {
 		this.locaisDisponiveis.add(local);
 	}
@@ -105,7 +101,6 @@ public class Tutor implements Funcao {
 	 * @return true - se o horario ja tiver sido cadastrado; false - se o
 	 *         horario nao tiver sido cadastrado.
 	 */
-	@Override
 	public boolean consultaHorario(String horario, String dia) {
 		return this.diasDisponiveis
 		        .contains(String.format("%s, %s", dia, horario));
@@ -119,7 +114,6 @@ public class Tutor implements Funcao {
 	 * @return true - se o local ja tiver sido cadastrado; false - se o
 	 *         local nao tiver sido cadastrado.
 	 */
-	@Override
 	public boolean consultaLocal(String local) {
 		return this.locaisDisponiveis.contains(local);
 	}

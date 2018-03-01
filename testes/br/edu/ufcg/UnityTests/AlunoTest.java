@@ -147,82 +147,6 @@ public class AlunoTest {
 	}
 
 	/**
-	 * Testa o método que torna o aluno um Tutor, garantindo o acesso aos
-	 * métodos e funções de um Tutor.
-	 */
-	@Test
-	public void testTornaTutor() {
-		aluno.tornarTutor("LP2", 5);
-		assertFalse(aluno.consultaLocal("Lá na esquina"));
-	}
-
-	/**
-	 * Testa o cadastro de um horário de atendimento para um tutor.
-	 */
-	@Test
-	public void testCadastrarHorario() {
-		aluno.tornarTutor("Discreta", 1);
-		aluno.cadastrarHorario("15:16", "seg");
-		assertTrue(aluno.consultaHorario("15:16", "seg"));
-	}
-
-	/**
-	 * Testa o cadastro de um local de atendimento para um tutor.
-	 */
-	@Test
-	public void testCadastrarLocalDeAtendimento() {
-		aluno.tornarTutor("P2", 5);
-		aluno.cadastrarLocalDeAtendimento("LccHouse");
-		assertTrue(aluno.consultaLocal("LccHouse"));
-	}
-
-	/**
-	 * Testa a verificação de um horário de atendimento para um tutor,
-	 * quando ele tem o horário marcado.
-	 */
-	@Test
-	public void testConsultaHorarioTrue() {
-		aluno.tornarTutor("Haskler do mau", 4);
-		aluno.cadastrarHorario("12:00", "ter");
-		assertTrue(aluno.consultaHorario("12:00", "ter"));
-	}
-
-	/**
-	 * Testa a verificação de um horário de atendimento para um tutor,
-	 * quando ele não tem horário marcado.
-	 */
-	@Test
-	public void testConsultaHorarioFalse() {
-		aluno.tornarTutor("Haskler do bem", 5);
-		assertFalse(aluno.consultaHorario("12:00", "ter"));
-		aluno.cadastrarHorario("12:50", "ter");
-		assertFalse(aluno.consultaHorario("12:50", "seg"));
-	}
-
-	/**
-	 * Testa a verificação de um local de atendimento para um tutor,
-	 * quando ele tem local marcado.
-	 */
-	@Test
-	public void testConsultaLocalTrue() {
-		aluno.tornarTutor("ATAL", 1);
-		aluno.cadastrarLocalDeAtendimento("Lcc3");
-		assertTrue(aluno.consultaLocal("Lcc3"));
-	}
-
-	/**
-	 * Testa a verificação de um local de atendimento para um tutor,
-	 * quando ele não tem local marcado.
-	 */
-	@Test
-	public void testConsultaLocalFalse() {
-		aluno.tornarTutor("AA", 3);
-		assertFalse(aluno.consultaLocal("Reenge"));
-		aluno.cadastrarLocalDeAtendimento("Reenge");
-		assertFalse(aluno.consultaLocal("CAA"));
-	}
-
-	/**
 	 * Testa o método equals quando os alunos forem iguais.
 	 */
 	@Test
@@ -260,42 +184,6 @@ public class AlunoTest {
 		outroAluno = new Aluno("Irineu", "116459782", 22345, "",
 		        "irineu@vcnaosabe.nem.eu");
 		assertFalse(aluno.hashCode() == outroAluno.hashCode());
-	}
-
-	/**
-	 * Assegura o lançamento de uma exceção na tentativa de um cadastro de
-	 * horário de atendimento, quando o aluno não é um tutor.
-	 */
-	@Test(expected = IllegalThreadStateException.class)
-	public void testCadastrarHorarioTutelado() {
-		aluno.cadastrarHorario("15:15", "qua");
-	}
-
-	/**
-	 * Assegura o lançamento de uma exceção na tentativa de um cadastro de
-	 * local de atendimento, quando o aluno não é um tutor.
-	 */
-	@Test(expected = IllegalThreadStateException.class)
-	public void testCadastrarLocalDeAtendimentoTutelado() {
-		aluno.cadastrarLocalDeAtendimento("Shopping");
-	}
-
-	/**
-	 * Assegura o lançamento de uma exceção na tentativa de uma consulta
-	 * de horário de atendimento, quando o aluno não é um tutor.
-	 */
-	@Test(expected = IllegalThreadStateException.class)
-	public void testConsultaHorarioTutelado() {
-		aluno.consultaHorario("15:16", "qui");
-	}
-
-	/**
-	 * Assegura o lançamento de uma exceção na tentativa de um consulta de
-	 * local de atendimento, quando o aluno não é um tutor.
-	 */
-	@Test(expected = IllegalThreadStateException.class)
-	public void testConsultaLocalTutelado() {
-		aluno.consultaLocal("Farmácia");
 	}
 
 }

@@ -15,7 +15,6 @@ public class Aluno implements Comparable<Aluno> {
 	private String matricula;
 	private String telefone;
 	private int codigoCurso;
-	private Funcao funcao;
 	private String email;
 	private String nome;
 
@@ -43,7 +42,6 @@ public class Aluno implements Comparable<Aluno> {
 		this.codigoCurso = codigoCurso;
 		this.email = email;
 		this.nome = nome;
-		this.funcao = new Tutelado();
 	}
 
 	/**
@@ -134,75 +132,6 @@ public class Aluno implements Comparable<Aluno> {
 	 */
 	public String getEmail() {
 		return this.email;
-	}
-
-	/**
-	 * Torna um aluno tutor. Muda o seu atributo funcão de Tutelado para
-	 * Tutor, possibilitando o uso de alguns métodos.
-	 * 
-	 * @param disciplina
-	 *            disciplina que pode ensinar.
-	 * @param proficiencia
-	 *            proficiência na disciplina.
-	 */
-	public void tornarTutor(String disciplina, int proficiencia) {
-		this.funcao = new Tutor(disciplina, proficiencia);
-	}
-
-	public void adicionaDisciplina(String disciplina, int proficiencia) {
-		this.funcao.adicionaDisciplina(disciplina, proficiencia);
-	}
-
-	public boolean containsDisciplina(String disciplina) {
-		return this.funcao.containsDisciplina(disciplina);
-	}
-
-	/**
-	 * Cadastra um horário e dia que o Tutor esteja disponível para ajudar
-	 * 
-	 * @param horario
-	 *            horário disponível.
-	 * @param dia
-	 *            dia disponível.
-	 */
-	public void cadastrarHorario(String horario, String dia) {
-		this.funcao.cadastrarHorario(horario, dia);
-	}
-
-	/**
-	 * Cadastra um local que o Tutor esteja disponível para atendimento.
-	 * 
-	 * @param local
-	 *            local disponível.
-	 */
-	public void cadastrarLocalDeAtendimento(String local) {
-		this.funcao.cadastrarLocalDeAtendimento(local);
-	}
-
-	/**
-	 * Retorna um boolean indicando se o tutor está disponível em
-	 * determinado horário. Disponível: true. Ocupado: false.
-	 * 
-	 * @param horario
-	 *            horário a ser consultado.
-	 * @param dia
-	 *            dia a ser consultado.
-	 * @return um boolean.
-	 */
-	public boolean consultaHorario(String horario, String dia) {
-		return this.funcao.consultaHorario(horario, dia);
-	}
-
-	/**
-	 * Retorna um boolean indicando se o tutor está disponível em
-	 * determinado local para atendimento.
-	 * 
-	 * @param local
-	 *            local a ser consultado.
-	 * @return um boolean.
-	 */
-	public boolean consultaLocal(String local) {
-		return this.funcao.consultaLocal(local);
 	}
 
 	/**
