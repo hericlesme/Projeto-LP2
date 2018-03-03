@@ -17,9 +17,8 @@ import java.util.Map;
  */
 public class Tutor {
 
-	private int notaTutor;
 	private double dinheiroDoacoes;
-	private double notaAvaliacao;
+	private double notaTutor;
 	private Map<String, Disciplina> disciplinas;
 	private List<String> diasDisponiveis;
 	private List<String> locaisDisponiveis;
@@ -40,7 +39,6 @@ public class Tutor {
 		adicionaDisciplina(disciplina, proficiencia);
 		this.dinheiroDoacoes = 0;
 		this.notaTutor = 4;
-		this.notaAvaliacao = 4;
 
 	}
 
@@ -78,8 +76,7 @@ public class Tutor {
 	 */
 
 	public void cadastrarHorario(String horario, String dia) {
-		this.diasDisponiveis.add(String.format("%s, %s", dia,
-		        horario)); /* Sugeito a alterações */
+		this.diasDisponiveis.add(String.format("%s, %s", dia, horario));
 	}
 
 	/**
@@ -122,33 +119,33 @@ public class Tutor {
 	}
 
 	public String avaliarTutor(int nota) {
-		this.notaAvaliacao = ((this.notaAvaliacao * 5) + nota) / 6;
+		this.notaTutor = ((this.notaTutor * 5) + nota) / 6;
 		return this.determinaNivel();
 	}
 
 	private String determinaNivel() {
 		String nivel = "";
-		if(this.notaAvaliacao > 4.5) {
+		if (this.notaTutor > 4.5) {
 			nivel = "TOP";
-		} else if (this.notaAvaliacao > 3.0 && this.notaAvaliacao <= 4.5) {
+		} else if (this.notaTutor > 3.0 && this.notaTutor <= 4.5) {
 			nivel = "Tutor";
-		}  else if (this.notaAvaliacao > 0 && this.notaAvaliacao <= 3.0) {
+		} else if (this.notaTutor > 0 && this.notaTutor <= 3.0) {
 			nivel = "Aprendiz";
 		}
 		return nivel;
-		
+
 	}
-	
+
 	public double pegarNota() {
-		return this.notaAvaliacao;
+		return this.notaTutor;
 	}
-	
+
 	public String pegarNivel() {
 		return this.determinaNivel();
 	}
 
-	public void setDinheiroDoacoes(double dinheiroDoacoes) {
-		this.dinheiroDoacoes = dinheiroDoacoes;
+	public void addDinheiroDoacoes(double dinheiroDoacoes) {
+		this.dinheiroDoacoes += dinheiroDoacoes;
 	}
 
 }
