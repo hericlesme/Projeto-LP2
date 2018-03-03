@@ -12,7 +12,6 @@ public abstract class Ajuda {
 		this.nota = 0;
 	}
 
-	// Lembrar de botar um enum, e falando em enum, arrmar o nome do oto.
 	public abstract String getInfo(String atributo);
 
 	public void avaliarAjuda(int nota) {

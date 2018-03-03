@@ -6,7 +6,7 @@ package br.edu.ufcg.entities;
  * Projeto de Laboratório - Programação II.
  *
  */
-public enum Informacao {
+public enum AtributoAluno {
 
 	NOTA_AVALIACAO, MATRICULA, TELEFONE, CODIGO_CURSO, EMAIL, NOME;
 
