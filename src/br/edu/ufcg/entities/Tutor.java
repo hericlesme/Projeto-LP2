@@ -38,6 +38,10 @@ public class Tutor {
 		this.disciplinas = new HashMap<>();
 		adicionaDisciplina(disciplina, proficiencia);
 		this.dinheiroDoacoes = 0;
+<<<<<<< HEAD
+=======
+		this.notaTutor = 4;
+>>>>>>> 10802d25c410e202c05daf8340361ecb75bf23a8
 		this.notaAvaliacao = 4;
 
 	}
