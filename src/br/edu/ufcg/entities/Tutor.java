@@ -17,7 +17,6 @@ import java.util.Map;
  */
 public class Tutor {
 
-	private int notaTutor;
 	private double dinheiroDoacoes;
 	private double notaAvaliacao;
 	private Map<String, Disciplina> disciplinas;
@@ -37,11 +36,9 @@ public class Tutor {
 		this.locaisDisponiveis = new ArrayList<>();
 		this.diasDisponiveis = new ArrayList<>();
 		this.disciplinas = new HashMap<>();
-		adicionaDisciplina(disciplina, proficiencia);
+		this.adicionaDisciplina(disciplina, proficiencia);
 		this.dinheiroDoacoes = 0;
-		this.notaTutor = 4;
-		this.notaAvaliacao = 4;
-
+		this.notaAvaliacao = 4.0;
 	}
 
 	/**
