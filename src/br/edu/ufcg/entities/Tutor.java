@@ -38,7 +38,7 @@ public class Tutor {
 		this.diasDisponiveis = new ArrayList<>();
 		this.disciplinas = new HashMap<>();
 		adicionaDisciplina(disciplina, proficiencia);
-		this.setDinheiroDoacoes(0);
+		this.dinheiroDoacoes = 0;
 		this.notaTutor = 4;
 		this.notaAvaliacao = 4;
 
