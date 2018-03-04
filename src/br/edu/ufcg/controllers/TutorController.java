@@ -29,22 +29,30 @@ public class TutorController {
 	 *            int que representa a proeficiência do tutor na
 	 *            disciplina, varia de 1 a 5.
 	 */
-	public void tornarTutor(String matricula, String disciplina,int proficiencia) {
+	public void tornarTutor(String matricula, String disciplina,
+	        int proficiencia) {
 		validador.disciplinaInvalida(disciplina, "Erro na definicao de papel");
 		if (!this.dados.getAlunos().containsKey(matricula)) {
 			validador.tutorNaoEncontrado("Erro na definicao de papel");
 		}
 
-		validador.proficienciaInvalida(proficiencia,"Erro na definicao de papel");
-		if (!this.dados.getTutores().containsKey(this.dados.getAlunos().get(matricula).getEmail())) {
-			this.dados.adicionaTutor(this.dados.getAlunos().get(matricula).getEmail(), new Tutor(disciplina,proficiencia,matricula));
+		validador.proficienciaInvalida(proficiencia,
+		        "Erro na definicao de papel");
+		if (!this.dados.getTutores().containsKey(
+		        this.dados.getAlunos().get(matricula).getEmail())) {
+			this.dados.adicionaTutor(
+			        this.dados.getAlunos().get(matricula).getEmail(),
+			        new Tutor(disciplina, proficiencia, matricula));
 
 		} else {
 
-			if (this.dados.getTutores().get(matricula).containsDisciplina(disciplina)) {
+			if (this.dados.getTutores().get(matricula)
+			        .containsDisciplina(disciplina)) {
 				validador.tornarTutorInvalido("Erro na definicao de papel");
 			}
-			this.dados.getTutores().get(this.dados.getAlunos().get(matricula).getEmail()).adicionaDisciplina(disciplina,proficiencia);
+			this.dados.getTutores()
+			        .get(this.dados.getAlunos().get(matricula).getEmail())
+			        .adicionaDisciplina(disciplina, proficiencia);
 		}
 	}
 
@@ -57,7 +65,8 @@ public class TutorController {
 	 * @return o toString do tutor.
 	 */
 	public String recuperaTutor(String matricula) {
-		if (!this.dados.getTutores().containsKey(this.dados.getAlunos().get(matricula).getEmail())) {
+		if (!this.dados.getTutores().containsKey(
+		        this.dados.getAlunos().get(matricula).getEmail())) {
 			validador.tutorNaoEncontrado("Erro na busca por tutor");
 		}
 		return this.dados.getAlunos().get(matricula).toString();
@@ -68,17 +77,18 @@ public class TutorController {
 	 * 
 	 * @return o toSTring dos tutores.
 	 */
-	
+
 	private String mapToString(Stream<Aluno> alunos) {
 		return alunos.map(Aluno::toString).collect(Collectors.joining(", "));
 	}
-	
-	public String listarTutores() {
-		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(dados.getAlunos().values());
-		Collections.sort(alunosOrdenados);
-		return mapToString(alunosOrdenados.stream().filter(aluno -> dados.getTutores().containsKey(aluno.getEmail())));
-	}
 
+	public String listarTutores() {
+		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(
+		        dados.getAlunos().values());
+		Collections.sort(alunosOrdenados);
+		return mapToString(alunosOrdenados.stream().filter(
+		        aluno -> dados.getTutores().containsKey(aluno.getEmail())));
+	}
 
 	/**
 	 * Cadastra o dia e horário de atendimento de um tutor.
@@ -94,7 +104,8 @@ public class TutorController {
 		validador.emailInvalido(email, "Erro no cadastrar horario");
 		validador.horarioInvalido(horario, "Erro no cadastrar horario");
 		validador.diaInvalido(dia, "Erro no cadastrar horario");
-		if (!dados.getAlunos().containsKey(dados.getTutores().get(email).getMatricula())) {
+		if (!dados.getAlunos()
+		        .containsKey(dados.getTutores().get(email).getMatricula())) {
 			validador.tutorNaoCadastrado("Erro no cadastrar horario");
 		}
 
@@ -119,7 +130,8 @@ public class TutorController {
 		validador.localInvalido(local,
 		        "Erro no cadastrar local de atendimento");
 
-		if (!dados.getAlunos().containsKey(dados.getTutores().get(email).getMatricula())) {
+		if (!dados.getAlunos()
+		        .containsKey(dados.getTutores().get(email).getMatricula())) {
 			validador.tutorNaoCadastrado(
 			        "Erro no cadastrar local de atendimento");
 		}
@@ -155,7 +167,7 @@ public class TutorController {
 			return false;
 		}
 
-		return this.dados.getTutores().get(email).consultaHorario(horario,dia);
+		return this.dados.getTutores().get(email).consultaHorario(horario, dia);
 	}
 
 	/**
@@ -180,14 +192,19 @@ public class TutorController {
 	}
 
 	public double pegarNota(String matriculaTutor) {
-		return this.dados.getTutores().get(this.dados.getAlunos().get(matriculaTutor).getEmail()).pegarNota();
+		return this.dados.getTutores()
+		        .get(this.dados.getAlunos().get(matriculaTutor).getEmail())
+		        .pegarNota();
 	}
-	
+
 	public String pegarNivel(String matriculaTutor) {
-		return this.dados.getTutores().get(this.dados.getAlunos().get(matriculaTutor).getEmail()).pegarNivel();
+		return this.dados.getTutores()
+		        .get(this.dados.getAlunos().get(matriculaTutor).getEmail())
+		        .pegarNivel();
 	}
+
 	public int totalDinheiroTutor(String emaiTutor) {
 		return this.dados.getTutores().get(emaiTutor).getDinheiro();
 	}
-	
+
 }
