@@ -1,6 +1,10 @@
 package br.edu.ufcg.facade;
 
-import br.edu.ufcg.controllers.QmaSistema;
+import br.edu.ufcg.controllers.AjudaController;
+import br.edu.ufcg.controllers.AlunoController;
+import br.edu.ufcg.controllers.Caixa;
+import br.edu.ufcg.controllers.Dados;
+import br.edu.ufcg.controllers.TutorController;
 import easyaccept.EasyAccept;
 
 /**
@@ -12,8 +16,21 @@ public class Facade {
 	 * Inicializa um objeto da classe QmaSistema, controller do sistema
 	 * Quem Me Ajuda.
 	 */
-	QmaSistema sys = new QmaSistema();
-
+	private Dados dados ;
+	private AlunoController alunoC;
+	private TutorController tutorC;
+	private Caixa caixa;
+	private AjudaController ajuda;
+	
+	
+	public Facade() {
+		this.dados = new Dados();
+		this.alunoC = new AlunoController(dados);
+		this.tutorC = new TutorController(dados);
+		this.caixa = new Caixa(dados);
+		this.ajuda = new AjudaController();
+		
+	}
 	/**
 	 * Testes EasyAccept.
 	 * 
@@ -44,7 +61,7 @@ public class Facade {
 	 */
 	public void cadastrarAluno(String nome, String matricula, int codigoCurso,
 	        String telefone, String email) {
-		sys.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
+		alunoC.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
 	}
 
 	/**
@@ -56,7 +73,7 @@ public class Facade {
 	 * @return uma String.
 	 */
 	public String recuperaAluno(String matricula) {
-		return sys.recuperaAluno(matricula);
+		return alunoC.recuperaAluno(matricula);
 	}
 
 	/**
@@ -66,7 +83,7 @@ public class Facade {
 	 * @return uma String.
 	 */
 	public String listarAlunos() {
-		return sys.listarAlunos();
+		return alunoC.listarAlunos();
 	}
 
 	/**
@@ -80,7 +97,7 @@ public class Facade {
 	 * @return uma String.
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
-		return sys.getInfoAluno(matricula, atributo);
+		return alunoC.getInfoAluno(matricula, atributo);
 	}
 
 	/**
@@ -94,9 +111,8 @@ public class Facade {
 	 * @param proficiencia
 	 *            proficiência na disciplina.
 	 */
-	public void tornarTutor(String matricula, String disciplina,
-	        int proficiencia) {
-		sys.tornarTutor(matricula, disciplina, proficiencia);
+	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
+		tutorC.tornarTutor(matricula, disciplina, proficiencia);
 	}
 
 	/**
@@ -108,7 +124,7 @@ public class Facade {
 	 * @return uma String.
 	 */
 	public String recuperaTutor(String matricula) {
-		return sys.recuperaTutor(matricula);
+		return tutorC.recuperaTutor(matricula);
 	}
 
 	/**
@@ -118,7 +134,7 @@ public class Facade {
 	 * @return uma String.
 	 */
 	public String listarTutores() {
-		return sys.listarTutores();
+		return tutorC.listarTutores();
 	}
 
 	/**
@@ -133,7 +149,7 @@ public class Facade {
 	 *            dia referente ao horário.
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
-		sys.cadastrarHorario(email, horario, dia);
+		tutorC.cadastrarHorario(email, horario, dia);
 	}
 
 	/**
@@ -146,7 +162,7 @@ public class Facade {
 	 *            local a ser cadastrado.
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		sys.cadastrarLocalDeAtendimento(email, local);
+		tutorC.cadastrarLocalDeAtendimento(email, local);
 	}
 
 	/**
@@ -162,7 +178,7 @@ public class Facade {
 	 * @return um boolean.
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
-		return sys.consultaHorario(email, horario, dia);
+		return tutorC.consultaHorario(email, horario, dia);
 	}
 
 	/**
@@ -176,7 +192,46 @@ public class Facade {
 	 * @return um boolean.
 	 */
 	public boolean consultaLocal(String email, String local) {
-		return sys.consultaLocal(email, local);
+		return tutorC.consultaLocal(email, local);
 	}
 
+	public int pedirAjudaPresencial (String matrAluno, String disciplina, String horario, String dia, String localInteresse) {
+		return this.ajuda.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
+	}
+	
+	public int pedirAjudaOnline (String matrAluno, String disciplina) {
+		return this.pedirAjudaOnline(matrAluno, disciplina);		
+	}
+	
+	public String pegarTutor(int idAjuda) {
+		return this.ajuda.pegarTutor(idAjuda);
+	}
+	
+	public String getInfoAjuda(int idAjuda, String atributo) {
+		return this.ajuda.getInfoAjuda(idAjuda, atributo);
+	}
+	
+	public String avaliarTutor (int idAjuda, int nota) {
+		return this.ajuda.avaliarTutor(idAjuda, nota);
+	}
+	
+	public double pegarNota(String matriculaTutor) {
+		return this.tutorC.pegarNota(matriculaTutor);		
+	}
+	
+	public String pegarNivel(String matriculaTutor) {
+		return this.tutorC.pegarNivel(matriculaTutor);
+	}
+	
+	public void doar(String matriculaTutor, int totalCentavos) {
+		this.caixa.doar(matriculaTutor, totalCentavos);
+	}
+	
+	public int totalDinheiroTutor(String emailTutor) {
+		return this.tutorC.totalDinheiroTutor(emailTutor);
+	}
+	
+	public int totalDinheiroSistema() {
+		return this.caixa.totalDinheiroSistema();
+	}
 }

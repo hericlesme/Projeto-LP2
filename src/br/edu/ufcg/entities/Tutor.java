@@ -22,6 +22,7 @@ public class Tutor {
 	private Map<String, Disciplina> disciplinas;
 	private List<String> diasDisponiveis;
 	private List<String> locaisDisponiveis;
+	private String matricula;
 
 	/**
 	 * Inicializa um objeto da classe Tutor.
@@ -32,13 +33,14 @@ public class Tutor {
 	 *            um numero entre um e cinco indicando o quão habil na
 	 *            disciplina o Tutor se considera.
 	 */
-	public Tutor(String disciplina, int proficiencia) {
+	public Tutor(String disciplina, int proficiencia, String matricula) {
 		this.locaisDisponiveis = new ArrayList<>();
 		this.diasDisponiveis = new ArrayList<>();
 		this.disciplinas = new HashMap<>();
 		adicionaDisciplina(disciplina, proficiencia);
 		this.dinheiroDoacoes = 0;
 		this.notaTutor = 4;
+		this.matricula = matricula;
 
 	}
 
@@ -148,4 +150,11 @@ public class Tutor {
 		this.dinheiroDoacoes += dinheiroDoacoes;
 	}
 
+	public String getMatricula() {
+		return this.matricula;
+	}
+
+	public int getDinheiro() {
+		return (int) this.dinheiroDoacoes;
+	}
 }
