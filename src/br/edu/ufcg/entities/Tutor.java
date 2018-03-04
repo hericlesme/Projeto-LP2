@@ -22,6 +22,7 @@ public class Tutor {
 	private Map<String, Disciplina> disciplinas;
 	private List<String> diasDisponiveis;
 	private List<String> locaisDisponiveis;
+	private String matricula;
 
 	/**
 	 * Inicializa um objeto da classe Tutor.
@@ -32,13 +33,14 @@ public class Tutor {
 	 *            um numero entre um e cinco indicando o quão habil na
 	 *            disciplina o Tutor se considera.
 	 */
-	public Tutor(String disciplina, int proficiencia) {
+	public Tutor(String disciplina, int proficiencia,String matricula) {
 		this.locaisDisponiveis = new ArrayList<>();
 		this.diasDisponiveis = new ArrayList<>();
 		this.disciplinas = new HashMap<>();
 		adicionaDisciplina(disciplina, proficiencia);
 		this.quantidadeEmDinheiro = 0;
 		this.notaTutor = 4;
+		this.matricula = matricula;
 	}
 
 	/**
@@ -117,5 +119,43 @@ public class Tutor {
 	public boolean consultaLocal(String local) {
 		return this.locaisDisponiveis.contains(local);
 	}
+	
+	public String avaliarTutor(int nota) {
+		this.notaTutor = ((this.notaTutor * 5) + nota) / 6;
+		return this.determinaNivel();
+	}
 
+	private String determinaNivel() {
+		String nivel = "";
+		if (this.notaTutor > 4.5) {
+			nivel = "TOP";
+		} else if (this.notaTutor > 3.0 && this.notaTutor <= 4.5) {
+			nivel = "Tutor";
+		} else if (this.notaTutor > 0 && this.notaTutor <= 3.0) {
+			nivel = "Aprendiz";
+		}
+		return nivel;
+
+	}
+
+	public double pegarNota() {
+		return this.notaTutor;
+	}
+
+	public String pegarNivel() {
+		return this.determinaNivel();
+	}
+
+	public String getMatricula() {
+		return this.matricula;
+	}
+	
+	public int getDinheiro() {
+		return this.quantidadeEmDinheiro;
+	}
+	
+	public void receberDoacao(int qtd) {
+		this.quantidadeEmDinheiro += qtd;		
+	}
+	
 }
