@@ -162,12 +162,12 @@ public class Tutor implements Comparable<Tutor> {
 
 	public double taxaTutor() {
 		if (this.determinaNivel().equals("TOP")) {
-			return (0.9 + ((this.notaTutor - 4.5) / 10));
+			return (0.90 + ((this.notaTutor - 4.5) / 100));
 		}
 		if (this.determinaNivel().equals("Tutor")) {
-			return 0.8;
+			return 0.80;
 		} else {
-			return (0.4 + ((this.notaTutor - 3.0) / 10));
+			return (0.40 + ((this.notaTutor - 3.0) / 100));
 		}
 	}
 
