@@ -20,10 +20,12 @@ public class AlunoController {
 	 */
 	private Validador validador;
 	private Dados dados;
+	private int id;
 
 	public AlunoController(Dados dados) {
 		this.validador = new Validador();
 		this.dados = dados;
+		this.id = 1;
 	}
 
 	/**
@@ -50,7 +52,9 @@ public class AlunoController {
 			validador.matriculaCadastrada();
 		}
 
-		this.dados.adicionaAluno(matricula, new Aluno(nome, matricula, codigoCurso, telefone, email));
+		this.dados.adicionaAluno(matricula, new Aluno(nome, matricula,
+		        codigoCurso, telefone, email, this.id));
+		this.id++;
 	}
 
 	/**
@@ -75,7 +79,8 @@ public class AlunoController {
 	 * @return O toString de todos os alunos
 	 */
 	public String listarAlunos() {
-		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(dados.getAlunos().values());
+		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(
+		        dados.getAlunos().values());
 		Collections.sort(alunosOrdenados);
 
 		return mapToString(alunosOrdenados.stream());
@@ -104,10 +109,13 @@ public class AlunoController {
 	 * @return uma String que representa o atributo em questão.
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
-		validador.atributoInvalido(atributo,"Erro na obtencao de informacao de aluno");
-		validador.matriculaInvalida(matricula,"Erro na obtencao de informacao de aluno");
+		validador.atributoInvalido(atributo,
+		        "Erro na obtencao de informacao de aluno");
+		validador.matriculaInvalida(matricula,
+		        "Erro na obtencao de informacao de aluno");
 		if (!dados.getAlunos().containsKey(matricula)) {
-			validador.alunoInexistente("Erro na obtencao de informacao de aluno");
+			validador.alunoInexistente(
+			        "Erro na obtencao de informacao de aluno");
 		}
 		return this.dados.getAlunos().get(matricula).getInfoAluno(atributo);
 	}

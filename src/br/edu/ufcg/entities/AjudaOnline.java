@@ -2,8 +2,8 @@ package br.edu.ufcg.entities;
 
 public class AjudaOnline extends Ajuda {
 
-	public AjudaOnline(String matrAluno, String disciplina) {
-		super(matrAluno, disciplina);
+	public AjudaOnline(String matrAluno, String matrTutor, String disciplina) {
+		super(matrAluno, matrTutor, disciplina);
 	}
 
 	@Override
@@ -13,8 +13,15 @@ public class AjudaOnline extends Ajuda {
 			return this.disciplina;
 		case MATR_ALUNO:
 			return this.matrAluno;
+		case MATR_TUTOR:
+			return this.matrTutor;
 		default:
 			throw new IllegalArgumentException("Atributo invalido");
 		}
+	}
+
+	public String pegarTutor() {
+		return "Tutor - " + this.matrTutor + ", disciplina - "
+		        + this.disciplina;
 	}
 }

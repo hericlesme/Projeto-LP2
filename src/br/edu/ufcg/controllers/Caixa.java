@@ -11,11 +11,14 @@ public class Caixa {
 	}
 
 	public void doar(String matriculaTutor, int totalCentavos) {
-		// Fazer o calculo do quanto fica no sistema e do quanto vai para o
-		// aluno.
+		double taxaTutor = this.dados.getTutores()
+		        .get(this.dados.getAlunos().get(matriculaTutor).getEmail())
+		        .taxaTutor();
+		int totalSistema = (int) Math.floor((1 - taxaTutor) * totalCentavos);
+		this.caixa += totalSistema;
 		this.dados.getTutores()
 		        .get(this.dados.getAlunos().get(matriculaTutor).getEmail())
-		        .addDinheiroDoacoes(totalCentavos);
+		        .addDinheiroDoacoes(totalCentavos - totalSistema);
 		;
 	}
 

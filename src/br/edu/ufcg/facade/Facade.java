@@ -16,21 +16,20 @@ public class Facade {
 	 * Inicializa um objeto da classe QmaSistema, controller do sistema
 	 * Quem Me Ajuda.
 	 */
-	private Dados dados ;
 	private AlunoController alunoC;
 	private TutorController tutorC;
 	private Caixa caixa;
 	private AjudaController ajuda;
-	
-	
+
 	public Facade() {
-		this.dados = new Dados();
+		Dados dados = new Dados();
 		this.alunoC = new AlunoController(dados);
 		this.tutorC = new TutorController(dados);
 		this.caixa = new Caixa(dados);
-		this.ajuda = new AjudaController();
-		
+		this.ajuda = new AjudaController(dados);
+
 	}
+
 	/**
 	 * Testes EasyAccept.
 	 * 
@@ -40,7 +39,8 @@ public class Facade {
 	public static void main(String[] args) {
 		args = new String[] { "br.edu.ufcg.facade.Facade",
 		        "EasyAccept//us1_test.txt", "EasyAccept//us2_test.txt",
-		        "EasyAccept//us3_test.txt" };
+		        "EasyAccept//us3_test.txt", "EasyAccept//us4_test.txt",
+		        "EasyAccept//us5_test.txt", "EasyAccept//us6_test.txt" };
 		EasyAccept.main(args);
 	}
 
@@ -111,7 +111,8 @@ public class Facade {
 	 * @param proficiencia
 	 *            proficiência na disciplina.
 	 */
-	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
+	public void tornarTutor(String matricula, String disciplina,
+	        int proficiencia) {
 		tutorC.tornarTutor(matricula, disciplina, proficiencia);
 	}
 
@@ -195,42 +196,44 @@ public class Facade {
 		return tutorC.consultaLocal(email, local);
 	}
 
-	public int pedirAjudaPresencial (String matrAluno, String disciplina, String horario, String dia, String localInteresse) {
-		return this.ajuda.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
+	public int pedirAjudaPresencial(String matrAluno, String disciplina,
+	        String horario, String dia, String localInteresse) {
+		return this.ajuda.pedirAjudaPresencial(matrAluno, disciplina, horario,
+		        dia, localInteresse);
 	}
-	
-	public int pedirAjudaOnline (String matrAluno, String disciplina) {
-		return this.pedirAjudaOnline(matrAluno, disciplina);		
+
+	public int pedirAjudaOnline(String matrAluno, String disciplina) {
+		return this.ajuda.pedirAjudaOnline(matrAluno, disciplina);
 	}
-	
+
 	public String pegarTutor(int idAjuda) {
 		return this.ajuda.pegarTutor(idAjuda);
 	}
-	
+
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		return this.ajuda.getInfoAjuda(idAjuda, atributo);
 	}
-	
-	public String avaliarTutor (int idAjuda, int nota) {
+
+	public String avaliarTutor(int idAjuda, int nota) {
 		return this.ajuda.avaliarTutor(idAjuda, nota);
 	}
-	
+
 	public double pegarNota(String matriculaTutor) {
-		return this.tutorC.pegarNota(matriculaTutor);		
+		return this.tutorC.pegarNota(matriculaTutor);
 	}
-	
+
 	public String pegarNivel(String matriculaTutor) {
 		return this.tutorC.pegarNivel(matriculaTutor);
 	}
-	
+
 	public void doar(String matriculaTutor, int totalCentavos) {
 		this.caixa.doar(matriculaTutor, totalCentavos);
 	}
-	
+
 	public int totalDinheiroTutor(String emailTutor) {
 		return this.tutorC.totalDinheiroTutor(emailTutor);
 	}
-	
+
 	public int totalDinheiroSistema() {
 		return this.caixa.totalDinheiroSistema();
 	}
