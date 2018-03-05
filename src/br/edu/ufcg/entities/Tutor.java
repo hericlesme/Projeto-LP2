@@ -1,5 +1,6 @@
 package br.edu.ufcg.entities;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -138,8 +139,9 @@ public class Tutor implements Comparable<Tutor> {
 
 	}
 
-	public double pegarNota() {
-		return this.notaTutor;
+	public String pegarNota() {
+		DecimalFormat df = new DecimalFormat("#0.00");
+		return df.format(this.notaTutor);
 	}
 
 	public String pegarNivel() {
@@ -160,18 +162,18 @@ public class Tutor implements Comparable<Tutor> {
 
 	public double taxaTutor() {
 		if (this.determinaNivel().equals("TOP")) {
-			return (0.9 + ((this.notaTutor - 4.5) / 10));
+			return (0.90 + ((this.notaTutor - 4.5) / 100));
 		}
 		if (this.determinaNivel().equals("Tutor")) {
-			return 0.8;
+			return 0.80;
 		} else {
-			return (0.4 + ((this.notaTutor - 3.0) / 10));
+			return (0.40 + ((this.notaTutor - 3.0) / 100));
 		}
 	}
 
 	@Override
 	public int compareTo(Tutor o) {
-		return (int) this.pegarNota() - (int) o.pegarNota();
+		return (int) this.notaTutor - (int) o.notaTutor;
 	}
 
 }

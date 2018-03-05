@@ -182,7 +182,7 @@ public class TutorController {
 		return this.dados.getTutores().get(email).consultaLocal(local);
 	}
 
-	public double pegarNota(String matriculaTutor) {
+	public String pegarNota(String matriculaTutor) {
 		return this.dados.getTutores()
 		        .get(this.dados.getAlunos().get(matriculaTutor).getEmail())
 		        .pegarNota();

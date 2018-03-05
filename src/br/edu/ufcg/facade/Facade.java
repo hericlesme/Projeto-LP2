@@ -218,7 +218,7 @@ public class Facade {
 		return this.ajuda.avaliarTutor(idAjuda, nota);
 	}
 
-	public double pegarNota(String matriculaTutor) {
+	public String pegarNota(String matriculaTutor) {
 		return this.tutorC.pegarNota(matriculaTutor);
 	}
 

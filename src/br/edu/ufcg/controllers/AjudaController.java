@@ -60,9 +60,6 @@ public class AjudaController {
 				temp.add(t);
 			}
 		}
-		if (temp.size() == 0) {
-			return "sem tutor";
-		}
 		Collections.sort(temp, new OrdenaTutor(this.dados));
 		return temp.get(0).getMatricula();
 
@@ -74,9 +71,6 @@ public class AjudaController {
 			if (t.containsDisciplina(disciplina)) {
 				temp.add(t);
 			}
-		}
-		if (temp.size() == 0) {
-			return "sem tutor";
 		}
 		Collections.sort(temp, new OrdenaTutor(this.dados));
 		return temp.get(0).getMatricula();
