@@ -15,9 +15,9 @@ import java.util.Map;
  * Projeto de Laboratório - Programação II
  * 
  */
-public class Tutor {
+public class Tutor implements Comparable<Tutor> {
 
-	private double dinheiroDoacoes;
+	private int dinheiroDoacoes;
 	private double notaTutor;
 	private Map<String, Disciplina> disciplinas;
 	private List<String> diasDisponiveis;
@@ -146,7 +146,7 @@ public class Tutor {
 		return this.determinaNivel();
 	}
 
-	public void addDinheiroDoacoes(double dinheiroDoacoes) {
+	public void addDinheiroDoacoes(int dinheiroDoacoes) {
 		this.dinheiroDoacoes += dinheiroDoacoes;
 	}
 
@@ -155,6 +155,23 @@ public class Tutor {
 	}
 
 	public int getDinheiro() {
-		return (int) this.dinheiroDoacoes;
+		return this.dinheiroDoacoes;
 	}
+
+	public double taxaTutor() {
+		if (this.determinaNivel().equals("TOP")) {
+			return (0.9 + ((this.notaTutor - 4.5) / 10));
+		}
+		if (this.determinaNivel().equals("Tutor")) {
+			return 0.8;
+		} else {
+			return (0.4 + ((this.notaTutor - 3.0) / 10));
+		}
+	}
+
+	@Override
+	public int compareTo(Tutor o) {
+		return (int) this.pegarNota() - (int) o.pegarNota();
+	}
+
 }

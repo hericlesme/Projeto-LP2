@@ -17,6 +17,7 @@ public class Aluno implements Comparable<Aluno> {
 	private int codigoCurso;
 	private String email;
 	private String nome;
+	private int id;
 
 	/**
 	 * Constrói um aluno inicializando seus atributos. A nota de avaliação
@@ -35,13 +36,14 @@ public class Aluno implements Comparable<Aluno> {
 	 *            email do aluno.
 	 */
 	public Aluno(String nome, String matricula, int codigoCurso,
-	        String telefone, String email) {
+	        String telefone, String email, int id) {
 		this.notaAvaliacao = 5;
 		this.matricula = matricula;
 		this.telefone = telefone;
 		this.codigoCurso = codigoCurso;
 		this.email = email;
 		this.nome = nome;
+		this.id = id;
 	}
 
 	/**
@@ -170,6 +172,10 @@ public class Aluno implements Comparable<Aluno> {
 		} else if (!matricula.equals(other.matricula))
 			return false;
 		return true;
+	}
+
+	public int getId() {
+		return this.id;
 	}
 
 }

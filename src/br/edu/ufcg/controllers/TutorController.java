@@ -15,6 +15,7 @@ public class TutorController {
 	private Dados dados;
 
 	public TutorController(Dados dados) {
+		this.validador = new Validador();
 		this.dados = dados;
 	}
 
@@ -46,7 +47,8 @@ public class TutorController {
 
 		} else {
 
-			if (this.dados.getTutores().get(matricula)
+			if (this.dados.getTutores()
+			        .get(this.dados.getAlunos().get(matricula).getEmail())
 			        .containsDisciplina(disciplina)) {
 				validador.tornarTutorInvalido("Erro na definicao de papel");
 			}
@@ -65,8 +67,7 @@ public class TutorController {
 	 * @return o toString do tutor.
 	 */
 	public String recuperaTutor(String matricula) {
-		if (!this.dados.getTutores().containsKey(
-		        this.dados.getAlunos().get(matricula).getEmail())) {
+		if (!dados.getAlunos().containsKey(matricula)) {
 			validador.tutorNaoEncontrado("Erro na busca por tutor");
 		}
 		return this.dados.getAlunos().get(matricula).toString();
@@ -104,13 +105,9 @@ public class TutorController {
 		validador.emailInvalido(email, "Erro no cadastrar horario");
 		validador.horarioInvalido(horario, "Erro no cadastrar horario");
 		validador.diaInvalido(dia, "Erro no cadastrar horario");
-		if (!dados.getAlunos()
-		        .containsKey(dados.getTutores().get(email).getMatricula())) {
-			validador.tutorNaoCadastrado("Erro no cadastrar horario");
-		}
 
 		if (!dados.getTutores().containsKey(email)) {
-			validador.tutorNaoEncontrado("Erro no cadastrar horario");
+			validador.tutorNaoCadastrado("Erro no cadastrar horario");
 		}
 
 		this.dados.getTutores().get(email).cadastrarHorario(horario, dia);
@@ -130,14 +127,8 @@ public class TutorController {
 		validador.localInvalido(local,
 		        "Erro no cadastrar local de atendimento");
 
-		if (!dados.getAlunos()
-		        .containsKey(dados.getTutores().get(email).getMatricula())) {
-			validador.tutorNaoCadastrado(
-			        "Erro no cadastrar local de atendimento");
-		}
-
 		if (!dados.getTutores().containsKey(email)) {
-			validador.tutorNaoEncontrado(
+			validador.tutorNaoCadastrado(
 			        "Erro no cadastrar local de atendimento");
 		}
 
