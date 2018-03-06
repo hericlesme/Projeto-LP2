@@ -125,7 +125,7 @@ public class TutorController {
 		validador.emailInvalido(email,
 		        "Erro no cadastrar local de atendimento");
 		validador.localInvalido(local,
-		        "Erro no cadastrar local de atendimento");
+		        "Erro no cadastrar local de atendimento: local");
 
 		if (!dados.getTutores().containsKey(email)) {
 			validador.tutorNaoCadastrado(

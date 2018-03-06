@@ -16,10 +16,10 @@ public class Facade {
 	 * Inicializa um objeto da classe QmaSistema, controller do sistema
 	 * Quem Me Ajuda.
 	 */
-	private AlunoController alunoC;
-	private TutorController tutorC;
 	private Caixa caixa;
 	private AjudaController ajuda;
+	private AlunoController alunoC;
+	private TutorController tutorC;
 
 	public Facade() {
 		Dados dados = new Dados();

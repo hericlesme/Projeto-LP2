@@ -24,11 +24,32 @@ public class Validador {
 	 */
 	public void cadastroInvalido(String nome, String matricula, int codigoCurso,
 	        String telefone, String email) {
-		nomeInvalido(nome, "Erro no cadastro de aluno");
-		matriculaInvalida(matricula, "Erro no cadastro de aluno");
-		emailInvalido(email, "Erro no cadastro de aluno");
-		telefoneNulo(telefone, "Erro no cadastro de aluno");
-		validaInteiro(codigoCurso, "Erro no cadastro de aluno");
+
+		String mensagem = "Erro no cadastro de aluno";
+
+		matriculaInvalida(matricula, mensagem);
+		nomeInvalido(nome, mensagem);
+		emailInvalido(email, mensagem);
+		telefoneNulo(telefone, mensagem);
+		validaInteiro(codigoCurso, mensagem);
+	}
+	
+	public void ajudaOnlineInvalida(String matrAluno, String disciplina) {
+		String mensagem = "Erro no pedido de ajuda online";
+		matriculaInvalida(matrAluno, mensagem);
+		disciplinaInvalida(disciplina, mensagem);
+	}
+
+	public void ajudaPresencialInvalida(String matrAluno, String disciplina,
+	        String horario, String dia, String localInteresse) {
+
+		String mensagem = "Erro no pedido de ajuda presencial";
+
+		matriculaInvalida(matrAluno, mensagem);
+		disciplinaInvalida(disciplina, mensagem);
+		horarioInvalido(horario, mensagem);
+		diaInvalido(dia, mensagem);
+		localInvalido(localInteresse, mensagem + ": local de interesse");
 	}
 
 	/**
@@ -43,11 +64,11 @@ public class Validador {
 	public void matriculaInvalida(String matricula, String mensagem) {
 		if (matricula == null) {
 			throw new NullPointerException(
-			        mensagem + ": matricula nao pode ser vazia ou nula");
+			        mensagem + ": matricula de aluno nao pode ser nula");
 		}
 		if (matricula.trim().isEmpty()) {
 			throw new IllegalArgumentException(
-			        mensagem + ": matricula nao pode ser vazio ou nula");
+			        mensagem + ": matricula de aluno nao pode ser vazio ou em branco");
 		}
 	}
 
@@ -102,7 +123,7 @@ public class Validador {
 			        mensagem + ": email nao pode ser nulo");
 		}
 
-		if (email.trim().equals("")) {
+		if (email.trim().isEmpty()) {
 			throw new IllegalArgumentException(
 			        mensagem + ": email nao pode ser vazio ou em branco");
 		}
@@ -186,7 +207,7 @@ public class Validador {
 			        mensagem + ": horario nao pode ser nulo");
 		}
 
-		if (horario.trim().equals("")) {
+		if (horario.trim().isEmpty()) {
 			throw new IllegalArgumentException(
 			        mensagem + ": horario nao pode ser vazio ou em branco");
 		}
@@ -206,7 +227,7 @@ public class Validador {
 			        mensagem + ": dia nao pode ser nulo");
 		}
 
-		if (dia.trim().equals("")) {
+		if (dia.trim().isEmpty()) {
 			throw new IllegalArgumentException(
 			        mensagem + ": dia nao pode ser vazio ou em branco");
 		}
@@ -223,12 +244,12 @@ public class Validador {
 	public void localInvalido(String local, String mensagem) {
 		if (local == null) {
 			throw new NullPointerException(
-			        mensagem + ": local nao pode ser nulo");
+			        mensagem + " nao pode ser nulo");
 		}
 
-		if (local.trim().equals("")) {
+		if (local.trim().isEmpty()) {
 			throw new IllegalArgumentException(
-			        mensagem + ": local nao pode ser vazio ou em branco");
+			        mensagem + " nao pode ser vazio ou em branco");
 		}
 	}
 
@@ -274,9 +295,10 @@ public class Validador {
 			throw new NullPointerException(
 			        mensagem + ": disciplina nao pode ser nula");
 		}
+
 		if (disciplina.trim().isEmpty()) {
 			throw new IllegalArgumentException(
-			        mensagem + ": Disciplina nao pode ser vazio ou em branco");
+			        mensagem + ": disciplina nao pode ser vazio ou em branco");
 		}
 	}
 
@@ -299,4 +321,15 @@ public class Validador {
 			        mensagem + ": atributo nao pode ser vazio ou nulo");
 		}
 	}
+
+	private void parametroInvalido(String parametro, String mensagem) {
+		if (parametro == null) {
+			throw new NullPointerException(mensagem);
+		}
+		
+		if (parametro.trim().isEmpty()) {
+			throw new IllegalArgumentException(mensagem);
+		}
+	}
+
 }
