@@ -48,6 +48,8 @@ public class AjudaController {
 	}
 
 	public String getInfoAjuda(int idAjuda, String atributo) {
+		validador.idInvalido(idAjuda, ajudas.size(), "Erro ao tentar recuperar info da ajuda : id nao pode menor que zero ");
+		validador.parametroInvalido(atributo, "Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");
 		return this.ajudas.get(idAjuda - 1).getInfo(atributo);
 	}
 

@@ -27,13 +27,14 @@ public class Validador {
 
 		String mensagem = "Erro no cadastro de aluno";
 
-		matriculaInvalida(matricula, mensagem);
-		nomeInvalido(nome, mensagem);
+		parametroInvalido(matricula,
+		        mensagem + ": matricula de aluno nao pode ser nula");
+		parametroInvalido(nome, mensagem + ": Nome nao pode ser vazio ou nulo");
 		emailInvalido(email, mensagem);
-		telefoneNulo(telefone, mensagem);
 		validaInteiro(codigoCurso, mensagem);
+		telefoneNulo(telefone, mensagem);
 	}
-	
+
 	public void ajudaOnlineInvalida(String matrAluno, String disciplina) {
 		String mensagem = "Erro no pedido de ajuda online";
 		matriculaInvalida(matrAluno, mensagem);
@@ -45,11 +46,16 @@ public class Validador {
 
 		String mensagem = "Erro no pedido de ajuda presencial";
 
-		matriculaInvalida(matrAluno, mensagem);
-		disciplinaInvalida(disciplina, mensagem);
-		horarioInvalido(horario, mensagem);
-		diaInvalido(dia, mensagem);
-		localInvalido(localInteresse, mensagem + ": local de interesse");
+		parametroInvalido(matrAluno, mensagem
+		        + ": matricula de aluno nao pode ser vazio ou em branco");
+		parametroInvalido(disciplina,
+		        mensagem + ": disciplina nao pode ser vazio ou em branco");
+		parametroInvalido(horario,
+		        mensagem + ": horario nao pode ser vazio ou em branco");
+		parametroInvalido(dia,
+		        mensagem + ": dia nao pode ser vazio ou em branco");
+		parametroInvalido(localInteresse, mensagem
+		        + ": local de interesse nao pode ser vazio ou em branco");
 	}
 
 	/**
@@ -63,12 +69,11 @@ public class Validador {
 	 */
 	public void matriculaInvalida(String matricula, String mensagem) {
 		if (matricula == null) {
-			throw new NullPointerException(
-			        mensagem + ": matricula de aluno nao pode ser nula");
+			throw new NullPointerException(mensagem + "");
 		}
 		if (matricula.trim().isEmpty()) {
-			throw new IllegalArgumentException(
-			        mensagem + ": matricula de aluno nao pode ser vazio ou em branco");
+			throw new IllegalArgumentException(mensagem
+			        + ": matricula de aluno nao pode ser vazio ou em branco");
 		}
 	}
 
@@ -85,26 +90,6 @@ public class Validador {
 		if (telefone == null) {
 			throw new NullPointerException(
 			        mensagem + ": Telefone nao pode ser nulo");
-		}
-	}
-
-	/**
-	 * Método privado que realiza a verificação da validade do nome, e
-	 * lança uma exceção, caso seja inválido.
-	 * 
-	 * @param nome
-	 *            o nome do aluno.
-	 * @param mensagem
-	 *            a mensagem a ser exibida na exceção.
-	 */
-	private void nomeInvalido(String nome, String mensagem) {
-		if (nome == null) {
-			throw new NullPointerException(
-			        mensagem + ": Nome nao pode ser vazio ou nulo");
-		}
-		if (nome.trim().isEmpty()) {
-			throw new IllegalArgumentException(
-			        mensagem + ": Nome nao pode ser vazio ou nulo");
 		}
 	}
 
@@ -144,9 +129,9 @@ public class Validador {
 	 * @param mensagem
 	 *            a mensagem a ser exibida na exceção.
 	 */
-	private void validaInteiro(int inteiro, String mensagem) {
+	public void validaInteiro(int inteiro, String mensagem) {
 		if (inteiro <= 0) {
-			throw new IllegalArgumentException(mensagem + " : numero invalido");
+			throw new IllegalArgumentException(mensagem);
 		}
 	}
 
@@ -243,8 +228,7 @@ public class Validador {
 	 */
 	public void localInvalido(String local, String mensagem) {
 		if (local == null) {
-			throw new NullPointerException(
-			        mensagem + " nao pode ser nulo");
+			throw new NullPointerException(mensagem + " nao pode ser nulo");
 		}
 
 		if (local.trim().isEmpty()) {
@@ -322,13 +306,20 @@ public class Validador {
 		}
 	}
 
-	private void parametroInvalido(String parametro, String mensagem) {
+	public void parametroInvalido(String parametro, String mensagem) {
 		if (parametro == null) {
 			throw new NullPointerException(mensagem);
 		}
-		
+
 		if (parametro.trim().isEmpty()) {
 			throw new IllegalArgumentException(mensagem);
+		}
+	}
+
+	public void idInvalido(int id, int size, String mensagem) {
+		validaInteiro(id, mensagem);
+		if (id >= size) {
+			throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : id nao encontrado ");
 		}
 	}
 

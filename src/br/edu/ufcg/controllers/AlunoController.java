@@ -47,7 +47,6 @@ public class AlunoController {
 	        String telefone, String email) {
 		this.validador.cadastroInvalido(nome, matricula, codigoCurso, telefone,
 		        email);
-
 		if (dados.getAlunos().containsKey(matricula)) {
 			validador.matriculaCadastrada();
 		}
