@@ -11,13 +11,14 @@ public class Caixa {
 	}
 
 	public void doar(String matriculaTutor, int totalCentavos) {
-		double taxaTutor = this.dados.getTutores()
+		int taxaTutor = this.dados.getTutores()
 		        .get(this.dados.getAlunos().get(matriculaTutor).getEmail())
 		        .taxaTutor();
 
-		int totalSistema = (int) Math.floor((1 - taxaTutor) * totalCentavos);
-		this.caixa += totalSistema;
-		
+		double taxaSistema = (100 - taxaTutor) / 100.0;
+		int totalSistema = (int) (taxaSistema * totalCentavos);
+		caixa += totalSistema;
+
 		this.dados.getTutores()
 		        .get(this.dados.getAlunos().get(matriculaTutor).getEmail())
 		        .addDinheiroDoacoes(totalCentavos - totalSistema);
