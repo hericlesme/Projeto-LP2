@@ -60,7 +60,7 @@ public class AjudaController {
 				temp.add(t);
 			}
 		}
-		Collections.sort(temp, new OrdenaTutor(this.dados));
+		Collections.sort(temp, new OrdenaTutor(this.dados.getAlunos()));
 		return temp.get(0).getMatricula();
 
 	}
@@ -72,7 +72,7 @@ public class AjudaController {
 				temp.add(t);
 			}
 		}
-		Collections.sort(temp, new OrdenaTutor(this.dados));
+		Collections.sort(temp, new OrdenaTutor(this.dados.getAlunos()));
 		return temp.get(0).getMatricula();
 	}
 
