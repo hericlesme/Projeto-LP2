@@ -160,14 +160,14 @@ public class Tutor implements Comparable<Tutor> {
 		return this.dinheiroDoacoes;
 	}
 
-	public double taxaTutor() {
+	public int taxaTutor() {
 		if (this.determinaNivel().equals("TOP")) {
-			return (0.90 + ((this.notaTutor - 4.5) / 100));
+			return (int) (90 + (this.notaTutor * 10) - 45);
 		}
 		if (this.determinaNivel().equals("Tutor")) {
-			return 0.80;
+			return 80;
 		} else {
-			return (0.40 + ((this.notaTutor - 3.0) / 100));
+			return (int) (40 + (this.notaTutor * 10) - 30);
 		}
 	}
 
