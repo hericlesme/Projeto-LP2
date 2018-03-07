@@ -81,26 +81,28 @@ public class Aluno implements Comparable<Aluno> {
 	 * @return uma String.
 	 */
 	public String getInfoAluno(String atributo) {
+		AtributoAluno atrib;
 		try {
-			switch (AtributoAluno.valueOf(atributo.toUpperCase())) {
-
-			case NOTA_AVALIACAO:
-				return Integer.toString(this.notaAvaliacao);
-			case MATRICULA:
-				return this.matricula;
-			case TELEFONE:
-				return this.telefone;
-			case CODIGO_CURSO:
-				return Integer.toString(this.codigoCurso);
-			case EMAIL:
-				return this.email;
-			case NOME:
-				return this.nome;
-			default:
-				return null;
-			}
+			atrib = (AtributoAluno.valueOf(atributo.toUpperCase()));
 		} catch (Exception e) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(e);
+		}
+		switch (atrib) {
+		
+		case NOTA_AVALIACAO:
+			return Integer.toString(this.notaAvaliacao);
+		case MATRICULA:
+			return this.matricula;
+		case TELEFONE:
+			return this.telefone;
+		case CODIGO_CURSO:
+			return Integer.toString(this.codigoCurso);
+		case EMAIL:
+			return this.email;
+		case NOME:
+			return this.nome;
+		default:
+			return "";
 		}
 	}
 

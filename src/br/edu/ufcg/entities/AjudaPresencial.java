@@ -17,26 +17,28 @@ public class AjudaPresencial extends Ajuda {
 
 	@Override
 	public String getInfo(String atributo) {
+		AtributoAjuda atribAjuda;
 		try {
-			switch (AtributoAjuda.valueOf(atributo.toUpperCase())) {
-
-			case DISCIPLINA:
-				return this.disciplina;
-			case MATR_ALUNO:
-				return this.matrAluno;
-			case LOCALINTERESSE:
-				return this.localInteresse;
-			case MATR_TUTOR:
-				return this.matrTutor;
-			case HORARIO:
-				return this.horario;
-			case DIA:
-				return this.dia;
-			default:
-				return null;
-			}
+			atribAjuda = AtributoAjuda.valueOf(atributo.toUpperCase());
 		} catch (Exception e) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException(
+			        "Erro ao tentar recuperar info da ajuda : atributo nao encontrado");
+		}
+		switch (atribAjuda) {
+		case DISCIPLINA:
+			return this.disciplina;
+		case MATR_ALUNO:
+			return this.matrAluno;
+		case LOCALINTERESSE:
+			return this.localInteresse;
+		case MATR_TUTOR:
+			return this.matrTutor;
+		case HORARIO:
+			return this.horario;
+		case DIA:
+			return this.dia;
+		default:
+			return null;
 		}
 	}
 
