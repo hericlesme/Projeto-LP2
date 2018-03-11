@@ -1,4 +1,4 @@
-package br.edu.ufcg.UnityTests;
+package br.edu.ufcg.UnityTests.entities;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -23,7 +23,7 @@ public class TutorTest {
 	 */
 	@Before
 	public void inicializaTutor() {
-		tutor = new Tutor("Discreta", 1);
+		tutor = new Tutor("Discreta", 1, "40028922");
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class TutorTest {
 	@Test
 	public void testTutor() {
 		assertTrue(outroTutor == null);
-		outroTutor = new Tutor("Grafos", 5);
+		outroTutor = new Tutor("Grafos", 5, "00001");
 		assertFalse(outroTutor == null);
 	}
 
