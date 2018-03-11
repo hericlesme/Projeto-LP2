@@ -26,25 +26,25 @@ public class DisciplinaTest {
 
 	}
 
-	@Test(expected=NullPointerException.class)
+	@Test(expected = NullPointerException.class)
 	public void testDisciplinaNomeNulo() {
 		outraDisciplina = new Disciplina(null, 3);
 
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testDisciplinaNomeVazio() {
 		outraDisciplina = new Disciplina("", 3);
 
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testDisciplinaProeficienciaNegativa() {
 		outraDisciplina = new Disciplina("", -1);
 
 	}
 
-	@Test(expected=IllegalArgumentException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testDisciplinaProeficienciaInvalida() {
 		outraDisciplina = new Disciplina("", 6);
 

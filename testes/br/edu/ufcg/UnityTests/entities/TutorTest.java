@@ -55,8 +55,8 @@ public class TutorTest {
 	}
 
 	/**
-	 * Testa a verificação de um horário de atendimento para um tutor,
-	 * quando ele tem o horário marcado.
+	 * Testa a verificação de um horário de atendimento para um tutor, quando ele
+	 * tem o horário marcado.
 	 */
 	@Test
 	public void testConsultaHorarioTrue() {
@@ -65,8 +65,8 @@ public class TutorTest {
 	}
 
 	/**
-	 * Testa a verificação de um horário de atendimento para um tutor,
-	 * quando ele não tem horário marcado.
+	 * Testa a verificação de um horário de atendimento para um tutor, quando ele
+	 * não tem horário marcado.
 	 */
 	@Test
 	public void testConsultaHorarioFalse() {
@@ -76,8 +76,8 @@ public class TutorTest {
 	}
 
 	/**
-	 * Testa a verificação de um local de atendimento para um tutor,
-	 * quando ele tem local marcado.
+	 * Testa a verificação de um local de atendimento para um tutor, quando ele tem
+	 * local marcado.
 	 */
 	@Test
 	public void testConsultaLocalTrue() {
@@ -86,8 +86,8 @@ public class TutorTest {
 	}
 
 	/**
-	 * Testa a verificação de um local de atendimento para um tutor,
-	 * quando ele não tem local marcado.
+	 * Testa a verificação de um local de atendimento para um tutor, quando ele não
+	 * tem local marcado.
 	 */
 	@Test
 	public void testConsultaLocalFalse() {
@@ -106,8 +106,8 @@ public class TutorTest {
 	}
 
 	/**
-	 * Testa o método containsDisciplina de tutor, para o caso dele
-	 * ensinar a disciplina e não.
+	 * Testa o método containsDisciplina de tutor, para o caso dele ensinar a
+	 * disciplina e não.
 	 */
 	@Test
 	public void testContainsDisciplina() {

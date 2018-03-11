@@ -27,46 +27,38 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Cria um aluno, e o cadastra no sistema. - Verifica se a criação é
-	 * dada com sucesso através do metodo "recuperaAluno".
+	 * Cria um aluno, e o cadastra no sistema. - Verifica se a criação é dada com
+	 * sucesso através do metodo "recuperaAluno".
 	 */
 	@Test
 	public void testCadastrarAluno() {
-		alunoC.cadastrarAluno("faela <3", "123451234", 54321, "40028922",
-		        "faela@rafa.pocutom");
-		assertEquals(
-		        "123451234 - faela <3 - 54321 - 40028922 - faela@rafa.pocutom",
-		        alunoC.recuperaAluno("123451234"));
+		alunoC.cadastrarAluno("faela <3", "123451234", 54321, "40028922", "faela@rafa.pocutom");
+		assertEquals("123451234 - faela <3 - 54321 - 40028922 - faela@rafa.pocutom",
+				alunoC.recuperaAluno("123451234"));
 	}
-	
 
 	/**
-	 * Mostra o uso correto metodo "recuperaAluno" quando o aluno
-	 * cadastrado possui um numero de telefone.
+	 * Mostra o uso correto metodo "recuperaAluno" quando o aluno cadastrado possui
+	 * um numero de telefone.
 	 */
 	@Test
 	public void testRecuperaAlunoComTelefone() {
-		alunoC.cadastrarAluno("Fulano", "123", 1456, "88621845",
-		        "fulanim@umdois.tres");
-		assertEquals("123 - Fulano - 1456 - 88621845 - fulanim@umdois.tres",
-		        alunoC.recuperaAluno("123"));
+		alunoC.cadastrarAluno("Fulano", "123", 1456, "88621845", "fulanim@umdois.tres");
+		assertEquals("123 - Fulano - 1456 - 88621845 - fulanim@umdois.tres", alunoC.recuperaAluno("123"));
 	}
 
 	/**
-	 * Mostra o funcionamento do metodo "recuperaAluno" quando o aluno
-	 * cadastrado não possui um numero de telefone.
+	 * Mostra o funcionamento do metodo "recuperaAluno" quando o aluno cadastrado
+	 * não possui um numero de telefone.
 	 */
 	@Test
 	public void testRecuperaAlunoSemTelefone() {
-		alunoC.cadastrarAluno("Beltrano", "124", 1456, "",
-		        "beltranin@umdois.tres");
-		assertEquals("124 - Beltrano - 1456 - beltranin@umdois.tres",
-		        alunoC.recuperaAluno("124"));
+		alunoC.cadastrarAluno("Beltrano", "124", 1456, "", "beltranin@umdois.tres");
+		assertEquals("124 - Beltrano - 1456 - beltranin@umdois.tres", alunoC.recuperaAluno("124"));
 	}
 
 	/**
-	 * Mostra o funcionamento do metodo "listarAlunos" quando não há
-	 * alunos.
+	 * Mostra o funcionamento do metodo "listarAlunos" quando não há alunos.
 	 */
 	@Test
 	public void testListarAlunosSemAlunos() {
@@ -74,19 +66,17 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Mostra o funcionamento do metodo "listarAlunos" quando há alunos um
-	 * ou mais alunos.
+	 * Mostra o funcionamento do metodo "listarAlunos" quando há alunos um ou mais
+	 * alunos.
 	 */
 	@Test
 	public void testListarAlunos() {
 		alunoC.cadastrarAluno("hulk", "1", 12, "", "hulk@avenger.com");
 		assertEquals("1 - hulk - 12 - hulk@avenger.com", alunoC.listarAlunos());
 
-		alunoC.cadastrarAluno("stark", "2", 12, "40028922",
-		        "stark@avenger.com");
-		assertEquals(
-		        "1 - hulk - 12 - hulk@avenger.com, 2 - stark - 12 - 40028922 - stark@avenger.com",
-		        alunoC.listarAlunos());
+		alunoC.cadastrarAluno("stark", "2", 12, "40028922", "stark@avenger.com");
+		assertEquals("1 - hulk - 12 - hulk@avenger.com, 2 - stark - 12 - 40028922 - stark@avenger.com",
+				alunoC.listarAlunos());
 	}
 
 	/**
@@ -94,8 +84,7 @@ public class AlunoControllerTest {
 	 */
 	@Test
 	public void testGetInfoAlunoNota() {
-		alunoC.cadastrarAluno("Fulano", "123", 1456, "88621845",
-		        "fulanim@umdois.tres");
+		alunoC.cadastrarAluno("Fulano", "123", 1456, "88621845", "fulanim@umdois.tres");
 		assertEquals("5", alunoC.getInfoAluno("123", "nota_avaliacao"));
 	}
 
@@ -104,8 +93,7 @@ public class AlunoControllerTest {
 	 */
 	@Test
 	public void testGetInfoAlunoMatricula() {
-		alunoC.cadastrarAluno("Fulano", "123", 1456, "88621845",
-		        "fulanim@umdois.tres");
+		alunoC.cadastrarAluno("Fulano", "123", 1456, "88621845", "fulanim@umdois.tres");
 		assertEquals("123", alunoC.getInfoAluno("123", "matricula"));
 	}
 
@@ -114,15 +102,14 @@ public class AlunoControllerTest {
 	 */
 	@Test
 	public void testGetInfoAlunoTelefone() {
-		alunoC.cadastrarAluno("Fulano", "123", 1456, "88621845",
-		        "fulanim@umdois.tres");
+		alunoC.cadastrarAluno("Fulano", "123", 1456, "88621845", "fulanim@umdois.tres");
 		assertEquals("88621845", alunoC.getInfoAluno("123", "telefone"));
 
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta
-	 * recuperarAluno passando uma string vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta recuperarAluno
+	 * passando uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testRecuperaAlunoVazio() {
@@ -131,8 +118,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta
-	 * recuperarAluno passando um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta recuperarAluno
+	 * passando um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testRecuperaAlunoNulo() {
@@ -141,9 +128,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o
-	 * metodo getInfo passando o parametro matricula igual a uma string
-	 * vazia.
+	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
+	 * getInfo passando o parametro matricula igual a uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGeInfoAlunoMatriculaVazia() {
@@ -152,8 +138,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o
-	 * metodo getInfo passando o parametro matricula igual a um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
+	 * getInfo passando o parametro matricula igual a um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testGetInfoAlunoMatriculaNula() {
@@ -162,9 +148,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o
-	 * metodo getInfo passando o parametro atributo igual a uma string
-	 * vazia
+	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
+	 * getInfo passando o parametro atributo igual a uma string vazia
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAlunoAtributoVazio() {
@@ -173,8 +158,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o
-	 * metodo getInfo passando o parametro atributo igual a um null.
+	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
+	 * getInfo passando o parametro atributo igual a um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testGetInfoAlunoAtributoNulo() {
@@ -187,8 +172,7 @@ public class AlunoControllerTest {
 	 */
 	@Test
 	public void testGetInfoAlunoCodigoCurso() {
-		alunoC.cadastrarAluno("Fulano", "123", 1456, "88621845",
-		        "fulanim@umdois.tres");
+		alunoC.cadastrarAluno("Fulano", "123", 1456, "88621845", "fulanim@umdois.tres");
 		assertEquals("1456", alunoC.getInfoAluno("123", "codigo_curso"));
 	}
 
@@ -197,8 +181,7 @@ public class AlunoControllerTest {
 	 */
 	@Test
 	public void testGetInfoAlunoNome() {
-		alunoC.cadastrarAluno("Fulano", "123", 1456, "88621845",
-		        "fulanim@umdois.tres");
+		alunoC.cadastrarAluno("Fulano", "123", 1456, "88621845", "fulanim@umdois.tres");
 		assertEquals("Fulano", alunoC.getInfoAluno("123", "nome"));
 	}
 
@@ -213,8 +196,7 @@ public class AlunoControllerTest {
 
 	/**
 	 * Verifica {@link IllegalArgumentException} quando se tenta capturar
-	 * informações de um aluno com informações compostas por um string
-	 * vazia.
+	 * informações de um aluno com informações compostas por um string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoInexistente() {
@@ -239,61 +221,73 @@ public class AlunoControllerTest {
 		alunoC.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
 		alunoC.getInfoAluno("2121", null);
 	}
-	
+
 	/**
-	 * Verifica {@link NullPointerException} quando é passado para criação
-	 * de um aluno o parametro nome: como um null.
+	 * Verifica {@link NullPointerException} quando é passado para criação de um
+	 * aluno o parametro nome: como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastraAlunoNomeNulo() {
 		alunoC.cadastrarAluno(null, "16516", 1645, "", "huasi@sijjk.com");
 	}
+
 	/**
-	 * Verifica {@link NullPointerException} quando é passado para criação
-	 * de um aluno o parametro matricula: como um null.
+	 * Verifica {@link NullPointerException} quando é passado para criação de um
+	 * aluno o parametro matricula: como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastraAlunoMatriculaNula() {
 		alunoC.cadastrarAluno("Issue", null, 1645, "", "huasi@sijjk.com");
-	}/**
-	 * Verifica {@link NullPointerException} quando é passado para criação
-	 * de um aluno o parametro telefone: como um null.
+	}
+
+	/**
+	 * Verifica {@link NullPointerException} quando é passado para criação de um
+	 * aluno o parametro telefone: como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastraAlunoTelefoneNulo() {
 		alunoC.cadastrarAluno("Issue", "156165", 1645, null, "huasi@sijjk.com");
-	}/**
-	 * Verifica {@link IllegalArgumentException} quando é passado para
-	 * criação de um aluno o parametro nome: como uma string vazia.
+	}
+
+	/**
+	 * Verifica {@link IllegalArgumentException} quando é passado para criação de um
+	 * aluno o parametro nome: como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoNomeVazio() {
 		alunoC.cadastrarAluno("   ", "156165", 1645, "", "eae@men.kk");
-	}	/**
-	 * Verifica {@link IllegalArgumentException} quando é passado para
-	 * criação de um aluno o parametro matricula: como uma string vazia.
+	}
+
+	/**
+	 * Verifica {@link IllegalArgumentException} quando é passado para criação de um
+	 * aluno o parametro matricula: como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoMatriculaVazia() {
 		alunoC.cadastrarAluno("FruFru", "   ", 1645, "", "fru@fru.kk");
-	}/**
-	 * Verifica {@link IllegalArgumentException} quando é passado para
-	 * criação de um aluno o parametro email: como uma string vazia.
+	}
+
+	/**
+	 * Verifica {@link IllegalArgumentException} quando é passado para criação de um
+	 * aluno o parametro email: como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoEmailVazio() {
 		alunoC.cadastrarAluno("FruFru", "1453", 1645, "", "    ");
-	}/**
-	 * Verifica {@link IllegalArgumentException} quando é passado para
-	 * criação de um aluno o parametro o codigo: com um numero menor ou
-	 * igual a zero.
+	}
+
+	/**
+	 * Verifica {@link IllegalArgumentException} quando é passado para criação de um
+	 * aluno o parametro o codigo: com um numero menor ou igual a zero.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoCodigoCursoInvalido() {
 		alunoC.cadastrarAluno("FruFru", "1453", -1, "", "hello@com.br");
-	}/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta recuperar
-	 * um aluno não cadastrado.
+	}
+
+	/**
+	 * Verifica {@link IllegalArgumentException} quando se tenta recuperar um aluno
+	 * não cadastrado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testRecuperaAlunoInexistente() {
