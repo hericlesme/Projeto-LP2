@@ -8,6 +8,14 @@ import org.junit.Test;
 import br.edu.ufcg.controllers.AlunoController;
 import br.edu.ufcg.controllers.Dados;
 
+/**
+ * Classe de teste de Aluno Controller.
+ * 
+ * Projeto Laboratório de Programação II
+ * 
+ * @author HERICLES NÂO SEI A PORRA DO TEU NOME
+ * @author Rafael da Silva Pereira.
+ */
 public class AlunoControllerTest {
 
 	private Dados dados = new Dados();
@@ -27,7 +35,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Cria um aluno, e o cadastra no sistema. - Verifica se a criação é dada com
+	 * Cria um aluno, e o cadastra no sistema. - Teste verifica se a criação é dada com
 	 * sucesso através do metodo "recuperaAluno".
 	 */
 	@Test
@@ -38,7 +46,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Mostra o uso correto metodo "recuperaAluno" quando o aluno cadastrado possui
+	 * Teste Mostra o uso correto metodo "recuperaAluno" quando o aluno cadastrado possui
 	 * um numero de telefone.
 	 */
 	@Test
@@ -48,7 +56,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Mostra o funcionamento do metodo "recuperaAluno" quando o aluno cadastrado
+	 * Teste Mostra o funcionamento do metodo "recuperaAluno" quando o aluno cadastrado
 	 * não possui um numero de telefone.
 	 */
 	@Test
@@ -58,7 +66,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Mostra o funcionamento do metodo "listarAlunos" quando não há alunos.
+	 * Teste Mostra o funcionamento do metodo "listarAlunos" quando não há alunos.
 	 */
 	@Test
 	public void testListarAlunosSemAlunos() {
@@ -66,7 +74,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Mostra o funcionamento do metodo "listarAlunos" quando há alunos um ou mais
+	 * Teste Mostra o funcionamento do metodo "listarAlunos" quando há alunos um ou mais
 	 * alunos.
 	 */
 	@Test
@@ -108,7 +116,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta recuperarAluno
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta recuperarAluno
 	 * passando uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -118,7 +126,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta recuperarAluno
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta recuperarAluno
 	 * passando um null.
 	 */
 	@Test(expected = NullPointerException.class)
@@ -128,7 +136,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta usar o metodo
 	 * getInfo passando o parametro matricula igual a uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -138,7 +146,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta usar o metodo
 	 * getInfo passando o parametro matricula igual a um null.
 	 */
 	@Test(expected = NullPointerException.class)
@@ -148,7 +156,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta usar o metodo
 	 * getInfo passando o parametro atributo igual a uma string vazia
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -158,7 +166,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta usar o metodo
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta usar o metodo
 	 * getInfo passando o parametro atributo igual a um null.
 	 */
 	@Test(expected = NullPointerException.class)
@@ -186,7 +194,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta capturar
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta capturar
 	 * informações de um aluno não cadastrado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -195,7 +203,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta capturar
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta capturar
 	 * informações de um aluno com informações compostas por um string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -223,7 +231,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link NullPointerException} quando é passado para criação de um
+	 * Teste verifica {@link NullPointerException} quando é passado para criação de um
 	 * aluno o parametro nome: como um null.
 	 */
 	@Test(expected = NullPointerException.class)
@@ -232,7 +240,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link NullPointerException} quando é passado para criação de um
+	 * Teste verifica {@link NullPointerException} quando é passado para criação de um
 	 * aluno o parametro matricula: como um null.
 	 */
 	@Test(expected = NullPointerException.class)
@@ -241,7 +249,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link NullPointerException} quando é passado para criação de um
+	 * Teste verifica {@link NullPointerException} quando é passado para criação de um
 	 * aluno o parametro telefone: como um null.
 	 */
 	@Test(expected = NullPointerException.class)
@@ -250,7 +258,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando é passado para criação de um
+	 * Teste verifica {@link IllegalArgumentException} quando é passado para criação de um
 	 * aluno o parametro nome: como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -259,7 +267,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando é passado para criação de um
+	 * Teste verifica {@link IllegalArgumentException} quando é passado para criação de um
 	 * aluno o parametro matricula: como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -268,7 +276,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando é passado para criação de um
+	 * Teste verifica {@link IllegalArgumentException} quando é passado para criação de um
 	 * aluno o parametro email: como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -277,7 +285,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando é passado para criação de um
+	 * Teste verifica {@link IllegalArgumentException} quando é passado para criação de um
 	 * aluno o parametro o codigo: com um numero menor ou igual a zero.
 	 */
 	@Test(expected = IllegalArgumentException.class)
@@ -286,7 +294,7 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Verifica {@link IllegalArgumentException} quando se tenta recuperar um aluno
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta recuperar um aluno
 	 * não cadastrado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
