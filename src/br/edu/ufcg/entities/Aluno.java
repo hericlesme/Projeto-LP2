@@ -9,7 +9,7 @@ package br.edu.ufcg.entities;
  * Projeto de Laboratório - Programação II.
  *
  */
-public class Aluno implements Comparable<Aluno> {
+public class Aluno {
 
 	private int notaAvaliacao;
 	private String matricula;
@@ -105,18 +105,6 @@ public class Aluno implements Comparable<Aluno> {
 	}
 
 	/**
-	 * Compara o próprio objeto com outro da classe Aluno, de acordo com o
-	 * nome.
-	 * 
-	 * @return um int.
-	 */
-	@Override
-	public int compareTo(Aluno a) {
-		return this.nome.compareTo(a.getNome());
-
-	}
-
-	/**
 	 * Retorna o nome do Aluno.
 	 * 
 	 * @return uma String.
@@ -174,6 +162,10 @@ public class Aluno implements Comparable<Aluno> {
 
 	public int getId() {
 		return this.id;
+	}
+
+	public String getMatricula() {
+		return this.matricula;
 	}
 
 }

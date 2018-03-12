@@ -1,22 +1,26 @@
 package br.edu.ufcg.controllers;
 
-import br.edu.ufcg.entities.Aluno;
-import br.edu.ufcg.entities.Tutor;
-import br.edu.ufcg.util.Validador;
-
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import br.edu.ufcg.entities.Aluno;
+import br.edu.ufcg.entities.OrdenacaoNomeAluno;
+import br.edu.ufcg.entities.Tutor;
+import br.edu.ufcg.util.Validador;
+
 public class TutorController {
 	private Validador validador;
 	private Dados dados;
+	private Comparator<Aluno> comparator;
 
 	public TutorController(Dados dados) {
 		this.validador = new Validador();
 		this.dados = dados;
+		this.comparator = new OrdenacaoNomeAluno();
 	}
 
 	/**
@@ -86,7 +90,7 @@ public class TutorController {
 	public String listarTutores() {
 		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(
 		        dados.getAlunos().values());
-		Collections.sort(alunosOrdenados);
+		Collections.sort(alunosOrdenados, comparator);
 		return mapToString(alunosOrdenados.stream().filter(
 		        aluno -> dados.getTutores().containsKey(aluno.getEmail())));
 	}

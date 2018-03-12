@@ -6,7 +6,7 @@ import java.util.List;
 
 import br.edu.ufcg.entities.Ajuda;
 import br.edu.ufcg.entities.AjudaPresencial;
-import br.edu.ufcg.entities.OrdenaTutor;
+import br.edu.ufcg.entities.OrdenacaoNotaTutor;
 import br.edu.ufcg.entities.Tutor;
 import br.edu.ufcg.util.Validador;
 import br.edu.ufcg.entities.AjudaOnline;
@@ -70,7 +70,7 @@ public class AjudaController {
 				temp.add(t);
 			}
 		}
-		Collections.sort(temp, new OrdenaTutor(this.dados.getAlunos()));
+		Collections.sort(temp, new OrdenacaoNotaTutor(this.dados.getAlunos()));
 		return temp.get(0).getMatricula();
 
 	}
@@ -82,7 +82,7 @@ public class AjudaController {
 				temp.add(t);
 			}
 		}
-		Collections.sort(temp, new OrdenaTutor(this.dados.getAlunos()));
+		Collections.sort(temp, new OrdenacaoNotaTutor(this.dados.getAlunos()));
 		return temp.get(0).getMatricula();
 	}
 

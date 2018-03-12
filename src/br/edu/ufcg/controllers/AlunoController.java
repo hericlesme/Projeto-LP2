@@ -2,11 +2,13 @@ package br.edu.ufcg.controllers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import br.edu.ufcg.entities.Aluno;
+import br.edu.ufcg.entities.OrdenacaoNomeAluno;
 import br.edu.ufcg.util.Validador;
 
 /**
@@ -21,11 +23,13 @@ public class AlunoController {
 	private Validador validador;
 	private Dados dados;
 	private int id;
+	private Comparator<Aluno> comparator;
 
 	public AlunoController(Dados dados) {
 		this.validador = new Validador();
 		this.dados = dados;
 		this.id = 1;
+		this.comparator = new OrdenacaoNomeAluno();
 	}
 
 	/**
@@ -80,9 +84,13 @@ public class AlunoController {
 	public String listarAlunos() {
 		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(
 		        dados.getAlunos().values());
-		Collections.sort(alunosOrdenados);
+		Collections.sort(alunosOrdenados, comparator);
 
 		return mapToString(alunosOrdenados.stream());
+	}
+
+	public void configurarOrdem(String atributo) {
+
 	}
 
 	/**
