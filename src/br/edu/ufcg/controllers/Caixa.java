@@ -2,11 +2,9 @@ package br.edu.ufcg.controllers;
 
 public class Caixa {
 
-	private int caixa;
 	private Dados dados;
 
 	public Caixa(Dados dados) {
-		this.caixa = 0;
 		this.dados = dados;
 	}
 
@@ -17,7 +15,7 @@ public class Caixa {
 
 		double taxaSistema = (100 - taxaTutor) / 100.0;
 		int totalSistema = (int) (taxaSistema * totalCentavos);
-		caixa += totalSistema;
+		this.dados.setCaixa(totalSistema);
 
 		this.dados.getTutores()
 		        .get(this.dados.getAlunos().get(matriculaTutor).getEmail())
@@ -25,7 +23,7 @@ public class Caixa {
 	}
 
 	public int totalDinheiroSistema() {
-		return this.caixa;
+		return this.dados.getCaixa();
 	}
 
 }

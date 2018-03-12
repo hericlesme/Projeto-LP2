@@ -13,13 +13,11 @@ import br.edu.ufcg.entities.AjudaOnline;
 
 public class AjudaController {
 
-	private List<Ajuda> ajudas;
 	private Dados dados;
 	private Validador validador;
 
 	public AjudaController(Dados dados) {
 		this.validador = new Validador();
-		this.ajudas = new ArrayList<Ajuda>();
 		this.dados = dados;
 	}
 
@@ -32,44 +30,41 @@ public class AjudaController {
 		String matrTutor = escolherTutorPresencial(horario, dia, localInteresse,
 		        disciplina);
 
-		this.ajudas.add(new AjudaPresencial(matrAluno, matrTutor, disciplina,
+		return this.dados.adicionaAjuda(new AjudaPresencial(matrAluno, matrTutor, disciplina,
 		        horario, dia, localInteresse));
-
-		return this.ajudas.size();
 	}
 
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
 		validador.ajudaOnlineInvalida(matrAluno, disciplina);
 		String matrTutor = escolherTutorOnline(disciplina);
-		this.ajudas.add(new AjudaOnline(matrAluno, matrTutor, disciplina));
-		return this.ajudas.size();
+		return this.dados.adicionaAjuda(new AjudaOnline(matrAluno, matrTutor, disciplina));
 	}
 
 	public String pegarTutor(int idAjuda) {
 		validador.validaInteiro(idAjuda,
 		        "Erro ao tentar recuperar tutor : id nao pode menor que zero ");
-		validador.idInvalido(idAjuda, ajudas.size(),
+		validador.idInvalido(idAjuda, dados.getAjudas().size(),
 		        "Erro ao tentar recuperar tutor : id nao encontrado ");
-		return this.ajudas.get(idAjuda - 1).pegarTutor();
+		return this.dados.getAjudas().get(idAjuda - 1).pegarTutor();
 	}
 
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		validador.validaInteiro(idAjuda,
 		        "Erro ao tentar recuperar info da ajuda : id nao pode menor que zero ");
-		validador.idInvalido(idAjuda, ajudas.size(),
+		validador.idInvalido(idAjuda, dados.getAjudas().size(),
 		        "Erro ao tentar recuperar info da ajuda : id nao encontrado ");
 		validador.parametroInvalido(atributo,
 		        "Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");
-		return this.ajudas.get(idAjuda - 1).getInfo(atributo);
+		return this.dados.getAjudas().get(idAjuda - 1).getInfo(atributo);
 	}
 
 	public String avaliarTutor(int idAjuda, int nota) {
 		validador.notaInvalida(nota, "Erro na avaliacao de tutor");
 		validador.validaInteiro(idAjuda,
 		        "Erro na avaliacao de tutor: id nao pode menor que zero ");
-		validador.idInvalido(idAjuda, ajudas.size(),
+		validador.idInvalido(idAjuda, dados.getAjudas().size(),
 		        "Erro na avaliacao de tutor: id nao encontrado ");
-		String matricula = this.ajudas.get(idAjuda - 1).getInfo("matr_tutor");
+		String matricula = this.dados.getAjudas().get(idAjuda - 1).getInfo("matr_tutor");
 		return this.dados.getTutores()
 		        .get(this.dados.getAlunos().get(matricula).getEmail())
 		        .avaliarTutor(nota);
