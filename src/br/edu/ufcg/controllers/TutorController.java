@@ -1,60 +1,60 @@
 package br.edu.ufcg.controllers;
 
-import br.edu.ufcg.entities.Aluno;
-import br.edu.ufcg.entities.Tutor;
-import br.edu.ufcg.util.Validador;
-
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import br.edu.ufcg.entities.Aluno;
+import br.edu.ufcg.entities.OrdenacaoEmail;
+import br.edu.ufcg.entities.OrdenacaoMatricula;
+import br.edu.ufcg.entities.OrdenacaoNome;
+import br.edu.ufcg.entities.Tutor;
+import br.edu.ufcg.util.Validador;
+
 public class TutorController {
 	private Validador validador;
 	private Dados dados;
+	private Comparator<Aluno> comparator;
 
 	public TutorController(Dados dados) {
 		this.validador = new Validador();
 		this.dados = dados;
+		this.comparator = new OrdenacaoNome();
 	}
 
 	/**
 	 * Torna um aluno em um tutor.
 	 * 
 	 * @param matricula
-	 *            String da matricula do aluno.
+	 *                String da matricula do aluno.
 	 * @param disciplina
-	 *            String da disciplina em que o tutor pode ajudar.
+	 *                String da disciplina em que o tutor pode ajudar.
 	 * @param proficiencia
-	 *            int que representa a proeficiência do tutor na
-	 *            disciplina, varia de 1 a 5.
+	 *                int que representa a proeficiência do tutor na disciplina,
+	 *                varia de 1 a 5.
 	 */
-	public void tornarTutor(String matricula, String disciplina,
-	        int proficiencia) {
+	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 		validador.disciplinaInvalida(disciplina, "Erro na definicao de papel");
 		if (!this.dados.getAlunos().containsKey(matricula)) {
 			validador.tutorNaoEncontrado("Erro na definicao de papel");
 		}
 
-		validador.proficienciaInvalida(proficiencia,
-		        "Erro na definicao de papel");
-		if (!this.dados.getTutores().containsKey(
-		        this.dados.getAlunos().get(matricula).getEmail())) {
-			this.dados.adicionaTutor(
-			        this.dados.getAlunos().get(matricula).getEmail(),
-			        new Tutor(disciplina, proficiencia, matricula));
+		validador.proficienciaInvalida(proficiencia, "Erro na definicao de papel");
+		if (!this.dados.getTutores().containsKey(this.dados.getAlunos().get(matricula).getEmail())) {
+			this.dados.adicionaTutor(this.dados.getAlunos().get(matricula).getEmail(),
+					new Tutor(disciplina, proficiencia, matricula));
 
 		} else {
 
-			if (this.dados.getTutores()
-			        .get(this.dados.getAlunos().get(matricula).getEmail())
-			        .containsDisciplina(disciplina)) {
+			if (this.dados.getTutores().get(this.dados.getAlunos().get(matricula).getEmail())
+					.containsDisciplina(disciplina)) {
 				validador.tornarTutorInvalido("Erro na definicao de papel");
 			}
-			this.dados.getTutores()
-			        .get(this.dados.getAlunos().get(matricula).getEmail())
-			        .adicionaDisciplina(disciplina, proficiencia);
+			this.dados.getTutores().get(this.dados.getAlunos().get(matricula).getEmail())
+					.adicionaDisciplina(disciplina, proficiencia);
 		}
 	}
 
@@ -62,7 +62,7 @@ public class TutorController {
 	 * Recupera um tutor a partir da sua matricula.
 	 * 
 	 * @param matricula
-	 *            String da matricula do tutor
+	 *                String da matricula do tutor
 	 * 
 	 * @return o toString do tutor.
 	 */
@@ -84,22 +84,45 @@ public class TutorController {
 	}
 
 	public String listarTutores() {
-		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(
-		        dados.getAlunos().values());
-		Collections.sort(alunosOrdenados);
-		return mapToString(alunosOrdenados.stream().filter(
-		        aluno -> dados.getTutores().containsKey(aluno.getEmail())));
+		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(dados.getAlunos().values());
+		Collections.sort(alunosOrdenados, comparator);
+		return mapToString(alunosOrdenados.stream()
+				.filter(aluno -> dados.getTutores().containsKey(aluno.getEmail())));
+	}
+
+	public void configurarOrdem(String atributo) {
+		AtributoOrdem atrib;
+		try {
+			atrib = (AtributoOrdem.valueOf(atributo.toUpperCase()));
+		} catch (Exception e) {
+			throw new IllegalArgumentException(e);
+		}
+		switch (atrib) {
+		case NOME:
+			this.comparator = new OrdenacaoNome();
+			break;
+		case EMAIL:
+			this.comparator = new OrdenacaoEmail();
+			break;
+		case MATRICULA:
+			this.comparator = new OrdenacaoMatricula();
+			break;
+
+		default:
+			break;
+		}
+
 	}
 
 	/**
 	 * Cadastra o dia e horário de atendimento de um tutor.
 	 * 
 	 * @param email
-	 *            String do email do tutor.
+	 *                String do email do tutor.
 	 * @param horario
-	 *            String do horario de atendimento do tutor.
+	 *                String do horario de atendimento do tutor.
 	 * @param dia
-	 *            String do dia do atendimento do tutor.
+	 *                String do dia do atendimento do tutor.
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
 		validador.emailInvalido(email, "Erro no cadastrar horario");
@@ -117,19 +140,16 @@ public class TutorController {
 	 * Cadastra um local de atendimento de um tutor.
 	 * 
 	 * @param email
-	 *            String do email do tutor.
+	 *                String do email do tutor.
 	 * @param local
-	 *            String do local do atendimento do tutor.
+	 *                String do local do atendimento do tutor.
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		validador.emailInvalido(email,
-		        "Erro no cadastrar local de atendimento");
-		validador.localInvalido(local,
-		        "Erro no cadastrar local de atendimento: local");
+		validador.emailInvalido(email, "Erro no cadastrar local de atendimento");
+		validador.localInvalido(local, "Erro no cadastrar local de atendimento: local");
 
 		if (!dados.getTutores().containsKey(email)) {
-			validador.tutorNaoCadastrado(
-			        "Erro no cadastrar local de atendimento");
+			validador.tutorNaoCadastrado("Erro no cadastrar local de atendimento");
 		}
 
 		this.dados.getTutores().get(email).cadastrarLocalDeAtendimento(local);
@@ -140,14 +160,14 @@ public class TutorController {
 	 * Consulta do horario de atendimento do tutor.
 	 * 
 	 * @param email
-	 *            String do email do tutor.
+	 *                String do email do tutor.
 	 * @param horario
-	 *            String do horario de atendimento do tutor.
+	 *                String do horario de atendimento do tutor.
 	 * @param dia
-	 *            String do dia do atendimento do tutor.
+	 *                String do dia do atendimento do tutor.
 	 * 
-	 * @return um boolean que indica se o dia e o horário passados fazem
-	 *         parte do atendimento de um tutor.
+	 * @return um boolean que indica se o dia e o horário passados fazem parte do
+	 *         atendimento de um tutor.
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
 		validador.emailInvalido(email, "Erro na consulta de horario");
@@ -165,12 +185,12 @@ public class TutorController {
 	 * Consulta do local de atendimento do tutor.
 	 * 
 	 * @param email
-	 *            String do email do tutor.
+	 *                String do email do tutor.
 	 * @param local
-	 *            String do local do atendimento do tutor.
+	 *                String do local do atendimento do tutor.
 	 * 
-	 * @return um boolean que indica se o local passado é o local de
-	 *         atendimento do tutor.
+	 * @return um boolean que indica se o local passado é o local de atendimento do
+	 *         tutor.
 	 */
 	public boolean consultaLocal(String email, String local) {
 		validador.emailInvalido(email, "Erro na consulta de local");
@@ -183,15 +203,11 @@ public class TutorController {
 	}
 
 	public String pegarNota(String matriculaTutor) {
-		return this.dados.getTutores()
-		        .get(this.dados.getAlunos().get(matriculaTutor).getEmail())
-		        .pegarNota();
+		return this.dados.getTutores().get(this.dados.getAlunos().get(matriculaTutor).getEmail()).pegarNota();
 	}
 
 	public String pegarNivel(String matriculaTutor) {
-		return this.dados.getTutores()
-		        .get(this.dados.getAlunos().get(matriculaTutor).getEmail())
-		        .pegarNivel();
+		return this.dados.getTutores().get(this.dados.getAlunos().get(matriculaTutor).getEmail()).pegarNivel();
 	}
 
 	public int totalDinheiroTutor(String emaiTutor) {

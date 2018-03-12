@@ -3,10 +3,10 @@ package br.edu.ufcg.entities;
 import java.util.Comparator;
 import java.util.Map;
 
-public class OrdenaTutor implements Comparator<Tutor> {
+public class OrdenacaoNotaTutor implements Comparator<Tutor> {
 	private Map<String, Aluno> alunos;
 
-	public OrdenaTutor(Map<String, Aluno> alunos) {
+	public OrdenacaoNotaTutor(Map<String, Aluno> alunos) {
 		this.alunos = alunos;
 	}
 

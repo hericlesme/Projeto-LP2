@@ -1,4 +1,4 @@
-package br.edu.ufcg.UnityTests;
+package br.edu.ufcg.UnityTests.entities;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -23,7 +23,7 @@ public class TutorTest {
 	 */
 	@Before
 	public void inicializaTutor() {
-		tutor = new Tutor("Discreta", 1);
+		tutor = new Tutor("Discreta", 1, "40028922");
 	}
 
 	/**
@@ -32,7 +32,7 @@ public class TutorTest {
 	@Test
 	public void testTutor() {
 		assertTrue(outroTutor == null);
-		outroTutor = new Tutor("Grafos", 5);
+		outroTutor = new Tutor("Grafos", 5, "00001");
 		assertFalse(outroTutor == null);
 	}
 
@@ -55,8 +55,8 @@ public class TutorTest {
 	}
 
 	/**
-	 * Testa a verificação de um horário de atendimento para um tutor,
-	 * quando ele tem o horário marcado.
+	 * Testa a verificação de um horário de atendimento para um tutor, quando ele
+	 * tem o horário marcado.
 	 */
 	@Test
 	public void testConsultaHorarioTrue() {
@@ -65,8 +65,8 @@ public class TutorTest {
 	}
 
 	/**
-	 * Testa a verificação de um horário de atendimento para um tutor,
-	 * quando ele não tem horário marcado.
+	 * Testa a verificação de um horário de atendimento para um tutor, quando ele
+	 * não tem horário marcado.
 	 */
 	@Test
 	public void testConsultaHorarioFalse() {
@@ -76,8 +76,8 @@ public class TutorTest {
 	}
 
 	/**
-	 * Testa a verificação de um local de atendimento para um tutor,
-	 * quando ele tem local marcado.
+	 * Testa a verificação de um local de atendimento para um tutor, quando ele tem
+	 * local marcado.
 	 */
 	@Test
 	public void testConsultaLocalTrue() {
@@ -86,8 +86,8 @@ public class TutorTest {
 	}
 
 	/**
-	 * Testa a verificação de um local de atendimento para um tutor,
-	 * quando ele não tem local marcado.
+	 * Testa a verificação de um local de atendimento para um tutor, quando ele não
+	 * tem local marcado.
 	 */
 	@Test
 	public void testConsultaLocalFalse() {
@@ -106,8 +106,8 @@ public class TutorTest {
 	}
 
 	/**
-	 * Testa o método containsDisciplina de tutor, para o caso dele
-	 * ensinar a disciplina e não.
+	 * Testa o método containsDisciplina de tutor, para o caso dele ensinar a
+	 * disciplina e não.
 	 */
 	@Test
 	public void testContainsDisciplina() {
