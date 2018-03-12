@@ -1,6 +1,8 @@
 package br.edu.ufcg.entities;
 
-public abstract class Ajuda {
+import java.io.Serializable;
+
+public abstract class Ajuda implements Serializable{
 	protected String disciplina;
 	protected String matrAluno;
 	protected String matrTutor;

@@ -30,7 +30,7 @@ public class AlunoController {
 
 	/**
 	 * Cadastra um aluno a partir do nome,matricula,curso,email e
-	 * telefone,sendo oúltimo opcional.
+	 * telefone,sendo o último opcional.
 	 * 
 	 * @param nome
 	 *            String que representa o nome do aluno

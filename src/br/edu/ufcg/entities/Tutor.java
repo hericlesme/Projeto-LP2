@@ -1,5 +1,6 @@
 package br.edu.ufcg.entities;
 
+import java.io.Serializable;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +17,7 @@ import java.util.Map;
  * Projeto de Laboratório - Programação II
  * 
  */
-public class Tutor implements Comparable<Tutor> {
+public class Tutor implements Comparable<Tutor>, Serializable {
 
 	private int dinheiroDoacoes;
 	private double notaTutor;

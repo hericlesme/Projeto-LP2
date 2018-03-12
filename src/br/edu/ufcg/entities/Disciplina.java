@@ -1,5 +1,7 @@
 package br.edu.ufcg.entities;
 
+import java.io.Serializable;
+
 /**
  * Classe que representa uma disciplina, armazenada por um Aluno
  * Tutor. Uma disciplina armazena seu nome e a proficiencia que o
@@ -8,7 +10,7 @@ package br.edu.ufcg.entities;
  * Projeto de Laboratório - Programação II.
  *
  */
-public class Disciplina {
+public class Disciplina implements Serializable{
 
 	private int proficiencia;
 	private String nome;

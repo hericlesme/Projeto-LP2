@@ -1,5 +1,7 @@
 package br.edu.ufcg.entities;
 
+import java.io.Serializable;
+
 /**
  * Representação de um aluno no sistema. Todo aluno possui uma nota de
  * avaliação, uma matrícula que o identifica, o codigo do seu curso,
@@ -9,7 +11,7 @@ package br.edu.ufcg.entities;
  * Projeto de Laboratório - Programação II.
  *
  */
-public class Aluno implements Comparable<Aluno> {
+public class Aluno implements Comparable<Aluno>, Serializable {
 
 	private int notaAvaliacao;
 	private String matricula;
