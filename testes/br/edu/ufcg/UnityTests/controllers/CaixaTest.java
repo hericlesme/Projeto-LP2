@@ -10,6 +10,13 @@ import br.edu.ufcg.controllers.Dados;
 import br.edu.ufcg.entities.Aluno;
 import br.edu.ufcg.entities.Tutor;
 
+/**
+ * Classe de teste de Caixa.
+ * 
+ * Projeto Laboratório de Programação II
+ * 
+ * @author Rafael da Silva Pereira.
+ */
 public class CaixaTest {
 
 	private Caixa caixa, outraCaixa;
