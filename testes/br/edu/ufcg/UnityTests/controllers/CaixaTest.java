@@ -10,6 +10,12 @@ import br.edu.ufcg.controllers.Dados;
 import br.edu.ufcg.entities.Aluno;
 import br.edu.ufcg.entities.Tutor;
 
+/**
+ * Classe de teste de Caixa.
+ * 
+ * Projeto Laboratório de Programação II
+ * 
+ */
 public class CaixaTest {
 
 	private Caixa caixa, outraCaixa;
@@ -33,31 +39,26 @@ public class CaixaTest {
 	@Test
 	public void testDoar() {
 		caixa.doar("0001", 33);
-		fail();
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testDoarValorNegativo() {
 		caixa.doar("0001", -1);
-		fail();
 	}
 
 	@Test(expected = NullPointerException.class)
 	public void testDoarMatriculaTutorNula() {
 		caixa.doar(null, 999999999);
-		fail();
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testDoarMatriculaTutorVazia() {
 		caixa.doar("", 999999999);
-		fail();
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void testDoarMatriculaTutorInexistente() {
 		caixa.doar("898995656256", 999999999);
-		fail();
 	}
 
 	@Test
