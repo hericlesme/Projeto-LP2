@@ -15,8 +15,6 @@ import br.edu.ufcg.entities.Aluno;
  * Classe de teste de TutorController.
  * 
  * Projeto Laboratório de Programação II
- * @author HERICLES
- * @author Rafael da Silva Pereira.
  */
 public class TutorControllerTest {
 

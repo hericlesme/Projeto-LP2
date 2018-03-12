@@ -15,7 +15,6 @@ import br.edu.ufcg.entities.Tutor;
  * 
  * Projeto Laboratório de Programação II
  * 
- * @author Rafael da Silva Pereira.
  */
 public class DadosTest {
 
@@ -76,8 +75,6 @@ public class DadosTest {
 		dados.adicionaTutor("chicoautodacomp@decida.com", new Tutor("Tapeação", 5, "6969696"));
 
 		assertEquals(1, dados.getTutores().size());
-
-		assertEquals(2, dados.getTutores().size());
 
 	}
 
