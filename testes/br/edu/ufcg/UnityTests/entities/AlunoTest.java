@@ -1,4 +1,4 @@
-package br.edu.ufcg.UnityTests;
+package br.edu.ufcg.UnityTests.entities;
 
 import static org.junit.Assert.*;
 
@@ -24,7 +24,7 @@ public class AlunoTest {
 	@Before
 	public void inicializaAluno() {
 		aluno = new Aluno("Irineu", "116459781", 22345, "",
-		        "irineu@vcnaosabe.nem.eu");
+		        "irineu@vcnaosabe.nem.eu", 1);
 	}
 
 	/**
@@ -34,7 +34,7 @@ public class AlunoTest {
 	public void testAluno() {
 		assertTrue(outroAluno == null);
 		outroAluno = new Aluno("Jonas", "117113152", 12341, "4002-8922",
-		        "jonas@grandepeixe.comeu");
+		        "jonas@grandepeixe.comeu", 2);
 		assertFalse(outroAluno == null);
 	}
 
@@ -45,7 +45,7 @@ public class AlunoTest {
 	@Test
 	public void testToStringComTelefone() {
 		outroAluno = new Aluno("Jonas", "117113152", 12341, "4002-8922",
-		        "jonas@grandepeixe.comeu");
+		        "jonas@grandepeixe.comeu", 3);
 		assertEquals(
 		        "117113152 - Jonas - 12341 - 4002-8922 - jonas@grandepeixe.comeu",
 		        outroAluno.toString());
@@ -84,7 +84,7 @@ public class AlunoTest {
 	public void testGetInfoAlunoTelefone() {
 		assertEquals("", aluno.getInfoAluno("telefone"));
 		outroAluno = new Aluno("PraqNome", "12345", 55478, "1234-5678",
-		        "eu@sem.nome");
+		        "eu@sem.nome", 4);
 		assertEquals("1234-5678", outroAluno.getInfoAluno("telefone"));
 
 	}
@@ -120,7 +120,7 @@ public class AlunoTest {
 	@Test
 	public void testCompareToPositivo() {
 		outroAluno = new Aluno("Babi", "12345", 55478, "1234-5678",
-		        "babi@tranca.rua");
+		        "babi@tranca.rua", 5);
 		assertTrue(aluno.compareTo(outroAluno) > 0);
 	}
 
@@ -131,7 +131,7 @@ public class AlunoTest {
 	@Test
 	public void testCompareToNegativo() {
 		outroAluno = new Aluno("Juao", "6666666", 16546, "",
-		        "juao.paulo@na.merda");
+		        "juao.paulo@na.merda", 6);
 		assertTrue(aluno.compareTo(outroAluno) < 0);
 	}
 
@@ -142,7 +142,7 @@ public class AlunoTest {
 	@Test
 	public void testCompareToNeutro() {
 		outroAluno = new Aluno("Irineu", "4156418", 16546, "",
-		        "soucopia@do.irineu");
+		        "soucopia@do.irineu", 7);
 		assertTrue(aluno.compareTo(outroAluno) == 0);
 	}
 
@@ -152,7 +152,7 @@ public class AlunoTest {
 	@Test
 	public void testAlunosIguais() {
 		outroAluno = new Aluno("Fulanim", "116459781", 4185, "0800 777 7000",
-		        "fulano@detal.com");
+		        "fulano@detal.com", 8);
 		assertTrue(aluno.equals(outroAluno));
 	}
 
@@ -162,7 +162,7 @@ public class AlunoTest {
 	@Test
 	public void testAlunosDiferentes() {
 		outroAluno = new Aluno("Irineu", "116459782", 22345, "",
-		        "irineu@vcnaosabe.nem.eu");
+		        "irineu@vcnaosabe.nem.eu", 9);
 		assertFalse(aluno.equals(outroAluno));
 	}
 
@@ -172,7 +172,7 @@ public class AlunoTest {
 	@Test
 	public void testHashCodeIguais() {
 		outroAluno = new Aluno("Fulanim", "116459781", 4185, "0800 777 7000",
-		        "fulano@detal.com");
+		        "fulano@detal.com", 10);
 		assertTrue(aluno.hashCode() == outroAluno.hashCode());
 	}
 
@@ -182,7 +182,7 @@ public class AlunoTest {
 	@Test
 	public void testHashCodeDiferentes() {
 		outroAluno = new Aluno("Irineu", "116459782", 22345, "",
-		        "irineu@vcnaosabe.nem.eu");
+		        "irineu@vcnaosabe.nem.eu", 11);
 		assertFalse(aluno.hashCode() == outroAluno.hashCode());
 	}
 
