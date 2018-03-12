@@ -135,6 +135,17 @@ public class Validador {
 		}
 	}
 
+	public void notaInvalida(int nota, String mensagem) {
+		if (nota < 0) {
+			throw new IllegalArgumentException(
+			        mensagem + ": nota nao pode ser menor que 0");
+		}
+		if (nota > 5) {
+			throw new IllegalArgumentException(
+			        mensagem + ": nota nao pode ser maior que 5");
+		}
+	}
+
 	/**
 	 * Lança uma exceção sob tentativa de cadastro de aluno com matrícula
 	 * já cadastrada.
@@ -318,8 +329,8 @@ public class Validador {
 
 	public void idInvalido(int id, int size, String mensagem) {
 		validaInteiro(id, mensagem);
-		if (id >= size) {
-			throw new IllegalArgumentException("Erro ao tentar recuperar info da ajuda : id nao encontrado ");
+		if (id > size) {
+			throw new IllegalArgumentException(mensagem);
 		}
 	}
 
