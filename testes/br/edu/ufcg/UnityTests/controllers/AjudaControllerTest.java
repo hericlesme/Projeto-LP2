@@ -15,7 +15,6 @@ import br.edu.ufcg.entities.Tutor;
  * 
  * Projeto Laboratório de Programação II
  * 
- * @author Rafael da Silva Pereira.
  */
 public class AjudaControllerTest {
 
@@ -567,7 +566,7 @@ public class AjudaControllerTest {
 	 * informação sobre a ajuda e feita passando os parametros incorretamente -
 	 * parametro "id" é é maior que o numero de Ajudas.
 	 */
-	@Test(expected = IllegalArgumentException.class) /* Existe mensagem? */
+	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAjudaPresencialIdNaoExistente() {
 		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
 		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
@@ -683,7 +682,7 @@ public class AjudaControllerTest {
 	 * informação sobre a ajuda e feita passando os parametros incorretamente -
 	 * parametro "id" é é maior que o numero de Ajudas.
 	 */
-	@Test(expected = IllegalArgumentException.class) /* Existe mensagem ? */
+	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAjudaOnlineIdNaoExistente() {
 		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
 		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);

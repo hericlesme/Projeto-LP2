@@ -13,8 +13,6 @@ import br.edu.ufcg.controllers.Dados;
  * 
  * Projeto Laboratório de Programação II
  * 
- * @author HERICLES NÂO SEI A PORRA DO TEU NOME
- * @author Rafael da Silva Pereira.
  */
 public class AlunoControllerTest {
 
