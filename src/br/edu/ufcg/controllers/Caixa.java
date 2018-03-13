@@ -12,6 +12,7 @@ public class Caixa {
 	}
 
 	public void doar(String matriculaTutor, int totalCentavos) {
+		Validador.parametroInvalido(matriculaTutor, "Erro na doacao para tutor: Matricula nao pode ser nula ou vazia");
 		if (!this.dados.getAlunos().containsKey(matriculaTutor)) {
 			Validador.tutorNaoEncontrado("Erro na doacao para tutor");
 		}

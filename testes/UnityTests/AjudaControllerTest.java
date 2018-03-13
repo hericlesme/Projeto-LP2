@@ -568,51 +568,44 @@ public class AjudaControllerTest {
 	}
 
 	/**
-	 * Teste demonstra como ocorre o funcionamento do metodo avaliarTutor, demonstra
-	 * em seu PRIMEIRO assert um tutor recem criado em que recebe nota de avalição
-	 * "Tutor" por ter uma maior que três e menor ou igual a quatro. No SEGUNDO
-	 * assert indica que se um tutor for avaliado negativamente de forma que sua
-	 * avalição passe a ser menor ou igual a 3.0 ele passará a ser classificado como
-	 * "Aprendiz". No TERCEIRO assert verifica-se que o quando o tutor recebe
-	 * avaliações de forma com que sua media passe as ser maior que 4.5
+	 * Teste demonstra como ocorre o funcionamento do metodo avaliarTutor,
+	 * considerando um tutor com nivel "Tutor".
 	 */
 	@Test
-	public void testAvaliarTutor() {
-
+	public void testAvaliarTutorTutor() {
 		ajudaC.pedirAjudaOnline("012", "IA");
+		assertEquals("Tutor", ajudaC.avaliarTutor(1, 4));
 
-		/*
-		 * Mostra que se a avaliação do tutor for neutra isto é que não faça com que a
-		 * avaliação do tutor ultrapasse 4.5 o que ela seja menor ou igual a 3.0, o
-		 * Tutor será avaliado como "Tutor"
-		 */
-		assertEquals("Tutor", ajudaC.avaliarTutor(1, 3));
+	}
 
-		/*
-		 * Em um dado cenario Caso um Tutor, caso seja avaliado "negativamente" ou seja
-		 * sua avaliação seja baixa o suficiente para diminuir o estado de "notaTutor"
-		 * para menor ou igual a três. o Tutor passará então a ter o nivel de
-		 * "Aprendiz".
-		 */
+	/**
+	 * Teste demonstra como ocorre o funcionamento do metodo avaliarTutor,
+	 * considerando um tutor com nivel "Aprendiz".
+	 */
+	@Test
+	public void testAvaliarTutorAprendiz() {
+		ajudaC.pedirAjudaOnline("012", "IA");
+		ajudaC.pedirAjudaOnline("012", "IA");
 		ajudaC.avaliarTutor(1, 0);
+		assertEquals("Aprendiz", ajudaC.avaliarTutor(2, 0));
 
-		assertEquals("Aprendiz", ajudaC.avaliarTutor(1, 0));
+	}
 
-		/*
-		 * Em um dado cenario Caso um Tutor, caso seja avaliado "positivamente" ou seja
-		 * sua avaliação seja de forma que altere "notaTutor" para maior que quatro e
-		 * meio. o Tutor passará então a ter o nivel de "Top".
-		 */
+	/**
+	 * Teste demonstra como ocorre o funcionamento do metodo avaliarTutor,
+	 * considerando um tutor com nivel "TOP".
+	 */
+	@Test
+	public void testAvaliarTutorTOP() {
+		ajudaC.pedirAjudaOnline("012", "IA");
+		ajudaC.pedirAjudaOnline("012", "IA");
+		ajudaC.pedirAjudaOnline("012", "IA");
+		ajudaC.pedirAjudaOnline("012", "IA");
 		ajudaC.avaliarTutor(1, 5);
-		ajudaC.avaliarTutor(1, 5);
-		ajudaC.avaliarTutor(1, 5);
-		ajudaC.avaliarTutor(1, 5);
-		ajudaC.avaliarTutor(1, 5);
-		ajudaC.avaliarTutor(1, 5);
-		ajudaC.avaliarTutor(1, 5);
-		ajudaC.avaliarTutor(1, 5);
+		ajudaC.avaliarTutor(2, 5);
+		ajudaC.avaliarTutor(3, 5);
+		assertEquals("TOP", ajudaC.avaliarTutor(4, 5));
 
-		assertEquals("TOP", ajudaC.avaliarTutor(1, 5));
 	}
 
 	/**
