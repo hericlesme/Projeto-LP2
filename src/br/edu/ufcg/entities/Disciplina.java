@@ -2,29 +2,31 @@ package br.edu.ufcg.entities;
 
 import java.io.Serializable;
 
+import br.edu.ufcg.util.Validador;
+
 /**
- * Classe que representa uma disciplina, armazenada por um Aluno
- * Tutor. Uma disciplina armazena seu nome e a proficiencia que o
- * tutor tem nela.
+ * Classe que representa uma disciplina, armazenada por um Aluno Tutor. Uma
+ * disciplina armazena seu nome e a proficiencia que o tutor tem nela.
  * 
  * Projeto de Laboratório - Programação II.
  *
  */
-public class Disciplina implements Serializable{
+public class Disciplina implements Serializable {
 
 	private int proficiencia;
 	private String nome;
 
 	/**
-	 * Constroi o objeto disciplina passado seu nome e a proficiencia do
-	 * tutor.
+	 * Constroi o objeto disciplina passado seu nome e a proficiencia do tutor.
 	 * 
 	 * @param nome
-	 *            nome da disciplina.
+	 *                nome da disciplina.
 	 * @param proficiencia
-	 *            proficiencia do tutor na disciplina.
+	 *                proficiencia do tutor na disciplina.
 	 */
 	public Disciplina(String nome, int proficiencia) {
+		Validador.parametroInvalido(nome, "Nome da disciplina nao pode ser vazia ou nula");
+		Validador.proficienciaInvalida(proficiencia, "Erro");
 		this.nome = nome;
 		this.proficiencia = proficiencia;
 	}

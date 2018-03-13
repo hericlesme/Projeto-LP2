@@ -2,6 +2,8 @@ package br.edu.ufcg.entities;
 
 import java.io.Serializable;
 
+import br.edu.ufcg.util.Validador;
+
 /**
  * Representação de um aluno no sistema. Todo aluno possui uma nota de
  * avaliação, uma matrícula que o identifica, o codigo do seu curso,
@@ -40,6 +42,7 @@ public class Aluno implements Serializable {
 	 */
 	public Aluno(String nome, String matricula, int codigoCurso,
 	        String telefone, String email, int id) {
+		Validador.cadastroInvalido(nome, matricula, codigoCurso, telefone, email);
 		this.notaAvaliacao = 5;
 		this.matricula = matricula;
 		this.telefone = telefone;

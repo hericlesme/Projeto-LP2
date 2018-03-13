@@ -12,17 +12,15 @@ import br.edu.ufcg.util.Validador;
 public class AjudaController {
 
 	private Dados dados;
-	private Validador validador;
 
 	public AjudaController(Dados dados) {
-		this.validador = new Validador();
 		this.dados = dados;
 	}
 
 	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
 			String localInteresse) {
 
-		validador.ajudaPresencialInvalida(matrAluno, disciplina, horario, dia, localInteresse);
+		Validador.ajudaPresencialInvalida(matrAluno, disciplina, horario, dia, localInteresse);
 
 		String matrTutor = escolherTutorPresencial(horario, dia, localInteresse, disciplina);
 
@@ -31,7 +29,7 @@ public class AjudaController {
 	}
 
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
-		validador.ajudaOnlineInvalida(matrAluno, disciplina);
+		Validador.ajudaOnlineInvalida(matrAluno, disciplina);
 
 		String matrTutor = escolherTutorOnline(disciplina);
 		return this.dados.adicionaAjuda(new AjudaOnline(matrAluno, matrTutor, disciplina));
@@ -40,8 +38,8 @@ public class AjudaController {
 	public String pegarTutor(int idAjuda) {
 		String mensagemPadrao = "Erro ao tentar recuperar tutor ";
 
-		validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
-		validador.idInvalido(idAjuda, this.dados.getAjudas().size(), mensagemPadrao + ": id nao encontrado ");
+		Validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
+		Validador.idInvalido(idAjuda, this.dados.getAjudas().size(), mensagemPadrao + ": id nao encontrado ");
 
 		return this.dados.getAjudas().get(idAjuda - 1).pegarTutor();
 	}
@@ -49,9 +47,9 @@ public class AjudaController {
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		String mensagemPadrao = "Erro ao tentar recuperar info da ajuda ";
 
-		validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
-		validador.idInvalido(idAjuda, this.dados.getAjudas().size(), mensagemPadrao + ": id nao encontrado ");
-		validador.parametroInvalido(atributo, mensagemPadrao + ": atributo nao pode ser vazio ou em branco");
+		Validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
+		Validador.idInvalido(idAjuda, this.dados.getAjudas().size(), mensagemPadrao + ": id nao encontrado ");
+		Validador.parametroInvalido(atributo, mensagemPadrao + ": atributo nao pode ser vazio ou em branco");
 
 		return this.dados.getAjudas().get(idAjuda - 1).getInfo(atributo);
 	}
@@ -59,9 +57,9 @@ public class AjudaController {
 	public String avaliarTutor(int idAjuda, int nota) {
 		String mensagemPadrao = "Erro na avaliacao de tutor";
 
-		validador.notaInvalida(nota, mensagemPadrao);
-		validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
-		validador.idInvalido(idAjuda, this.dados.getAjudas().size(), mensagemPadrao + ": id nao encontrado ");
+		Validador.notaInvalida(nota, mensagemPadrao);
+		Validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
+		Validador.idInvalido(idAjuda, this.dados.getAjudas().size(), mensagemPadrao + ": id nao encontrado ");
 
 		String matricula = this.dados.getAjudas().get(idAjuda - 1).getInfo("matr_tutor");
 
@@ -82,12 +80,6 @@ public class AjudaController {
 		return selecionaTutorOrdenado(temp);
 	}
 
-	private String selecionaTutorOrdenado(ArrayList<Tutor> list) {
-		Collections.sort(list, new OrdenacaoNotaTutor(dados.getAlunos()));
-
-		return list.get(0).getMatricula();
-	}
-
 	private String escolherTutorOnline(String disciplina) {
 
 		ArrayList<Tutor> temp = new ArrayList<Tutor>();
@@ -98,5 +90,11 @@ public class AjudaController {
 			}
 		}
 		return selecionaTutorOrdenado(temp);
+	}
+
+	private String selecionaTutorOrdenado(ArrayList<Tutor> list) {
+		Collections.sort(list, new OrdenacaoNotaTutor(dados.getAlunos()));
+
+		return list.get(0).getMatricula();
 	}
 }

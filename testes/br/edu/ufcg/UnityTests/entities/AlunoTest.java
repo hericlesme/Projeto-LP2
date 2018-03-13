@@ -142,4 +142,53 @@ public class AlunoTest {
 		assertFalse(aluno.hashCode() == outroAluno.hashCode());
 	}
 
+	@Test(expected = NullPointerException.class)
+	public void testAlunoNomeNulo() {
+		new Aluno(null, "123", 123, "", "adsa@dsa", 2);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testAlunoNomeVazio() {
+		new Aluno("", "123", 123, "", "adsa@dsa", 2);
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testAlunoMatriculaNulo() {
+		new Aluno("Loki", null, 123, "", "adsa@dsa", 2);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testAlunoMatriculaVazia() {
+		new Aluno("Loki", "", 123, "", "adsa@dsa", 2);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testAlunoCodigoCursoInvalido() {
+		new Aluno("Loki", "123", -1, "", "adsa@dsa", 2);
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testAlunoTelefoneNulo() {
+		new Aluno("Loki", "123", 123, null, "adsa@dsa", 2);
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testAlunoEmailNulo() {
+		new Aluno("Loki", "123", 123, "", null, 2);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testAlunoEmailVazio() {
+		new Aluno("Loki", "123", 123, "", "", 2);
+	}
+	@Test(expected = IllegalArgumentException.class)
+	public void testAlunoEmailInvalido() {
+		new Aluno("Loki", "123", 123, "", "@aa", 2);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testAlunoEmailInvalido2() {
+		new Aluno("Loki", "123", 123, "", "aa@", 2);
+	}
+
 }
