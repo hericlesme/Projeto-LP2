@@ -5,8 +5,8 @@ import java.io.IOException;
 import br.edu.ufcg.controllers.AjudaController;
 import br.edu.ufcg.controllers.AlunoController;
 import br.edu.ufcg.controllers.Caixa;
-import br.edu.ufcg.controllers.Dados;
 import br.edu.ufcg.controllers.TutorController;
+import br.edu.ufcg.util.Dados;
 import easyaccept.EasyAccept;
 
 /**
@@ -40,9 +40,10 @@ public class Facade {
 	 *                array de testes.
 	 */
 	public static void main(String[] args) {
-		args = new String[] { "br.edu.ufcg.facade.Facade", "EasyAccept//us1_test.txt",
-				"EasyAccept//us2_test.txt", "EasyAccept//us3_test.txt", "EasyAccept//us4_test.txt",
-				"EasyAccept//us5_test.txt", "EasyAccept//us6_test.txt" };
+		args = new String[] { "br.edu.ufcg.facade.Facade", "testes/EasyAccept//us1_test.txt",
+				"testes/EasyAccept//us2_test.txt", "testes/EasyAccept//us3_test.txt",
+				"testes/EasyAccept//us4_test.txt", "testes/EasyAccept//us5_test.txt",
+				"testes/EasyAccept//us6_test.txt" };
 		EasyAccept.main(args);
 	}
 

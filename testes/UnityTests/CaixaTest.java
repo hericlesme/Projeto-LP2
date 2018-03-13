@@ -1,4 +1,4 @@
-package br.edu.ufcg.UnityTests.controllers;
+package UnityTests;
 
 import static org.junit.Assert.*;
 
@@ -6,9 +6,9 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.edu.ufcg.controllers.Caixa;
-import br.edu.ufcg.controllers.Dados;
 import br.edu.ufcg.entities.Aluno;
 import br.edu.ufcg.entities.Tutor;
+import br.edu.ufcg.util.Dados;
 
 /**
  * Classe de teste de Caixa.

@@ -3,10 +3,12 @@ package br.edu.ufcg.controllers;
 import java.util.ArrayList;
 import java.util.Collections;
 
+import br.edu.ufcg.comparators.OrdenacaoNotaTutor;
+import br.edu.ufcg.entities.Ajuda;
 import br.edu.ufcg.entities.AjudaOnline;
 import br.edu.ufcg.entities.AjudaPresencial;
-import br.edu.ufcg.entities.OrdenacaoNotaTutor;
 import br.edu.ufcg.entities.Tutor;
+import br.edu.ufcg.util.Dados;
 import br.edu.ufcg.util.Validador;
 
 public class AjudaController {
@@ -61,8 +63,10 @@ public class AjudaController {
 		Validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
 		Validador.idInvalido(idAjuda, this.dados.getAjudas().size(), mensagemPadrao + ": id nao encontrado ");
 
-		String matricula = this.dados.getAjudas().get(idAjuda - 1).getInfo("matr_tutor");
-
+		Ajuda ajuda = this.dados.getAjudas().get(idAjuda - 1);
+		String matricula = ajuda.getInfo("matr_tutor");
+		
+		ajuda.avaliaAjuda();
 		return this.dados.getTutores().get(this.dados.getAlunos().get(matricula).getEmail()).avaliarTutor(nota);
 
 	}

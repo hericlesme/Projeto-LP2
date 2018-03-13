@@ -13,6 +13,7 @@ import br.edu.ufcg.util.Validador;
  */
 public class Disciplina implements Serializable {
 
+	private static final long serialVersionUID = -6293692519340815120L;
 	private int proficiencia;
 	private String nome;
 

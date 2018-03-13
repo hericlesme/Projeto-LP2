@@ -1,4 +1,4 @@
-package br.edu.ufcg.entities;
+package br.edu.ufcg.enums;
 
 import br.edu.ufcg.util.Validador;
 

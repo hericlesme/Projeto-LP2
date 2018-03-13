@@ -2,9 +2,13 @@ package br.edu.ufcg.entities;
 
 import java.io.Serializable;
 
+import br.edu.ufcg.enums.EstadoAvaliacaoAjuda;
+import br.edu.ufcg.exceptions.AlreadyAssessedException;
 import br.edu.ufcg.util.Validador;
 
 public abstract class Ajuda implements Serializable {
+
+	private static final long serialVersionUID = 4211669500722290686L;
 	protected String disciplina;
 	protected String matrAluno;
 	protected String matrTutor;
@@ -25,6 +29,9 @@ public abstract class Ajuda implements Serializable {
 	public abstract String pegarTutor();
 
 	public void avaliaAjuda() {
+		if (this.estadoAvaliacao.equals(EstadoAvaliacaoAjuda.AVALIADA)) {
+			throw new AlreadyAssessedException("Erro na avaliacao de tutor: Ajuda ja avaliada");
+		}
 		this.estadoAvaliacao = EstadoAvaliacaoAjuda.AVALIADA;
 	}
 

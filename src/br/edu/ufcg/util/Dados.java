@@ -1,4 +1,4 @@
-package br.edu.ufcg.controllers;
+package br.edu.ufcg.util;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -151,14 +151,17 @@ public class Dados {
 		
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void carregarAlunos() throws ClassNotFoundException, IOException {
 		this.alunos = (HashMap<String, Aluno>) (this.carregarObjeto(alunosF));
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void carregarTutores() throws ClassNotFoundException, IOException {
 		this.tutores = (HashMap<String, Tutor>) (this.carregarObjeto(tutoresF));
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void carregarAjudas() throws ClassNotFoundException, IOException {
 		this.ajudas = (ArrayList<Ajuda>) (this.carregarObjeto(ajudasF));
 	}

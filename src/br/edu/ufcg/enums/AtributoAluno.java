@@ -1,4 +1,4 @@
-package br.edu.ufcg.entities;
+package br.edu.ufcg.enums;
 
 /**
  * Classe Enum que armazena as informações de um aluno.

@@ -7,11 +7,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import br.edu.ufcg.comparators.OrdenacaoEmail;
+import br.edu.ufcg.comparators.OrdenacaoMatricula;
+import br.edu.ufcg.comparators.OrdenacaoNome;
 import br.edu.ufcg.entities.Aluno;
-import br.edu.ufcg.entities.OrdenacaoEmail;
-import br.edu.ufcg.entities.OrdenacaoMatricula;
-import br.edu.ufcg.entities.OrdenacaoNome;
 import br.edu.ufcg.entities.Tutor;
+import br.edu.ufcg.enums.AtributoOrdem;
+import br.edu.ufcg.util.Dados;
 import br.edu.ufcg.util.Validador;
 
 public class TutorController {

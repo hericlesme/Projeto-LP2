@@ -2,20 +2,21 @@ package br.edu.ufcg.entities;
 
 import java.io.Serializable;
 
+import br.edu.ufcg.enums.AtributoAluno;
 import br.edu.ufcg.util.Validador;
 
 /**
  * Representação de um aluno no sistema. Todo aluno possui uma nota de
- * avaliação, uma matrícula que o identifica, o codigo do seu curso,
- * email, nome e opcionalmente um telefone. Um aluno pode ter como
- * função ser tutor ou tutelado.
+ * avaliação, uma matrícula que o identifica, o codigo do seu curso, email, nome
+ * e opcionalmente um telefone. Um aluno pode ter como função ser tutor ou
+ * tutelado.
  * 
  * Projeto de Laboratório - Programação II.
  *
  */
 public class Aluno implements Serializable {
 
-
+	private static final long serialVersionUID = -2224719137869667646L;
 	private int notaAvaliacao;
 	private String matricula;
 	private String telefone;
@@ -25,23 +26,22 @@ public class Aluno implements Serializable {
 	private int id;
 
 	/**
-	 * Constrói um aluno inicializando seus atributos. A nota de avaliação
-	 * por padrão começa em 5, assim como sua função; tutelado. Uma String
-	 * vazia é dada quando o telefone não é passado.
+	 * Constrói um aluno inicializando seus atributos. A nota de avaliação por
+	 * padrão começa em 5, assim como sua função; tutelado. Uma String vazia é dada
+	 * quando o telefone não é passado.
 	 * 
 	 * @param nome
-	 *            nome do aluno.
+	 *                nome do aluno.
 	 * @param matricula
-	 *            matrícula do aluno.
+	 *                matrícula do aluno.
 	 * @param codigoCurso
-	 *            codigo do curso.
+	 *                codigo do curso.
 	 * @param telefone
-	 *            telefone do aluno.
+	 *                telefone do aluno.
 	 * @param email
-	 *            email do aluno.
+	 *                email do aluno.
 	 */
-	public Aluno(String nome, String matricula, int codigoCurso,
-	        String telefone, String email, int id) {
+	public Aluno(String nome, String matricula, int codigoCurso, String telefone, String email, int id) {
 		Validador.cadastroInvalido(nome, matricula, codigoCurso, telefone, email);
 		this.notaAvaliacao = 5;
 		this.matricula = matricula;
@@ -53,21 +53,19 @@ public class Aluno implements Serializable {
 	}
 
 	/**
-	 * Retorna uma String com algumas informações do Aluno. Com telefone,
-	 * caso tenha sido passado, ou sem. Segue o formato: 1. "Matricula -
-	 * Nome - Código do Curso - Email" 2. "Matricula - Nome - Código do
-	 * Curso - Telefone - Email"
+	 * Retorna uma String com algumas informações do Aluno. Com telefone, caso tenha
+	 * sido passado, ou sem. Segue o formato: 1. "Matricula - Nome - Código do Curso
+	 * - Email" 2. "Matricula - Nome - Código do Curso - Telefone - Email"
 	 * 
 	 * @return uma String.
 	 */
 	public String toString() {
-		return this.matricula + " - " + this.nome + " - " + this.codigoCurso
-		        + " - " + toStringComplemento();
+		return this.matricula + " - " + this.nome + " - " + this.codigoCurso + " - " + toStringComplemento();
 	}
 
 	/**
-	 * Método utilizado para decidir qual vai ser o complemento do
-	 * toString, tendo telefone ou não.
+	 * Método utilizado para decidir qual vai ser o complemento do toString, tendo
+	 * telefone ou não.
 	 * 
 	 * @return uma String.
 	 */
@@ -79,11 +77,11 @@ public class Aluno implements Serializable {
 	}
 
 	/**
-	 * Retorna uma String com uma informação do aluno. Lança uma exceção
-	 * caso seja um atributo não existente.
+	 * Retorna uma String com uma informação do aluno. Lança uma exceção caso seja
+	 * um atributo não existente.
 	 * 
 	 * @param atributo
-	 *            informação a ser mostrada.
+	 *                informação a ser mostrada.
 	 * @return uma String.
 	 */
 	public String getInfoAluno(String atributo) {
@@ -94,7 +92,7 @@ public class Aluno implements Serializable {
 			throw new IllegalArgumentException(e);
 		}
 		switch (atrib) {
-		
+
 		case NOTA_AVALIACAO:
 			return Integer.toString(this.notaAvaliacao);
 		case MATRICULA:
@@ -139,15 +137,13 @@ public class Aluno implements Serializable {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result
-		        + ((matricula == null) ? 0 : matricula.hashCode());
+		result = prime * result + ((matricula == null) ? 0 : matricula.hashCode());
 		return result;
 	}
 
 	/**
-	 * Retorna um boolean que diz se esse objeto é igual a outro. Caso
-	 * seja igual, retorna true, caso não, false. Leva em consideração a
-	 * matrícula do aluno.
+	 * Retorna um boolean que diz se esse objeto é igual a outro. Caso seja igual,
+	 * retorna true, caso não, false. Leva em consideração a matrícula do aluno.
 	 * 
 	 * @return um boolean.
 	 */

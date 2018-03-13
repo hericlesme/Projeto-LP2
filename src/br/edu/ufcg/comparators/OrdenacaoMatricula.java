@@ -1,6 +1,8 @@
-package br.edu.ufcg.entities;
+package br.edu.ufcg.comparators;
 
 import java.util.Comparator;
+
+import br.edu.ufcg.entities.Aluno;
 
 public class OrdenacaoMatricula implements Comparator<Aluno> {
 

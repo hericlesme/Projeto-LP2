@@ -1,7 +1,10 @@
-package br.edu.ufcg.entities;
+package br.edu.ufcg.comparators;
 
 import java.util.Comparator;
 import java.util.Map;
+
+import br.edu.ufcg.entities.Aluno;
+import br.edu.ufcg.entities.Tutor;
 
 public class OrdenacaoNotaTutor implements Comparator<Tutor> {
 	private Map<String, Aluno> alunos;

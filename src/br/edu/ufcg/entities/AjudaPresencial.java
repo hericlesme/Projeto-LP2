@@ -1,9 +1,11 @@
 package br.edu.ufcg.entities;
 
+import br.edu.ufcg.enums.AtributoAjuda;
 import br.edu.ufcg.util.Validador;
 
 public class AjudaPresencial extends Ajuda {
 
+	private static final long serialVersionUID = -1602649212813693007L;
 	private String localInteresse;
 	private String horario;
 	private String dia;

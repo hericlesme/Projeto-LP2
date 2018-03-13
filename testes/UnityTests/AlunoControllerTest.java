@@ -1,4 +1,4 @@
-package br.edu.ufcg.UnityTests.controllers;
+package UnityTests;
 
 import static org.junit.Assert.*;
 
@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import br.edu.ufcg.controllers.AlunoController;
-import br.edu.ufcg.controllers.Dados;
+import br.edu.ufcg.util.Dados;
 
 /**
  * Classe de teste de Aluno Controller.

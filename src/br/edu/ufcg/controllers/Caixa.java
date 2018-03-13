@@ -1,5 +1,6 @@
 package br.edu.ufcg.controllers;
 
+import br.edu.ufcg.util.Dados;
 import br.edu.ufcg.util.Validador;
 
 public class Caixa {

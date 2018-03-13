@@ -21,6 +21,7 @@ import br.edu.ufcg.util.Validador;
  */
 public class Tutor implements Comparable<Tutor>, Serializable {
 
+	private static final long serialVersionUID = -7438899114768956566L;
 	private int dinheiroDoacoes;
 	private double notaTutor;
 	private Map<String, Disciplina> disciplinas;
