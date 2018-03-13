@@ -15,7 +15,6 @@ import br.edu.ufcg.entities.Disciplina;
  * 
  * Projeto Laboratório de Programação II
 *
- *@author Rafael da Silva Pereira.
  */
 public class DisciplinaTest {
 
