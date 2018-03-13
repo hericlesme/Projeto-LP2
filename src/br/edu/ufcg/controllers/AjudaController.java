@@ -2,75 +2,66 @@ package br.edu.ufcg.controllers;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
-import br.edu.ufcg.entities.Ajuda;
+import br.edu.ufcg.entities.AjudaOnline;
 import br.edu.ufcg.entities.AjudaPresencial;
 import br.edu.ufcg.entities.OrdenacaoNotaTutor;
 import br.edu.ufcg.entities.Tutor;
 import br.edu.ufcg.util.Validador;
-import br.edu.ufcg.entities.AjudaOnline;
 
 public class AjudaController {
 
-	private List<Ajuda> ajudas;
 	private Dados dados;
-	private Validador validador;
 
 	public AjudaController(Dados dados) {
-		this.validador = new Validador();
-		this.ajudas = new ArrayList<Ajuda>();
 		this.dados = dados;
 	}
 
 	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
 			String localInteresse) {
 
-		validador.ajudaPresencialInvalida(matrAluno, disciplina, horario, dia, localInteresse);
+		Validador.ajudaPresencialInvalida(matrAluno, disciplina, horario, dia, localInteresse);
 
 		String matrTutor = escolherTutorPresencial(horario, dia, localInteresse, disciplina);
 
-		this.ajudas.add(new AjudaPresencial(matrAluno, matrTutor, disciplina, horario, dia, localInteresse));
-
-		return this.ajudas.size();
+		return this.dados.adicionaAjuda(
+				new AjudaPresencial(matrAluno, matrTutor, disciplina, horario, dia, localInteresse));
 	}
 
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
-		validador.ajudaOnlineInvalida(matrAluno, disciplina);
+		Validador.ajudaOnlineInvalida(matrAluno, disciplina);
 
 		String matrTutor = escolherTutorOnline(disciplina);
-		this.ajudas.add(new AjudaOnline(matrAluno, matrTutor, disciplina));
-
-		return this.ajudas.size();
+		return this.dados.adicionaAjuda(new AjudaOnline(matrAluno, matrTutor, disciplina));
 	}
 
 	public String pegarTutor(int idAjuda) {
 		String mensagemPadrao = "Erro ao tentar recuperar tutor ";
 
-		validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
-		validador.idInvalido(idAjuda, ajudas.size(), mensagemPadrao + ": id nao encontrado ");
+		Validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
+		Validador.idInvalido(idAjuda, this.dados.getAjudas().size(), mensagemPadrao + ": id nao encontrado ");
 
-		return this.ajudas.get(idAjuda - 1).pegarTutor();
+		return this.dados.getAjudas().get(idAjuda - 1).pegarTutor();
 	}
 
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		String mensagemPadrao = "Erro ao tentar recuperar info da ajuda ";
 
-		validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
-		validador.idInvalido(idAjuda, ajudas.size(), mensagemPadrao + ": id nao encontrado ");
-		validador.parametroInvalido(atributo, mensagemPadrao + ": atributo nao pode ser vazio ou em branco");
+		Validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
+		Validador.idInvalido(idAjuda, this.dados.getAjudas().size(), mensagemPadrao + ": id nao encontrado ");
+		Validador.parametroInvalido(atributo, mensagemPadrao + ": atributo nao pode ser vazio ou em branco");
 
-		return this.ajudas.get(idAjuda - 1).getInfo(atributo);
+		return this.dados.getAjudas().get(idAjuda - 1).getInfo(atributo);
 	}
 
 	public String avaliarTutor(int idAjuda, int nota) {
 		String mensagemPadrao = "Erro na avaliacao de tutor";
 
-		validador.notaInvalida(nota, mensagemPadrao);
-		validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
-		validador.idInvalido(idAjuda, ajudas.size(), mensagemPadrao + ": id nao encontrado ");
+		Validador.notaInvalida(nota, mensagemPadrao);
+		Validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
+		Validador.idInvalido(idAjuda, this.dados.getAjudas().size(), mensagemPadrao + ": id nao encontrado ");
 
-		String matricula = this.ajudas.get(idAjuda - 1).getInfo("matr_tutor");
+		String matricula = this.dados.getAjudas().get(idAjuda - 1).getInfo("matr_tutor");
 
 		return this.dados.getTutores().get(this.dados.getAlunos().get(matricula).getEmail()).avaliarTutor(nota);
 
@@ -89,12 +80,6 @@ public class AjudaController {
 		return selecionaTutorOrdenado(temp);
 	}
 
-	private String selecionaTutorOrdenado(ArrayList<Tutor> list) {
-		Collections.sort(list, new OrdenacaoNotaTutor(dados.getAlunos()));
-
-		return list.get(0).getMatricula();
-	}
-
 	private String escolherTutorOnline(String disciplina) {
 
 		ArrayList<Tutor> temp = new ArrayList<Tutor>();
@@ -105,5 +90,11 @@ public class AjudaController {
 			}
 		}
 		return selecionaTutorOrdenado(temp);
+	}
+
+	private String selecionaTutorOrdenado(ArrayList<Tutor> list) {
+		Collections.sort(list, new OrdenacaoNotaTutor(dados.getAlunos()));
+
+		return list.get(0).getMatricula();
 	}
 }

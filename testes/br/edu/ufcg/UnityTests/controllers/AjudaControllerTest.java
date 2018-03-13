@@ -1,14 +1,16 @@
 package br.edu.ufcg.UnityTests.controllers;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
 
 import br.edu.ufcg.controllers.AjudaController;
+import br.edu.ufcg.controllers.AlunoController;
 import br.edu.ufcg.controllers.Dados;
-import br.edu.ufcg.entities.Aluno;
-import br.edu.ufcg.entities.Tutor;
+import br.edu.ufcg.controllers.TutorController;
 
 /**
  * Classe de teste de Ajuda.
@@ -18,55 +20,25 @@ import br.edu.ufcg.entities.Tutor;
  */
 public class AjudaControllerTest {
 
-	private AjudaController ajudaC, outroAjudaC;
-	private Dados dados = new Dados();
+	AjudaController ajudaC, outroAjudaC;
+	TutorController tutorC;
+	AlunoController alunoC;
+	Dados dados;
 
 	/**
 	 * Inicializa o objeto AjudaControle, passando dados (outro objeto).
 	 */
 	@Before
-	public void inicializaAjudaController() {
+	public void inicializaCondicoesDeTestes() {
+		dados = new Dados();
 		ajudaC = new AjudaController(dados);
-	}
-
-	/**
-	 * Adiciona um Aluno no objeto dados.
-	 * 
-	 * @param nome
-	 *                nome do aluno.
-	 * @param matricula
-	 *                matrícula do aluno.
-	 * @param codigoCurso
-	 *                codigo do curso.
-	 * @param telefone
-	 *                telefone do aluno.
-	 * @param email
-	 *                email do aluno.
-	 * @param id
-	 *                id do aluno.
-	 *
-	 */
-	private void adicionaAluno(String nome, String matricula, int codigoCurso, String telefone, String email,
-			int id) {
-		dados.adicionaAluno(matricula, new Aluno(nome, matricula, codigoCurso, telefone, email, id));
-	}
-
-	/**
-	 * Adiciona um Tutor no objeto dados.
-	 * 
-	 * @param email:
-	 *                o email do Tutor.
-	 * 
-	 * @param disciplina
-	 *                a disciplina que o Tutor vai ensinar.
-	 * @param proficiencia
-	 *                um numero entre um e cinco indicando o quão habil na
-	 *                disciplina o Tutor se considera.
-	 * @param matricula
-	 *                a matricula do Tutor.
-	 */
-	private void adicionaTutor(String email, String disciplina, int proeficiencia, String matricula) {
-		dados.adicionaTutor(email, new Tutor(disciplina, proeficiencia, matricula));
+		alunoC = new AlunoController(dados);
+		tutorC = new TutorController(dados);
+		alunoC.cadastrarAluno("Reaper", "666", 666000666, "666123", "reaper@overatch.ofensivo");
+		alunoC.cadastrarAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu");
+		tutorC.tornarTutor("111", "IA", 3);
+		tutorC.cadastrarHorario("Irineu@vocenaosabeenem.eu", "15:00", "Sexta-Feira");
+		tutorC.cadastrarLocalDeAtendimento("Irineu@vocenaosabeenem.eu", "LCC2");
 	}
 
 	/**
@@ -88,10 +60,6 @@ public class AjudaControllerTest {
 	 */
 	@Test
 	public void testPedirAjudaPresencial() {
-		this.adicionaAluno("Reaper", "666", 666000666, "666123", "reaper@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-
 		assertEquals(1, ajudaC.pedirAjudaPresencial("666", "IA", "15:00", "Sexta-Feira", "LCC2"));
 	}
 
@@ -102,10 +70,6 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testPedirAjudaPresencialMatriculaNula() {
-		this.adicionaAluno("Reaper", "666", 666000666, "666123", "reaper@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-
 		assertEquals(1, ajudaC.pedirAjudaPresencial(null, "IA", "15:00", "Sexta-Feira", "LCC2"));
 	}
 
@@ -117,10 +81,6 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialMatriculaVazia() {
-		this.adicionaAluno("Reaper", "666", 666000666, "666123", "reaper@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-
 		assertEquals(1, ajudaC.pedirAjudaPresencial("", "IA", "15:00", "Sexta-Feira", "LCC2"));
 	}
 
@@ -131,10 +91,6 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testPedirAjudaPresencialDisciplinaNula() {
-		this.adicionaAluno("Reaper", "666", 666000666, "666123", "reaper@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-
 		assertEquals(1, ajudaC.pedirAjudaPresencial("666", null, "15:00", "Sexta-Feira", "LCC2"));
 	}
 
@@ -146,10 +102,6 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialDisciplinaVazia() {
-		this.adicionaAluno("Reaper", "666", 666000666, "666123", "reaper@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-
 		assertEquals(1, ajudaC.pedirAjudaPresencial("666", "", "15:00", "Sexta-Feira", "LCC2"));
 	}
 
@@ -160,10 +112,6 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testPedirAjudaPresencialHorarioNulo() {
-		this.adicionaAluno("Reaper", "666", 666000666, "666123", "reaper@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-
 		assertEquals(1, ajudaC.pedirAjudaPresencial("666", "IA", null, "Sexta-Feira", "LCC2"));
 	}
 
@@ -175,10 +123,6 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialHorarioVazio() {
-		this.adicionaAluno("Reaper", "666", 666000666, "666123", "reaper@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-
 		assertEquals(1, ajudaC.pedirAjudaPresencial("666", "IA", "", "Sexta-Feira", "LCC2"));
 	}
 
@@ -189,9 +133,6 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testPedirAjudaPresencialDiaNulo() {
-		this.adicionaAluno("Reaper", "666", 666000666, "666123", "reaper@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
 
 		assertEquals(1, ajudaC.pedirAjudaPresencial("666", "IA", "03:30", null, "LCC2"));
 	}
@@ -204,9 +145,6 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialDiaVazio() {
-		this.adicionaAluno("Reaper", "666", 666000666, "666123", "reaper@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
 
 		assertEquals(1, ajudaC.pedirAjudaPresencial("666", "IA", "03:30", "", "LCC2"));
 	}
@@ -218,9 +156,6 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testPedirAjudaPresencialLocalNulo() {
-		this.adicionaAluno("Reaper", "666", 666000666, "666123", "reaper@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
 
 		assertEquals(1, ajudaC.pedirAjudaPresencial("666", "IA", "03:30", "Sexta-Feira", null));
 	}
@@ -234,9 +169,6 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaPresencialLocalVazio() {
-		this.adicionaAluno("Reaper", "666", 666000666, "666123", "reaper@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
 
 		assertEquals(1, ajudaC.pedirAjudaPresencial("666", "IA", "03:30", "Sexta-Feira", ""));
 	}
@@ -248,9 +180,6 @@ public class AjudaControllerTest {
 	 */
 	@Test
 	public void testPedirAjudaOnline() {
-		this.adicionaAluno("Reaper", "666", 666000666, "666123", "reaper@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
 
 		assertEquals(1, ajudaC.pedirAjudaOnline("666", "IA"));
 	}
@@ -262,9 +191,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testPedirAjudaOnlineMatriculaNula() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline(null, "IA");
 
 		assertEquals(2, ajudaC.pedirAjudaOnline("012", ""));
@@ -279,9 +206,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaOnlineMatriculaVazia() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("", "IA");
 
 		assertEquals(2, ajudaC.pedirAjudaOnline("012", ""));
@@ -295,9 +220,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testPedirAjudaOnlineDisciplinaNula() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", null);
 
 		assertEquals(2, ajudaC.pedirAjudaOnline("012", ""));
@@ -313,9 +236,6 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPedirAjudaOnlineDisciplinaVazia() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
 
 		assertEquals(2, ajudaC.pedirAjudaOnline("012", ""));
 	}
@@ -327,10 +247,7 @@ public class AjudaControllerTest {
 	 */
 	@Test
 	public void testPegarTutorDeAjudaPresencial() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-		ajudaC.pedirAjudaPresencial("666", "IA", "15:00", "Sexta-Feira", "LCC2");
+		ajudaC.pedirAjudaOnline("111", "IA");
 
 		assertEquals("Tutor - 111, disciplina - IA", ajudaC.pegarTutor(1));
 
@@ -344,12 +261,9 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPegarTutorDeAjudaPresencialIdAjudaInvalido1() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-		ajudaC.pedirAjudaPresencial("666", "IA", "15:00", "Sexta-Feira", "LCC2");
 
-		assertEquals("Tutor - 111, disciplina - IA", ajudaC.pegarTutor(-1));
+		ajudaC.pedirAjudaPresencial("666", "IA", "15:00", "Sexta-Feira", "LCC2");
+		ajudaC.pegarTutor(-1);
 
 	}
 
@@ -361,9 +275,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPegarTutorDeAjudaPresencialIdAjudaInvalido2() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaPresencial("666", "IA", "15:00", "Sexta-Feira", "LCC2");
 
 		assertEquals("Tutor - 111, disciplina - IA", ajudaC.pegarTutor(0));
@@ -378,9 +290,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPegarTutorDeAjudaPresencialIdAjudaInvalido3() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaPresencial("666", "IA", "15:00", "Sexta-Feira", "LCC2");
 
 		assertEquals("Tutor - 111, disciplina - IA", ajudaC.pegarTutor(2));
@@ -394,9 +304,7 @@ public class AjudaControllerTest {
 	 */
 	@Test
 	public void testPegarTutorDeAjudaOnline() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("Tutor - 111, disciplina - IA", ajudaC.pegarTutor(1));
@@ -411,9 +319,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPegarTutorDeAjudaOnlineIdAjudaInvalido1() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("Tutor - 111, disciplina - IA", ajudaC.pegarTutor(-1));
@@ -428,9 +334,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPegarTutorDeAjudaOnlineIdAjudaInvalido2() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("Tutor - 111, disciplina - IA", ajudaC.pegarTutor(0));
@@ -445,9 +349,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testPegarTutorDeAjudaOnlineIdAjudaInvalido3() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("Tutor - 111, disciplina - IA", ajudaC.pegarTutor(999));
@@ -460,20 +362,18 @@ public class AjudaControllerTest {
 	 */
 	@Test
 	public void testGetInfoAjudaPresencial() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-		ajudaC.pedirAjudaPresencial("012", "IA", "05:00", "Sexta-Feira", "LCC2");
+
+		ajudaC.pedirAjudaPresencial("666", "IA", "15:00", "Sexta-Feira", "LCC2");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(1, "Disciplina"));
 
 		assertEquals("111", ajudaC.getInfoAjuda(1, "Matr_Tutor"));
 
-		assertEquals("012", ajudaC.getInfoAjuda(1, "Matr_Aluno"));
+		assertEquals("666", ajudaC.getInfoAjuda(1, "Matr_Aluno"));
 
 		assertEquals("LCC2", ajudaC.getInfoAjuda(1, "LocalInteresse"));
 
-		assertEquals("05:00", ajudaC.getInfoAjuda(1, "Horario"));
+		assertEquals("15:00", ajudaC.getInfoAjuda(1, "Horario"));
 
 		assertEquals("Sexta-Feira", ajudaC.getInfoAjuda(1, "Dia"));
 	}
@@ -487,10 +387,8 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAjudaPresencialAtributoVazio() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-		ajudaC.pedirAjudaPresencial("012", "IA", "05:00", "Sexta-Feira", "LCC2");
+
+		ajudaC.pedirAjudaPresencial("666", "IA", "15:00", "Sexta-Feira", "LCC2");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(1, ""));
 	}
@@ -503,10 +401,8 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testGetInfoAjudaPresencialAtributoNulo() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-		ajudaC.pedirAjudaPresencial("012", "IA", "05:00", "Sexta-Feira", "LCC2");
+
+		ajudaC.pedirAjudaPresencial("666", "IA", "15:00", "Sexta-Feira", "LCC2");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(1, null));
 	}
@@ -520,10 +416,8 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAjudaPresencialAtributoNaoExiste() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-		ajudaC.pedirAjudaPresencial("012", "IA", "05:00", "Sexta-Feira", "LCC2");
+
+		ajudaC.pedirAjudaPresencial("666", "IA", "15:00", "Sexta-Feira", "LCC2");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(1, "Idade"));
 	}
@@ -536,10 +430,8 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAjudaPresencialIdNegativo() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-		ajudaC.pedirAjudaPresencial("012", "IA", "05:00", "Sexta-Feira", "LCC2");
+
+		ajudaC.pedirAjudaPresencial("666", "IA", "15:00", "Sexta-Feira", "LCC2");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(-1, "Matr_Aluno"));
 	}
@@ -552,10 +444,8 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAjudaPresencialIdZero() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-		ajudaC.pedirAjudaPresencial("012", "IA", "05:00", "Sexta-Feira", "LCC2");
+
+		ajudaC.pedirAjudaPresencial("666", "IA", "15:00", "Sexta-Feira", "LCC2");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(0, "Matr_Aluno"));
 	}
@@ -568,10 +458,8 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAjudaPresencialIdNaoExistente() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-		ajudaC.pedirAjudaPresencial("012", "IA", "05:00", "Sexta-Feira", "LCC2");
+
+		ajudaC.pedirAjudaPresencial("666", "IA", "15:00", "Sexta-Feira", "LCC2");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(2, "Matr_Aluno"));
 	}
@@ -583,9 +471,7 @@ public class AjudaControllerTest {
 	 */
 	@Test
 	public void testGetInfoAjudaOnline() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(1, "Disciplina"));
@@ -604,9 +490,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAjudaOnlineAtributoVazio() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(1, ""));
@@ -620,9 +504,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testGetInfoAjudaOnlineAtributoNulo() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(1, null));
@@ -634,12 +516,10 @@ public class AjudaControllerTest {
 	 * informação sobre a ajuda e feita passando os parametros incorretamente -
 	 * parametro "atributo" é diferente de "Disciplina, Matr_aluno, Mart_tutor".
 	 */
-	@Test(expected = NullPointerException.class)
+	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAjudaOnlineAtributoNaoExiste() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
-		ajudaC.pedirAjudaOnline("012", "IA");
+
+		ajudaC.pedirAjudaOnline("666", "IA");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(1, "Peso_Materia"));
 	}
@@ -652,9 +532,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAjudaOnlineIdNegativo() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(-1, "Matr_Aluno"));
@@ -668,9 +546,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAjudaOnlineIdZero() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(0, "Matr_Aluno"));
@@ -684,9 +560,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testGetInfoAjudaOnlineIdNaoExistente() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("IA", ajudaC.getInfoAjuda(2, "Matr_Aluno"));
@@ -705,9 +579,6 @@ public class AjudaControllerTest {
 	@Test
 	public void testAvaliarTutor() {
 
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		/*
@@ -750,9 +621,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAvaliarTutorNotaInvalida() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("Tutor", ajudaC.avaliarTutor(1, -1));
@@ -764,9 +633,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAvaliarTutorNotaInvalida2() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("Tutor", ajudaC.avaliarTutor(1, 6));
@@ -778,9 +645,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAvaliarIdAjudaInvalido() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("Tutor", ajudaC.avaliarTutor(-1, 2));
@@ -791,9 +656,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAvaliarIdAjudaInvalido2() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("Tutor", ajudaC.avaliarTutor(0, 3));
@@ -805,9 +668,7 @@ public class AjudaControllerTest {
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAvaliarIdAjudaInvalido3() {
-		this.adicionaAluno("Genji", "012", 666000666, "666123", "genji@overatch.ofensivo", 0);
-		this.adicionaAluno("Irineu", "111", 000002545, "9856217", "Irineu@vocenaosabeenem.eu", 0);
-		this.adicionaTutor("Irineu@vocenaosabeenem.eu", "IA", 3, "111");
+
 		ajudaC.pedirAjudaOnline("012", "IA");
 
 		assertEquals("Tutor", ajudaC.avaliarTutor(2, 3));

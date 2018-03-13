@@ -19,24 +19,20 @@ import br.edu.ufcg.util.Validador;
  * Projeto Laboratório de Programação II
  */
 public class AlunoController {
-	/**
-	 * Objeto que serve para validar os dados do aluno.
-	 */
-	private Validador validador;
+
 	private Dados dados;
 	private int id;
 	private Comparator<Aluno> comparator;
 
 	public AlunoController(Dados dados) {
-		this.validador = new Validador();
 		this.dados = dados;
 		this.id = 1;
 		this.comparator = new OrdenacaoNome();
 	}
 
 	/**
-	 * Cadastra um aluno a partir do nome,matricula,curso,email e telefone,sendo
-	 * oúltimo opcional.
+	 * Cadastra um aluno a partir do nome,matricula,curso,email e telefone,sendo o
+	 * último opcional.
 	 * 
 	 * @param nome
 	 *                String que representa o nome do aluno
@@ -50,9 +46,9 @@ public class AlunoController {
 	 *                String que representa o email do aluno
 	 */
 	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
-		this.validador.cadastroInvalido(nome, matricula, codigoCurso, telefone, email);
+		Validador.cadastroInvalido(nome, matricula, codigoCurso, telefone, email);
 		if (dados.getAlunos().containsKey(matricula)) {
-			validador.matriculaCadastrada();
+			Validador.matriculaCadastrada();
 		}
 
 		this.dados.adicionaAluno(matricula, new Aluno(nome, matricula, codigoCurso, telefone, email, this.id));
@@ -68,9 +64,9 @@ public class AlunoController {
 	 * @return O toString do aluno.
 	 */
 	public String recuperaAluno(String matricula) {
-		validador.matriculaInvalida(matricula, "Erro na busca por aluno");
+		Validador.matriculaInvalida(matricula, "Erro na busca por aluno");
 		if (!dados.getAlunos().containsKey(matricula)) {
-			validador.alunoInexistente("Erro na busca por aluno");
+			Validador.alunoInexistente("Erro na busca por aluno");
 		}
 		return this.dados.getAlunos().get(matricula).toString();
 	}
@@ -135,10 +131,10 @@ public class AlunoController {
 	 * @return uma String que representa o atributo em questão.
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
-		validador.atributoInvalido(atributo, "Erro na obtencao de informacao de aluno");
-		validador.matriculaInvalida(matricula, "Erro na obtencao de informacao de aluno");
+		Validador.atributoInvalido(atributo, "Erro na obtencao de informacao de aluno");
+		Validador.matriculaInvalida(matricula, "Erro na obtencao de informacao de aluno");
 		if (!dados.getAlunos().containsKey(matricula)) {
-			validador.alunoInexistente("Erro na obtencao de informacao de aluno");
+			Validador.alunoInexistente("Erro na obtencao de informacao de aluno");
 		}
 		return this.dados.getAlunos().get(matricula).getInfoAluno(atributo);
 	}

@@ -116,4 +116,34 @@ public class TutorTest {
 		assertFalse(tutor.containsDisciplina("aquinao"));
 	}
 
+	@Test(expected = NullPointerException.class)
+	public void testTutorDisciplinaNula() {
+		new Tutor(null, 2, "123");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testTutorDisciplinaVazia() {
+		new Tutor("", 2, "123");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testTutorProficienciaMenorQueZero() {
+		new Tutor("P2", -1, "123");
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testTutorProficienciaMaiorQueCinco() {
+		new Tutor("Calculo", 97, "123");
+	}
+
+	@Test(expected = NullPointerException.class)
+	public void testTutorMatriculaNula() {
+		new Tutor("Calculo", 4, null);
+	}
+
+	@Test(expected = IllegalArgumentException.class)
+	public void testTutorMatriculaVazia() {
+		new Tutor("Calculo", 4, "");
+	}
+
 }

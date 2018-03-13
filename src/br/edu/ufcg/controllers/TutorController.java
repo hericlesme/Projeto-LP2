@@ -7,8 +7,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import com.sun.xml.internal.ws.message.EmptyMessageImpl;
-
 import br.edu.ufcg.entities.Aluno;
 import br.edu.ufcg.entities.OrdenacaoEmail;
 import br.edu.ufcg.entities.OrdenacaoMatricula;
@@ -17,12 +15,10 @@ import br.edu.ufcg.entities.Tutor;
 import br.edu.ufcg.util.Validador;
 
 public class TutorController {
-	private Validador validador;
 	private Dados dados;
 	private Comparator<Aluno> comparator;
 
 	public TutorController(Dados dados) {
-		this.validador = new Validador();
 		this.dados = dados;
 		this.comparator = new OrdenacaoNome();
 	}
@@ -39,12 +35,12 @@ public class TutorController {
 	 *                varia de 1 a 5.
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
-		validador.disciplinaInvalida(disciplina, "Erro na definicao de papel");
+		Validador.disciplinaInvalida(disciplina, "Erro na definicao de papel");
 		if (!this.dados.getAlunos().containsKey(matricula)) {
-			validador.tutorNaoEncontrado("Erro na definicao de papel");
+			Validador.tutorNaoEncontrado("Erro na definicao de papel");
 		}
 
-		validador.proficienciaInvalida(proficiencia, "Erro na definicao de papel");
+		Validador.proficienciaInvalida(proficiencia, "Erro na definicao de papel");
 		if (!this.dados.getTutores().containsKey(this.dados.getAlunos().get(matricula).getEmail())) {
 			this.dados.adicionaTutor(this.dados.getAlunos().get(matricula).getEmail(),
 					new Tutor(disciplina, proficiencia, matricula));
@@ -53,7 +49,7 @@ public class TutorController {
 
 			if (this.dados.getTutores().get(this.dados.getAlunos().get(matricula).getEmail())
 					.containsDisciplina(disciplina)) {
-				validador.tornarTutorInvalido("Erro na definicao de papel");
+				Validador.tornarTutorInvalido("Erro na definicao de papel");
 			}
 			this.dados.getTutores().get(this.dados.getAlunos().get(matricula).getEmail())
 					.adicionaDisciplina(disciplina, proficiencia);
@@ -70,7 +66,7 @@ public class TutorController {
 	 */
 	public String recuperaTutor(String matricula) {
 		if (!dados.getAlunos().containsKey(matricula)) {
-			validador.tutorNaoEncontrado("Erro na busca por tutor");
+			Validador.tutorNaoEncontrado("Erro na busca por tutor");
 		}
 		return this.dados.getAlunos().get(matricula).toString();
 	}
@@ -127,12 +123,12 @@ public class TutorController {
 	 *                String do dia do atendimento do tutor.
 	 */
 	public void cadastrarHorario(String email, String horario, String dia) {
-		validador.emailInvalido(email, "Erro no cadastrar horario");
-		validador.horarioInvalido(horario, "Erro no cadastrar horario");
-		validador.diaInvalido(dia, "Erro no cadastrar horario");
+		Validador.emailInvalido(email, "Erro no cadastrar horario");
+		Validador.horarioInvalido(horario, "Erro no cadastrar horario");
+		Validador.diaInvalido(dia, "Erro no cadastrar horario");
 
 		if (!dados.getTutores().containsKey(email)) {
-			validador.tutorNaoCadastrado("Erro no cadastrar horario");
+			Validador.tutorNaoCadastrado("Erro no cadastrar horario");
 		}
 
 		this.dados.getTutores().get(email).cadastrarHorario(horario, dia);
@@ -147,11 +143,11 @@ public class TutorController {
 	 *                String do local do atendimento do tutor.
 	 */
 	public void cadastrarLocalDeAtendimento(String email, String local) {
-		validador.emailInvalido(email, "Erro no cadastrar local de atendimento");
-		validador.localInvalido(local, "Erro no cadastrar local de atendimento: local");
+		Validador.emailInvalido(email, "Erro no cadastrar local de atendimento");
+		Validador.localInvalido(local, "Erro no cadastrar local de atendimento: local");
 
 		if (!dados.getTutores().containsKey(email)) {
-			validador.tutorNaoCadastrado("Erro no cadastrar local de atendimento");
+			Validador.tutorNaoCadastrado("Erro no cadastrar local de atendimento");
 		}
 
 		this.dados.getTutores().get(email).cadastrarLocalDeAtendimento(local);
@@ -172,9 +168,9 @@ public class TutorController {
 	 *         atendimento de um tutor.
 	 */
 	public boolean consultaHorario(String email, String horario, String dia) {
-		validador.emailInvalido(email, "Erro na consulta de horario");
-		validador.diaInvalido(dia, "Erro na consulta de horario");
-		validador.horarioInvalido(horario, "Erro na consulta de horario");
+		Validador.emailInvalido(email, "Erro na consulta de horario");
+		Validador.diaInvalido(dia, "Erro na consulta de horario");
+		Validador.horarioInvalido(horario, "Erro na consulta de horario");
 
 		if (!dados.getTutores().containsKey(email)) {
 			return false;
@@ -195,8 +191,8 @@ public class TutorController {
 	 *         tutor.
 	 */
 	public boolean consultaLocal(String email, String local) {
-		validador.emailInvalido(email, "Erro na consulta de local");
-		validador.localInvalido(local, "Erro na consulta de local");
+		Validador.emailInvalido(email, "Erro na consulta de local");
+		Validador.localInvalido(local, "Erro na consulta de local");
 
 		if (!dados.getTutores().containsKey(email)) {
 			return false;
@@ -213,10 +209,10 @@ public class TutorController {
 	}
 
 	public int totalDinheiroTutor(String emailTutor) {
-		validador.atributoInvalido(emailTutor, "Erro na consulta de total de dinheiro do tutor: emailTutor");
+		Validador.atributoInvalido(emailTutor, "Erro na consulta de total de dinheiro do tutor: emailTutor");
 
 		if (!dados.getTutores().containsKey(emailTutor)) {
-			validador.tutorNaoEncontrado("Erro na consulta de total de dinheiro do tutor");
+			Validador.tutorNaoEncontrado("Erro na consulta de total de dinheiro do tutor");
 		}
 		return this.dados.getTutores().get(emailTutor).getDinheiro();
 	}
