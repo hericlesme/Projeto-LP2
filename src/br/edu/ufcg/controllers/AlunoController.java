@@ -94,6 +94,7 @@ public class AlunoController {
 		} catch (Exception e) {
 			throw new IllegalArgumentException(e);
 		}
+
 		switch (atrib) {
 		case NOME:
 			this.comparator = new OrdenacaoNome();

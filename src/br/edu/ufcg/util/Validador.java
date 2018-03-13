@@ -309,11 +309,11 @@ public class Validador {
 	public void atributoInvalido(String atributo, String mensagem) {
 		if (atributo == null) {
 			throw new NullPointerException(
-			        mensagem + ": atributo nao pode ser nulo");
+			        mensagem +  " nao pode ser nulo");
 		}
 		if (atributo.trim().isEmpty()) {
 			throw new IllegalArgumentException(
-			        mensagem + ": atributo nao pode ser vazio ou nulo");
+			        mensagem + " nao pode ser vazio ou nulo");
 		}
 	}
 

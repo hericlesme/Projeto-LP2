@@ -32,35 +32,39 @@ public class AjudaController {
 
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
 		validador.ajudaOnlineInvalida(matrAluno, disciplina);
+
 		String matrTutor = escolherTutorOnline(disciplina);
 		return this.dados.adicionaAjuda(new AjudaOnline(matrAluno, matrTutor, disciplina));
 	}
 
 	public String pegarTutor(int idAjuda) {
-		validador.validaInteiro(idAjuda, "Erro ao tentar recuperar tutor : id nao pode menor que zero ");
-		validador.idInvalido(idAjuda, dados.getAjudas().size(),
-				"Erro ao tentar recuperar tutor : id nao encontrado ");
-		return this.dados.getAjudas().get(idAjuda - 1).pegarTutor();
+		String mensagemPadrao = "Erro ao tentar recuperar tutor ";
 
+		validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
+		validador.idInvalido(idAjuda, this.dados.getAjudas().size(), mensagemPadrao + ": id nao encontrado ");
+
+		return this.dados.getAjudas().get(idAjuda - 1).pegarTutor();
 	}
 
 	public String getInfoAjuda(int idAjuda, String atributo) {
-		validador.validaInteiro(idAjuda,
-				"Erro ao tentar recuperar info da ajuda : id nao pode menor que zero ");
-		validador.idInvalido(idAjuda, dados.getAjudas().size(),
-				"Erro ao tentar recuperar info da ajuda : id nao encontrado ");
-		validador.parametroInvalido(atributo,
-				"Erro ao tentar recuperar info da ajuda : atributo nao pode ser vazio ou em branco");
-		return this.dados.getAjudas().get(idAjuda - 1).getInfo(atributo);
+		String mensagemPadrao = "Erro ao tentar recuperar info da ajuda ";
 
+		validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
+		validador.idInvalido(idAjuda, this.dados.getAjudas().size(), mensagemPadrao + ": id nao encontrado ");
+		validador.parametroInvalido(atributo, mensagemPadrao + ": atributo nao pode ser vazio ou em branco");
+
+		return this.dados.getAjudas().get(idAjuda - 1).getInfo(atributo);
 	}
 
 	public String avaliarTutor(int idAjuda, int nota) {
-		validador.notaInvalida(nota, "Erro na avaliacao de tutor");
-		validador.validaInteiro(idAjuda, "Erro na avaliacao de tutor: id nao pode menor que zero ");
-		validador.idInvalido(idAjuda, dados.getAjudas().size(),
-				"Erro na avaliacao de tutor: id nao encontrado ");
+		String mensagemPadrao = "Erro na avaliacao de tutor";
+
+		validador.notaInvalida(nota, mensagemPadrao);
+		validador.validaInteiro(idAjuda, mensagemPadrao + ": id nao pode menor que zero ");
+		validador.idInvalido(idAjuda, this.dados.getAjudas().size(), mensagemPadrao + ": id nao encontrado ");
+
 		String matricula = this.dados.getAjudas().get(idAjuda - 1).getInfo("matr_tutor");
+
 		return this.dados.getTutores().get(this.dados.getAlunos().get(matricula).getEmail()).avaliarTutor(nota);
 
 	}

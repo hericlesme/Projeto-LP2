@@ -7,6 +7,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import com.sun.xml.internal.ws.message.EmptyMessageImpl;
+
 import br.edu.ufcg.entities.Aluno;
 import br.edu.ufcg.entities.OrdenacaoEmail;
 import br.edu.ufcg.entities.OrdenacaoMatricula;
@@ -210,8 +212,13 @@ public class TutorController {
 		return this.dados.getTutores().get(this.dados.getAlunos().get(matriculaTutor).getEmail()).pegarNivel();
 	}
 
-	public int totalDinheiroTutor(String emaiTutor) {
-		return this.dados.getTutores().get(emaiTutor).getDinheiro();
+	public int totalDinheiroTutor(String emailTutor) {
+		validador.atributoInvalido(emailTutor, "Erro na consulta de total de dinheiro do tutor: emailTutor");
+
+		if (!dados.getTutores().containsKey(emailTutor)) {
+			validador.tutorNaoEncontrado("Erro na consulta de total de dinheiro do tutor");
+		}
+		return this.dados.getTutores().get(emailTutor).getDinheiro();
 	}
 
 }
