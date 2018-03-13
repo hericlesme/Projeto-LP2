@@ -132,7 +132,7 @@ public class Dados {
 	}
 
 	/**
-	 * Tenta salvar em arquivo em um arquivo os atributos da classe.
+	 * Tenta salvar em arquivo o objeto da class Dados.
 	 */
 	public void salvar() {
 		this.salvarAlunos();
@@ -212,10 +212,7 @@ public class Dados {
 		this.carregarCaixa();
 	}
 
-	/**
-	 * Limpa os atributos da classe, isto é deixa-lhes composto apenas de seu
-	 * elemento neutro.
-	 */
+
 	public void limpar() {
 		this.alunos = new HashMap<String, Aluno>();
 		this.tutores = new HashMap<String, Tutor>();

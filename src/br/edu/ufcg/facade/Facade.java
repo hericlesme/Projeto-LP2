@@ -48,69 +48,69 @@ public class Facade {
 	}
 
 	/**
-	 * Chama o método cadastrarAluno de QmaSistema, cadastrando um aluno no sistema.
+	 * Cadastra um aluno a partir do nome,matricula,curso,email e telefone,sendo o
+	 * último opcional.
 	 * 
 	 * @param nome
-	 *                nome do aluno.
+	 *                String que representa o nome do aluno
 	 * @param matricula
-	 *                matricula do aluno.
+	 *                String que representa a matricula do aluno
 	 * @param codigoCurso
-	 *                codigo do curso.
+	 *                Inteiro que representa o codigo do curso do aluno
 	 * @param telefone
-	 *                telefone do aluno.
+	 *                String que representa o telefone do aluno
 	 * @param email
-	 *                email do aluno.
+	 *                String que representa o email do aluno
 	 */
 	public void cadastrarAluno(String nome, String matricula, int codigoCurso, String telefone, String email) {
 		alunoC.cadastrarAluno(nome, matricula, codigoCurso, telefone, email);
 	}
 
 	/**
-	 * Chama o método recuperaAluno de QmaSistema, mostrando a representação do
-	 * aluno a partir de sua matrícula.
+	 * Recupera um aluno a partir da sua matricula.
 	 * 
 	 * @param matricula
-	 *                matrícula do aluno a ser mostrado.
-	 * @return uma String.
+	 *                String que representa a matricula do aluno.
+	 * 
+	 * @return O toString do aluno.
 	 */
 	public String recuperaAluno(String matricula) {
 		return alunoC.recuperaAluno(matricula);
 	}
 
 	/**
-	 * Chama o método listarAlunos de QmaSistema, mostrando todos os alunos
-	 * cadastrados.
+	 * Faz a listagem de todos os alunos cadastrados no sistema.
 	 * 
-	 * @return uma String.
+	 * @return O toString de todos os alunos
 	 */
 	public String listarAlunos() {
 		return alunoC.listarAlunos();
 	}
 
 	/**
-	 * Chama o método getInfoAluno de QmaSistema, mostrando o atributo passado como
-	 * parâmetro do aluno.
+	 * Recupera um dos atributos de um aluno a partir da sua matricula.
 	 * 
 	 * @param matricula
-	 *                a matrícula do aluno.
+	 *                String da matricula do aluno.
 	 * @param atributo
-	 *                informação a ser recuperada.
-	 * @return uma String.
+	 *                String nome do atributo.
+	 * 
+	 * @return uma String que representa o atributo em questão.
 	 */
 	public String getInfoAluno(String matricula, String atributo) {
 		return alunoC.getInfoAluno(matricula, atributo);
 	}
 
 	/**
-	 * Chama o método tornarTutor de QmaSistema, tornando um Aluno cadastrado um
-	 * Tutor.
+	 * Torna um aluno em um tutor.
 	 * 
 	 * @param matricula
-	 *                matrícula do aluno.
+	 *                String da matricula do aluno.
 	 * @param disciplina
-	 *                disciplina que pode ensinar.
+	 *                String da disciplina em que o tutor pode ajudar.
 	 * @param proficiencia
-	 *                proficiência na disciplina.
+	 *                int que representa a proeficiência do tutor na disciplina,
+	 *                varia de 1 a 5.
 	 */
 	public void tornarTutor(String matricula, String disciplina, int proficiencia) {
 		tutorC.tornarTutor(matricula, disciplina, proficiencia);
@@ -196,60 +196,172 @@ public class Facade {
 		return tutorC.consultaLocal(email, local);
 	}
 
+	/**
+	 * Cria uma AjudaPresencial adicionando-a em uma coleção de Ajudas.
+	 * 
+	 * @param matrAluno:
+	 *                indica o nome do aluno.
+	 * @param disciplina:
+	 *                indica a disciplina em que deseja-se obter ajuda.
+	 * @param horario:
+	 *                indica o horario desejado para o atendimento da
+	 *                ajudaPresencial.
+	 * @param dia:
+	 *                indica o dia desejado para o atendimento da ajudaPresencial.
+	 * @param localInteresse:
+	 *                indica a localidade desejada para o atendimento da
+	 *                ajudaPresencial.
+	 * @return: um inteiro indicando o indentificador da ajudaPresencial
+	 */
 	public int pedirAjudaPresencial(String matrAluno, String disciplina, String horario, String dia,
 			String localInteresse) {
 		return this.ajuda.pedirAjudaPresencial(matrAluno, disciplina, horario, dia, localInteresse);
 	}
 
+	/**
+	 * Cria uma AjudaOnline adicionando-a em uma coleção de Ajudas.
+	 * 
+	 * @param matrAluno:
+	 *                Indica o nome do aluno.
+	 * @param disciplina:
+	 *                Indica a disciplina em que deseja-se obter ajuda.
+	 * @return: um inteiro indicando o indentificador da ajudaOnline.
+	 */
 	public int pedirAjudaOnline(String matrAluno, String disciplina) {
 		return this.ajuda.pedirAjudaOnline(matrAluno, disciplina);
 	}
 
+	/**
+	 * Captura informações sobre o Tutor que prestou a Ajuda.
+	 * 
+	 * @param idAjuda:
+	 *                o seu indentificador na coleção de Ajudas.
+	 * @return: O retorno polimorfico é definido nas classe filhas de Ajuda, podendo
+	 *          então variar seu comportamento, contém informações sobre o Tutor que
+	 *          prestou a Ajuda.
+	 * 
+	 */
 	public String pegarTutor(int idAjuda) {
 		return this.ajuda.pegarTutor(idAjuda);
 	}
 
+	/**
+	 * Apresenta uma informação sobre a Ajuda.
+	 * 
+	 * @param idAjuda:
+	 *                o indentificador da Ajuda em uma coleção de Ajudas
+	 * @param atributo:
+	 *                um apecto da Ajuda que deseja-se obter-se uma informação.
+	 * @return: uma String contendo uma informação expecifica sobre a ajuda que
+	 *          deseja-se obter essa informação.
+	 */
 	public String getInfoAjuda(int idAjuda, String atributo) {
 		return this.ajuda.getInfoAjuda(idAjuda, atributo);
 	}
 
+	/**
+	 * Avalia um tutor apartir de uma Ajuda prestada.
+	 * 
+	 * @param idAjuda:
+	 *                o indentificador da Ajuda em uma coleção de Ajudas
+	 * @param nota:
+	 *                um inteiro entre 0 - 5.
+	 * @return: uma classificação para o Tutor, pode variar entre "Aprendiz",
+	 *          "Tutor" e "Top".
+	 */
 	public String avaliarTutor(int idAjuda, int nota) {
 		return this.ajuda.avaliarTutor(idAjuda, nota);
 	}
 
+	/**
+	 * Pega a nota de um tutor, retornando uma String formatada para duas casas
+	 * decimais.
+	 * 
+	 * @param matriculaTutor
+	 *                matrícula do tutor para recuperar a nota.
+	 * @return uma String.
+	 */
 	public String pegarNota(String matriculaTutor) {
 		return this.tutorC.pegarNota(matriculaTutor);
 	}
 
+	/**
+	 * Pega o nível de um tutor a partir de sua matrícula.
+	 * 
+	 * @param matriculaTutor
+	 *                matrícula do tutor para recuperar o nível.
+	 * @return
+	 */
 	public String pegarNivel(String matriculaTutor) {
 		return this.tutorC.pegarNivel(matriculaTutor);
 	}
 
+	/**
+	 * Método para doação de dinheiro a um tutor. Quando alguém decide doar dinheiro
+	 * para o tutor, uma parte da doação vai para o caixa do sistema, enquanto a
+	 * outra vai para o tutor. A parte do tutor é baseada no seu nivel.
+	 * 
+	 * @param matriculaTutor
+	 *                matricula do tutor para doação.
+	 * @param totalCentavos
+	 *                total de dinheiro em centavos para doação.
+	 */
 	public void doar(String matriculaTutor, int totalCentavos) {
 		this.caixa.doar(matriculaTutor, totalCentavos);
 	}
 
+	/**
+	 * Pega o total de dinheiro que um tutor recebeu a partir das doações.
+	 * 
+	 * @param emailTutor
+	 *                email do tutor para recuperar a quantidade de dinheiro.
+	 * @return um int.
+	 */
 	public int totalDinheiroTutor(String emailTutor) {
 		return this.tutorC.totalDinheiroTutor(emailTutor);
 	}
 
+	/**
+	 * Retorna um inteiro que representa o total de dinheiro que o sistema possui.
+	 * 
+	 * @return um inteiro indicando o total de dinheiro..
+	 */
 	public int totalDinheiroSistema() {
 		return this.caixa.totalDinheiroSistema();
 	}
-
+	/**
+	 * Configura a ordem da listagem de alunos passado o tipo da ordenação. A ordem
+	 * pode ser por nome, matricula ou email. Segue a ordenação lexicográfica.
+	 * 
+	 * @param atributo
+	 *                tipo da ordenação.
+	 */
 	public void configurarOrdem(String atributo) {
 		this.alunoC.configurarOrdem(atributo);
 		this.tutorC.configurarOrdem(atributo);
 	}
 
+	/**
+	 * Tenta salvar em arquivo o objeto da class Dados.
+	 */
 	public void salvar() {
 		this.dados.salvar();
 	}
-
+	/**
+	 * Tentar carregar os atributos da classe Dados.
+	 * 
+	 * @throws ClassNotFoundException:
+	 *                 Caso a classe do arquivo não exista.
+	 * @throws IOException:
+	 *                 caso o objeto não exista ou o carregamento seja interrompido.
+	 */
 	public void carregar() throws ClassNotFoundException, IOException {
 		this.dados.carregar();
 	}
-
+	/**
+	 * Limpa os atributos da classe, isto é deixa-lhes composto apenas de seu
+	 * elemento neutro.
+	 */
 	public void limpar() {
 		this.dados.limpar();
 	}
