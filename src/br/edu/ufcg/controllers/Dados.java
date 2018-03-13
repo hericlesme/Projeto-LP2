@@ -6,6 +6,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,9 +35,7 @@ public class Dados {
 		this.tutoresF = new File("tutores.txt");
 		this.ajudasF = new File("ajudas.txt");
 		this.caixaF = new File("caixa.txt");
-		this.alunos = new HashMap<String, Aluno>();
-		this.tutores = new HashMap<String, Tutor>();
-		
+		this.limpar();
 	}
 
 	public Map<String, Aluno> getAlunos() {
@@ -123,24 +122,51 @@ public class Dados {
 		}
 	}
 	
-	private Object carregarObjeto(File file) throws IOException, ClassNotFoundException {
-		try {
-			this.fis = new FileInputStream(file);
-			this.ois = new ObjectInputStream(fis);
-		} catch (IOException ioe) {
-			System.err.println("Erro na leitura do objeto");
-		}
-		return ois.readObject();
+	public void carregar() throws ClassNotFoundException, IOException {
+		this.carregarAlunos();
+		this.carregarTutores();
+		this.carregarAjudas();
+		this.carregarCaixa();
 	}
 	
-	private void carregarAlunos() {
-		try {
-			this.alunos = (HashMap<String, Aluno>) (this.carregarObjeto(alunosF));
-		} catch (ClassNotFoundException | IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+	public void limpar() {
+		this.alunos = new HashMap<String, Aluno>();
+		this.tutores = new HashMap<String, Tutor>();
+		this.ajudas = new ArrayList<Ajuda>();
+		this.caixa = 0;
 	}
+	
+	private Object carregarObjeto(File file) throws ClassNotFoundException, IOException {
+		Object object;
+		try{
+			this.fis = new FileInputStream(file);
+			this.ois = new ObjectInputStream(fis);
+			object = ois.readObject();
+		} catch (IOException ioe) {
+			System.err.println("Erro na leitura do arquivo, " + file);
+			throw new IOException();
+			
+		}
+		return object;
+		
+	}
+	
+	private void carregarAlunos() throws ClassNotFoundException, IOException {
+		this.alunos = (HashMap<String, Aluno>) (this.carregarObjeto(alunosF));
+	}
+	
+	private void carregarTutores() throws ClassNotFoundException, IOException {
+		this.tutores = (HashMap<String, Tutor>) (this.carregarObjeto(tutoresF));
+	}
+	
+	private void carregarAjudas() throws ClassNotFoundException, IOException {
+		this.ajudas = (ArrayList<Ajuda>) (this.carregarObjeto(ajudasF));
+	}
+	
+	private void carregarCaixa() throws ClassNotFoundException, IOException {
+		this.caixa = (int) (this.carregarObjeto(caixaF));
+	}
+	
 	
 	
 }
