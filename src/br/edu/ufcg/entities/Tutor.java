@@ -10,11 +10,11 @@ import java.util.Map;
 import br.edu.ufcg.util.Validador;
 
 /**
- * Classe que implementa Funcao. Define os métodos para a função Tutor. Um tutor
- * é um aluno que pode dar aulas sobre alguma disciplina especifica. A classe
- * tem como atributos um mapa que liga o nome da disciplina ao objeto
- * disciplina, a nota do tutor, os dias e locais disponíveis para atendimento e
- * o dinheiro recebido.
+ * Classe que representa um Tutor no sistema. Tem como atributos o dinheiro
+ * recebido por doações, sua nota como tutor, um Map com as disciplinas que ele
+ * pode lecionar, uma List com os dias e horários disponíveis para atendimento,
+ * assim como uma List para os locais disponíveis. Também armazena sua matricula
+ * como Aluno.
  * 
  * Projeto de Laboratório - Programação II
  * 
@@ -30,13 +30,15 @@ public class Tutor implements Comparable<Tutor>, Serializable {
 	private String matricula;
 
 	/**
-	 * Inicializa um objeto da classe Tutor.
+	 * Inicializa um objeto da classe Tutor. Sua nota inicia como 4.
 	 * 
 	 * @param disciplina
 	 *                a disciplina que o Tutor vai ensinar.
 	 * @param proficiencia
 	 *                um numero entre um e cinco indicando o quão habil na
 	 *                disciplina o Tutor se considera.
+	 * @param matricula
+	 *                a matricula como Aluno.
 	 */
 	public Tutor(String disciplina, int proficiencia, String matricula) {
 		Validador.parametroInvalido(matricula, "Matricula nao pode ser nula ou vazia");
@@ -124,11 +126,25 @@ public class Tutor implements Comparable<Tutor>, Serializable {
 		return this.locaisDisponiveis.contains(local);
 	}
 
+	/**
+	 * Avalia o Tutor dando uma nota. O cálculo é feito com a nota atual e com a
+	 * nota recebida. Altera a nota do Tutor.
+	 * 
+	 * @param nota
+	 *                nota recebida.
+	 * @return uma String com o nível do tutor após a nota.
+	 */
 	public String avaliarTutor(int nota) {
 		this.notaTutor = ((this.notaTutor * 5) + nota) / 6;
 		return this.determinaNivel();
 	}
 
+	/**
+	 * Determina o nível do Tutor. Caso sua nota seja acima de 4.5, é "TOP", acima
+	 * de 3 e abaixo ou igual a 4.5 é "Tutor", abaixo ou igual a 3 é "Aprendiz".
+	 * 
+	 * @return uma String.
+	 */
 	private String determinaNivel() {
 		String nivel = "";
 		if (this.notaTutor > 4.5) {
@@ -142,27 +158,61 @@ public class Tutor implements Comparable<Tutor>, Serializable {
 
 	}
 
+	/**
+	 * Pega a nota do Tutor formatada para duas casas decimais.
+	 * 
+	 * @return uma String.
+	 */
 	public String pegarNota() {
 		DecimalFormat df = new DecimalFormat("#0.00");
 		return df.format(this.notaTutor);
 	}
 
+	/**
+	 * Pega o nível do Tutor.
+	 * 
+	 * @return uma String.
+	 */
 	public String pegarNivel() {
 		return this.determinaNivel();
 	}
 
+	/**
+	 * adiciona dinheiro ao Tutor. É adicionado a quantidade passada.
+	 * 
+	 * @param dinheiroDoacoes
+	 *                dinheiro em moedas a ser dado para o tutor.
+	 */
 	public void addDinheiroDoacoes(int dinheiroDoacoes) {
 		this.dinheiroDoacoes += dinheiroDoacoes;
 	}
 
+	/**
+	 * Retorna a matricula como Aluno do Tutor.
+	 * 
+	 * @return uma String.
+	 */
 	public String getMatricula() {
 		return this.matricula;
 	}
 
+	/**
+	 * Retorna o dinheiro do Tutor.
+	 * 
+	 * @return um int.
+	 */
 	public int getDinheiro() {
 		return this.dinheiroDoacoes;
 	}
 
+	/**
+	 * Determina a taxa do dinheiro da doação que o tutor receberá. Dependendo do
+	 * seu nível, a taxa aumenta ou diminui. Para tutores "TOP", é 90% (+ 1% por
+	 * décimo acima de 4.5). Para tutores "Tutor", é 80%. Para tutores "Aprendiz" é
+	 * 40% (- 1% por décimo abaixo de 3.0).
+	 * 
+	 * @return um int que seria a porcentagem de quanto o tutor deve receber.
+	 */
 	public int taxaTutor() {
 		if (this.determinaNivel().equals("TOP")) {
 			return (int) (90 + (this.notaTutor * 10) - 45);
@@ -174,6 +224,9 @@ public class Tutor implements Comparable<Tutor>, Serializable {
 		}
 	}
 
+	/**
+	 * Compara o próprio Tutor com outro Tutor a partir da sua nota.
+	 */
 	@Override
 	public int compareTo(Tutor o) {
 		return (int) this.notaTutor - (int) o.notaTutor;

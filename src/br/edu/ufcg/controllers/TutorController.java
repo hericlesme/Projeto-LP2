@@ -16,17 +16,32 @@ import br.edu.ufcg.enums.AtributoOrdem;
 import br.edu.ufcg.util.Dados;
 import br.edu.ufcg.util.Validador;
 
+/**
+ * Classe que representa um controller de Tutores. Possui como atributos um
+ * objeeto do tipo Dados que armazena um Map de String-Tutor e um Comparator
+ * para alterar a forma da listagem de tutores.
+ * 
+ * Projeto Laboratório de Programação II
+ *
+ */
 public class TutorController {
 	private Dados dados;
 	private Comparator<Aluno> comparator;
 
+	/**
+	 * Constrói um objeto TutorController a partir de dados que armazena um Map que
+	 * contém tutores. A forma de ordenação começa por nome.
+	 * 
+	 * @param dados
+	 *                objeto que possui Map de tutores.
+	 */
 	public TutorController(Dados dados) {
 		this.dados = dados;
 		this.comparator = new OrdenacaoNome();
 	}
 
 	/**
-	 * Torna um aluno em um tutor.
+	 * Cadastra um Aluno como Tutor, adicionando ao mapa de Tutores.
 	 * 
 	 * @param matricula
 	 *                String da matricula do aluno.
@@ -74,15 +89,22 @@ public class TutorController {
 	}
 
 	/**
-	 * Faz a listagem dos tutores.
+	 * Recebe um objeto Stream de Aluno, e realiza o mapeamento encadeado do
+	 * toString do aluno, adicionando a String ", " a cada iteração.
 	 * 
-	 * @return o toSTring dos tutores.
+	 * @param alunos
+	 *                Stream de alunos.
+	 * @return uma String contendo o toString encadeado dos alunos.
 	 */
-
 	private String mapToString(Stream<Aluno> alunos) {
 		return alunos.map(Aluno::toString).collect(Collectors.joining(", "));
 	}
 
+	/**
+	 * Lista os tutores a partir da toString de Aluno dos mesmos.
+	 * 
+	 * @return uma String.
+	 */
 	public String listarTutores() {
 		List<Aluno> alunosOrdenados = new ArrayList<Aluno>(dados.getAlunos().values());
 		Collections.sort(alunosOrdenados, comparator);
@@ -90,6 +112,13 @@ public class TutorController {
 				.filter(aluno -> dados.getTutores().containsKey(aluno.getEmail())));
 	}
 
+	/**
+	 * Configura a ordem da listagem de tutores passado o tipo da ordenação. A ordem
+	 * pode ser por nome, matricula ou email. Segue a ordenação lexicográfica.
+	 * 
+	 * @param atributo
+	 *                tipo da ordenação.
+	 */
 	public void configurarOrdem(String atributo) {
 		AtributoOrdem atrib;
 		try {
@@ -202,14 +231,36 @@ public class TutorController {
 		return this.dados.getTutores().get(email).consultaLocal(local);
 	}
 
+	/**
+	 * Pega a nota de um tutor, retornando uma String formatada para duas casas
+	 * decimais.
+	 * 
+	 * @param matriculaTutor
+	 *                matrícula do tutor para recuperar a nota.
+	 * @return uma String.
+	 */
 	public String pegarNota(String matriculaTutor) {
 		return this.dados.getTutores().get(this.dados.getAlunos().get(matriculaTutor).getEmail()).pegarNota();
 	}
 
+	/**
+	 * Pega o nível de um tutor a partir de sua matrícula.
+	 * 
+	 * @param matriculaTutor
+	 *                matrícula do tutor para recuperar o nível.
+	 * @return
+	 */
 	public String pegarNivel(String matriculaTutor) {
 		return this.dados.getTutores().get(this.dados.getAlunos().get(matriculaTutor).getEmail()).pegarNivel();
 	}
 
+	/**
+	 * Pega o total de dinheiro que um tutor recebeu a partir das doações.
+	 * 
+	 * @param emailTutor
+	 *                email do tutor para recuperar a quantidade de dinheiro.
+	 * @return um int.
+	 */
 	public int totalDinheiroTutor(String emailTutor) {
 		Validador.atributoInvalido(emailTutor, "Erro na consulta de total de dinheiro do tutor: emailTutor");
 

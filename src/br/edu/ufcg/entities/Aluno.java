@@ -7,9 +7,8 @@ import br.edu.ufcg.util.Validador;
 
 /**
  * Representação de um aluno no sistema. Todo aluno possui uma nota de
- * avaliação, uma matrícula que o identifica, o codigo do seu curso, email, nome
- * e opcionalmente um telefone. Um aluno pode ter como função ser tutor ou
- * tutelado.
+ * avaliação, uma matrícula que o identifica, o codigo do seu curso, email,
+ * nome, opcionalmente um telefone e um id.
  * 
  * Projeto de Laboratório - Programação II.
  *
@@ -27,8 +26,7 @@ public class Aluno implements Serializable {
 
 	/**
 	 * Constrói um aluno inicializando seus atributos. A nota de avaliação por
-	 * padrão começa em 5, assim como sua função; tutelado. Uma String vazia é dada
-	 * quando o telefone não é passado.
+	 * padrão começa em 5. Uma String vazia é dada quando o telefone não é passado.
 	 * 
 	 * @param nome
 	 *                nome do aluno.
@@ -164,10 +162,20 @@ public class Aluno implements Serializable {
 		return true;
 	}
 
+	/**
+	 * Retorna o id do aluno.
+	 * 
+	 * @return um int.
+	 */
 	public int getId() {
 		return this.id;
 	}
 
+	/**
+	 * Retorna a matricula do aluno.
+	 * 
+	 * @return uma String.
+	 */
 	public String getMatricula() {
 		return this.matricula;
 	}

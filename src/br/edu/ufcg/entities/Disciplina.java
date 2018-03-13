@@ -5,8 +5,8 @@ import java.io.Serializable;
 import br.edu.ufcg.util.Validador;
 
 /**
- * Classe que representa uma disciplina, armazenada por um Aluno Tutor. Uma
- * disciplina armazena seu nome e a proficiencia que o tutor tem nela.
+ * Classe que representa uma disciplina, armazenada por um Tutor. Uma disciplina
+ * armazena seu nome e a proficiencia que o tutor tem nela.
  * 
  * Projeto de Laboratório - Programação II.
  *
