@@ -16,7 +16,10 @@ import br.edu.ufcg.util.Dados;
 import br.edu.ufcg.util.Validador;
 
 /**
- * Classe que representa o sistema Quem Me Ajuda.
+ * Classe que representa um controller de objetos do tipo Aluno. O controller
+ * tem como atributo um objeto do tipo Dados, que armazena o Map de
+ * String-Aluno, o id para se ter conhecimento da ordem de cadastro, e um
+ * Comparator para termos uma forma de ordenação na listagem de alunos.
  * 
  * Projeto Laboratório de Programação II
  */
@@ -26,6 +29,13 @@ public class AlunoController {
 	private int id;
 	private Comparator<Aluno> comparator;
 
+	/**
+	 * Constrói o controller com um objeto do tipo Dados, o id é inicializado como
+	 * 1, a forma de ordenção para a listagem de alunos é padrão por nome.
+	 * 
+	 * @param dados
+	 *                objeto que armazena o Map com os Alunos do sistema.
+	 */
 	public AlunoController(Dados dados) {
 		this.dados = dados;
 		this.id = 1;
@@ -34,7 +44,7 @@ public class AlunoController {
 
 	/**
 	 * Cadastra um aluno a partir do nome,matricula,curso,email e telefone,sendo o
-	 * último opcional.
+	 * último opcional. Adiciona ao Map armazenado por dados.
 	 * 
 	 * @param nome
 	 *                String que representa o nome do aluno
@@ -85,6 +95,13 @@ public class AlunoController {
 		return mapToString(alunosOrdenados.stream());
 	}
 
+	/**
+	 * Configura a ordem da listagem de alunos passado o tipo da ordenação. A ordem
+	 * pode ser por nome, matricula ou email. Segue a ordenação lexicográfica.
+	 * 
+	 * @param atributo
+	 *                tipo da ordenação.
+	 */
 	public void configurarOrdem(String atributo) {
 		AtributoOrdem atrib;
 		try {
