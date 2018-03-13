@@ -17,7 +17,6 @@ import br.edu.ufcg.entities.AjudaPresencial;
  * 
  * Projeto Laboratório de Programação II
 *
- *@author Rafael da Silva Pereira.
  */
 public class AjudaPresencialTest {
 

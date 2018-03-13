@@ -34,6 +34,14 @@ public class Validador {
 		telefoneNulo(telefone, mensagem);
 	}
 
+	/**
+	 * Verica se uma ajudaOnline é invalida.
+	 * 
+	 * @param matrAluno:
+	 *                a matricula que deseja-se verificar.
+	 * @param disciplina:
+	 *                a disciplina que deseja-se verificar.
+	 */
 	public static void ajudaOnlineInvalida(String matrAluno, String disciplina) {
 		String mensagem = "Erro no pedido de ajuda online";
 		matriculaInvalida(matrAluno, mensagem);
@@ -72,18 +80,17 @@ public class Validador {
 	}
 
 	/**
-	 * Método privado que realiza a verificação da validade do telefone, e
-	 * lança uma exceção, caso seja inválido.
+	 * Método privado que realiza a verificação da validade do telefone, e lança uma
+	 * exceção, caso seja inválido.
 	 * 
 	 * @param telefone
-	 *            o telefone do aluno.
+	 *                o telefone do aluno.
 	 * @param mensagem
-	 *            a mensagem a ser exibida na exceção.
+	 *                a mensagem a ser exibida na exceção.
 	 */
 	public static void telefoneNulo(String telefone, String mensagem) {
 		if (telefone == null) {
-			throw new NullPointerException(
-			        mensagem + ": Telefone nao pode ser nulo");
+			throw new NullPointerException(mensagem + ": Telefone nao pode ser nulo");
 		}
 	}
 
@@ -126,6 +133,14 @@ public class Validador {
 		}
 	}
 
+	/**
+	 * Verifica se uma nota é maior ou menor que os limites definidos para ela.
+	 * 
+	 * @param nota:
+	 *                a nota que deseja-se verificar
+	 * @param mensagem:
+	 *                a mensagem para ocasional erro.
+	 */
 	public static void notaInvalida(int nota, String mensagem) {
 		if (nota < 0) {
 			throw new IllegalArgumentException(mensagem + ": nota nao pode ser menor que 0");
@@ -291,8 +306,18 @@ public class Validador {
 		if (atributo.trim().isEmpty()) {
 			throw new IllegalArgumentException(mensagem + " nao pode ser vazio ou nulo");
 		}
+
 	}
 
+	/**
+	 * Verifica se um parametro e composto de String invalida, isto é vazia ou
+	 * composta de caracteres em branco.
+	 * 
+	 * @param parametro:
+	 *                o parametro a ser verificado
+	 * @param mensagem:
+	 *                a mensagem para ocasional erro.
+	 */
 	public static void parametroInvalido(String parametro, String mensagem) {
 		if (parametro == null) {
 			throw new NullPointerException(mensagem);
@@ -303,6 +328,16 @@ public class Validador {
 		}
 	}
 
+	/**
+	 * Verifica se o id (posição na lista) é maior o tamanho no array
+	 * 
+	 * @param id:
+	 *                o id de um objeto
+	 * @param size:
+	 *                o tamanho da lista
+	 * @param mensagem:
+	 *                a mensagem para ocasional erro.
+	 */
 	public static void idInvalido(int id, int size, String mensagem) {
 		validaInteiro(id, mensagem);
 		if (id > size) {

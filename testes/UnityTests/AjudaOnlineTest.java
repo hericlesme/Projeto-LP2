@@ -13,7 +13,6 @@ import br.edu.ufcg.entities.AjudaOnline;
  * 
  * Projeto Laboratório de Programação II
  *
- * @author Rafael da Silva Pereira.
  */
 public class AjudaOnlineTest {
 
