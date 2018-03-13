@@ -76,8 +76,7 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste mostra que a criação de um tutor altera o numero de tutores
-	 * existentes.
+	 * Teste mostra que a criação de um tutor altera o numero de tutores existentes.
 	 */
 	@Test
 	public void testTornarTutor() {
@@ -137,8 +136,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta cadatrar um tutor
-	 * com proeficiencia menor que zero.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta cadatrar um
+	 * tutor com proeficiencia menor que zero.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testTornarTutorProficienciaInvalida() {
@@ -148,8 +147,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta cadatrar um tutor
-	 * com proeficiencia maior que seis.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta cadatrar um
+	 * tutor com proeficiencia maior que seis.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testTornarTutorProficienciaInvalida2() {
@@ -159,8 +158,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida Teste verifica se o metodo
-	 * recuperaTutor, retorna a representação do aluno correto.
+	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida Teste verifica se o
+	 * metodo recuperaTutor, retorna a representação do aluno correto.
 	 */
 	@Test
 	public void testRecuperaTutor() {
@@ -170,8 +169,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta recuperarTutor
-	 * passando um null.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * recuperarTutor passando um null.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testRecuperaTutorNulo() {
@@ -191,8 +190,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta recuperarTutor
-	 * passando uma string vazia.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * recuperarTutor passando uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testRecuperaTutorVazio() {
@@ -221,8 +220,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Cadastra um aluno, e então torna-lhe tutor. em seguida Teste verifica o metodo
-	 * cadastrarHorario.
+	 * Cadastra um aluno, e então torna-lhe tutor. em seguida Teste verifica o
+	 * metodo cadastrarHorario.
 	 */
 	@Test
 	public void testCadastrarHorario() {
@@ -243,8 +242,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta cadastrarHorario
-	 * passando o parametro email como uma string vazia.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * cadastrarHorario passando o parametro email como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioEmailVazio() {
@@ -254,8 +253,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta cadastrarHorario
-	 * passando o parametro email como um null.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * cadastrarHorario passando o parametro email como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastrarHorarioEmailNulo() {
@@ -265,8 +264,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta cadastrarHorario e
-	 * é passado no parametro hora uma string vazia.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * cadastrarHorario e é passado no parametro hora uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioHoraVazia() {
@@ -276,8 +275,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta cadastrarHorario e
-	 * é passado no parametro hora um null.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * cadastrarHorario e é passado no parametro hora um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastrarHorarioHoraNula() {
@@ -287,8 +286,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta cadastrarHorario e
-	 * é passado no parametro Dia é uma string vazia.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * cadastrarHorario e é passado no parametro Dia é uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastrarHorarioDiaVazio() {
@@ -298,8 +297,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta cadastrarHorario e
-	 * é passado no parametro dia um null.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * cadastrarHorario e é passado no parametro dia um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastrarHorarioDiaNulo() {
@@ -309,8 +308,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida Teste verifica o metodo
-	 * cadastrarLocalDeAtendimento.
+	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida Teste verifica o
+	 * metodo cadastrarLocalDeAtendimento.
 	 */
 	@Test
 	public void testCadastrarLocalDeAtendimento() {
@@ -377,8 +376,8 @@ public class TutorControllerTest {
 
 	/**
 	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida cadastra um horario de
-	 * atendimento, então Teste verifica se o metodo "consultaHorario" retorna o valor
-	 * true em caso do horario estar cadastrado, e false em caso contrario.
+	 * atendimento, então Teste verifica se o metodo "consultaHorario" retorna o
+	 * valor true em caso do horario estar cadastrado, e false em caso contrario.
 	 */
 	@Test
 	public void testConsultaHorario() {
@@ -392,8 +391,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica se retorna false quando se tenta usar o metodo consultaHorario em um
-	 * aluno que não é tutor.
+	 * Teste verifica se retorna false quando se tenta usar o metodo consultaHorario
+	 * em um aluno que não é tutor.
 	 */
 
 	public void testConsultaHorarioTutelado() {
@@ -402,8 +401,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta consultarHorario e
-	 * se passa um parametro email igual a uma string vazia.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarHorario e se passa um parametro email igual a uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testConsultaHorarioEmailVazio() {
@@ -414,8 +413,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta consultarHorario e
-	 * se passa um parametro email igual a um null.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarHorario e se passa um parametro email igual a um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testConsultahorarioEmailnulo() {
@@ -426,8 +425,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta consultarHorario e
-	 * se passa um parametro horario igual a uma string vazia.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarHorario e se passa um parametro horario igual a uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testConsultaHorarioVazio() {
@@ -438,8 +437,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta consultarHorario e
-	 * se passa um parametro horario igual a um null.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarHorario e se passa um parametro horario igual a um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testConsultaHorarioNulo() {
@@ -458,8 +457,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta consultarHorario e
-	 * se passa um parametro dia igual a um null.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarHorario e se passa um parametro dia igual a um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testConsultaHorarioDiaNulo() {
@@ -471,8 +470,8 @@ public class TutorControllerTest {
 
 	/**
 	 * Cadastra um aluno, e então torna-lhe tutor. Em seguida cadastra um local de
-	 * atendimento, então Teste verifica se o metodo "consultaLocal" retorna o valor true
-	 * em caso do local estar cadastrado, e false em caso contrario.
+	 * atendimento, então Teste verifica se o metodo "consultaLocal" retorna o valor
+	 * true em caso do local estar cadastrado, e false em caso contrario.
 	 */
 	@Test
 	public void testConsultaLocal() {
@@ -484,8 +483,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica se retorna false quando se tenta usar o metodo consultaLocal em um
-	 * aluno que não é tutor.
+	 * Teste verifica se retorna false quando se tenta usar o metodo consultaLocal
+	 * em um aluno que não é tutor.
 	 */
 	public void testConsultaLocalTutelado() {
 		this.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
@@ -493,8 +492,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta consultarLocal
-	 * passando o parametro email como uma string vazia.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarLocal passando o parametro email como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testConsultaLocalEmailVazio() {
@@ -505,8 +504,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta consultarLocal
-	 * passando o parametro email como um null.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarLocal passando o parametro email como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testConsultaLocalEmailNulo() {
@@ -517,8 +516,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta consultarLocal
-	 * passando o parametro local como uma string vazia.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarLocal passando o parametro local como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testConsultaLocalVazio() {
@@ -529,8 +528,8 @@ public class TutorControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta consultarLocal
-	 * passando o parametro local como um null.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * consultarLocal passando o parametro local como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testConsultaLocalNulo() {
@@ -540,16 +539,38 @@ public class TutorControllerTest {
 		tutorC.consultaLocal("HAHA@OTAKU.COM", null);
 	}
 
+	/**
+	 * Testa o método pegarNota. A nota de um tutor padrão é 4. A formatação é de
+	 * duas casas decimais.
+	 */
 	@Test
 	public void testPegarNota() {
+		this.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		tutorC.tornarTutor("2121", "aah", 5);
+		assertEquals(tutorC.pegarNota("2121"), "4,00");
+
 	}
 
+	/**
+	 * Testa o método pegarNivel. Retorna "Tutor" para um tutor recém criado.
+	 */
 	@Test
 	public void testPegarNivel() {
+		this.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		tutorC.tornarTutor("2121", "aah", 5);
+		assertEquals(tutorC.pegarNivel("2121"), "Tutor");
+
 	}
 
+	/**
+	 * Testa o método totalDinheiroTutor que retorna a quantidade de dinheiro do
+	 * tutor. Começa com 0.
+	 */
 	@Test
 	public void testTotalDinheiroTutor() {
+		this.cadastrarAluno("fulanin", "2121", 2131, "", "HAHA@OTAKU.COM");
+		tutorC.tornarTutor("2121", "aah", 5);
+		assertEquals(tutorC.totalDinheiroTutor("HAHA@OTAKU.COM"), 0);
 	}
 
 }

@@ -142,50 +142,83 @@ public class AlunoTest {
 		assertFalse(aluno.hashCode() == outroAluno.hashCode());
 	}
 
+	/**
+	 * Testa o construtor de Aluno quando o nome é nulo. Espera-se uma exceção.
+	 */
 	@Test(expected = NullPointerException.class)
 	public void testAlunoNomeNulo() {
 		new Aluno(null, "123", 123, "", "adsa@dsa", 2);
 	}
 
+	/**
+	 * Testa o construtor de Aluno quando o nome é vazio. Espera-se uma exceção.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAlunoNomeVazio() {
 		new Aluno("", "123", 123, "", "adsa@dsa", 2);
 	}
 
+	/**
+	 * Testa o construtor de Aluno quando a matricula é nulo. Espera-se uma exceção.
+	 */
 	@Test(expected = NullPointerException.class)
 	public void testAlunoMatriculaNulo() {
 		new Aluno("Loki", null, 123, "", "adsa@dsa", 2);
 	}
 
+	/**
+	 * Testa o construtor de Aluno quando a matricula é vazia. Espera-se uma
+	 * exceção.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAlunoMatriculaVazia() {
 		new Aluno("Loki", "", 123, "", "adsa@dsa", 2);
 	}
 
+	/**
+	 * Testa o construtor de Aluno com um código de curso inválido. Espera-se uma
+	 * exceção.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAlunoCodigoCursoInvalido() {
 		new Aluno("Loki", "123", -1, "", "adsa@dsa", 2);
 	}
 
+	/**
+	 * Testa o construtor de Aluno com telefone nulo. Espera-se uma exceção.
+	 */
 	@Test(expected = NullPointerException.class)
 	public void testAlunoTelefoneNulo() {
 		new Aluno("Loki", "123", 123, null, "adsa@dsa", 2);
 	}
 
+	/**
+	 * Testa o construtor de Aluno com email nulo. Espera-se uma exceção.
+	 */
 	@Test(expected = NullPointerException.class)
 	public void testAlunoEmailNulo() {
 		new Aluno("Loki", "123", 123, "", null, 2);
 	}
 
+	/**
+	 * Testa o construtor de Aluno com email vazio. Espera-se uma exceção.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAlunoEmailVazio() {
 		new Aluno("Loki", "123", 123, "", "", 2);
 	}
+
+	/**
+	 * Testa o construtor de Aluno com email invalido. Espera-se uma exceção.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAlunoEmailInvalido() {
 		new Aluno("Loki", "123", 123, "", "@aa", 2);
 	}
 
+	/**
+	 * Testa o construtor de Aluno com email invalido. Espera-se uma exceção.
+	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testAlunoEmailInvalido2() {
 		new Aluno("Loki", "123", 123, "", "aa@", 2);

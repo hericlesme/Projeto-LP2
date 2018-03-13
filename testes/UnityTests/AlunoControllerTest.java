@@ -19,11 +19,17 @@ public class AlunoControllerTest {
 	private Dados dados = new Dados();
 	private AlunoController alunoC, outroAlunoC;
 
+	/**
+	 * Inicializa um controller de Alunos.
+	 */
 	@Before
 	public void inicializaAlunoController() {
 		alunoC = new AlunoController(dados);
 	}
 
+	/**
+	 * Testa a construção do objeto AlunoController.
+	 */
 	@Test
 	public void testAlunoController() {
 		assertTrue(outroAlunoC == null);
@@ -33,8 +39,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Cria um aluno, e o cadastra no sistema. - Teste verifica se a criação é dada com
-	 * sucesso através do metodo "recuperaAluno".
+	 * Cria um aluno, e o cadastra no sistema. - Teste verifica se a criação é dada
+	 * com sucesso através do metodo "recuperaAluno".
 	 */
 	@Test
 	public void testCadastrarAluno() {
@@ -44,8 +50,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Teste Mostra o uso correto metodo "recuperaAluno" quando o aluno cadastrado possui
-	 * um numero de telefone.
+	 * Teste Mostra o uso correto metodo "recuperaAluno" quando o aluno cadastrado
+	 * possui um numero de telefone.
 	 */
 	@Test
 	public void testRecuperaAlunoComTelefone() {
@@ -54,8 +60,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Teste Mostra o funcionamento do metodo "recuperaAluno" quando o aluno cadastrado
-	 * não possui um numero de telefone.
+	 * Teste Mostra o funcionamento do metodo "recuperaAluno" quando o aluno
+	 * cadastrado não possui um numero de telefone.
 	 */
 	@Test
 	public void testRecuperaAlunoSemTelefone() {
@@ -72,8 +78,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Teste Mostra o funcionamento do metodo "listarAlunos" quando há alunos um ou mais
-	 * alunos.
+	 * Teste Mostra o funcionamento do metodo "listarAlunos" quando há alunos um ou
+	 * mais alunos.
 	 */
 	@Test
 	public void testListarAlunos() {
@@ -114,8 +120,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta recuperarAluno
-	 * passando uma string vazia.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * recuperarAluno passando uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testRecuperaAlunoVazio() {
@@ -124,8 +130,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta recuperarAluno
-	 * passando um null.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta
+	 * recuperarAluno passando um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testRecuperaAlunoNulo() {
@@ -229,8 +235,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link NullPointerException} quando é passado para criação de um
-	 * aluno o parametro nome: como um null.
+	 * Teste verifica {@link NullPointerException} quando é passado para criação de
+	 * um aluno o parametro nome: como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastraAlunoNomeNulo() {
@@ -238,8 +244,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link NullPointerException} quando é passado para criação de um
-	 * aluno o parametro matricula: como um null.
+	 * Teste verifica {@link NullPointerException} quando é passado para criação de
+	 * um aluno o parametro matricula: como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastraAlunoMatriculaNula() {
@@ -247,8 +253,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link NullPointerException} quando é passado para criação de um
-	 * aluno o parametro telefone: como um null.
+	 * Teste verifica {@link NullPointerException} quando é passado para criação de
+	 * um aluno o parametro telefone: como um null.
 	 */
 	@Test(expected = NullPointerException.class)
 	public void testCadastraAlunoTelefoneNulo() {
@@ -256,8 +262,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando é passado para criação de um
-	 * aluno o parametro nome: como uma string vazia.
+	 * Teste verifica {@link IllegalArgumentException} quando é passado para criação
+	 * de um aluno o parametro nome: como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoNomeVazio() {
@@ -265,8 +271,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando é passado para criação de um
-	 * aluno o parametro matricula: como uma string vazia.
+	 * Teste verifica {@link IllegalArgumentException} quando é passado para criação
+	 * de um aluno o parametro matricula: como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoMatriculaVazia() {
@@ -274,8 +280,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando é passado para criação de um
-	 * aluno o parametro email: como uma string vazia.
+	 * Teste verifica {@link IllegalArgumentException} quando é passado para criação
+	 * de um aluno o parametro email: como uma string vazia.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoEmailVazio() {
@@ -283,8 +289,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando é passado para criação de um
-	 * aluno o parametro o codigo: com um numero menor ou igual a zero.
+	 * Teste verifica {@link IllegalArgumentException} quando é passado para criação
+	 * de um aluno o parametro o codigo: com um numero menor ou igual a zero.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testCadastraAlunoCodigoCursoInvalido() {
@@ -292,8 +298,8 @@ public class AlunoControllerTest {
 	}
 
 	/**
-	 * Teste verifica {@link IllegalArgumentException} quando se tenta recuperar um aluno
-	 * não cadastrado.
+	 * Teste verifica {@link IllegalArgumentException} quando se tenta recuperar um
+	 * aluno não cadastrado.
 	 */
 	@Test(expected = IllegalArgumentException.class)
 	public void testRecuperaAlunoInexistente() {
