@@ -10,20 +10,21 @@ import br.edu.ufcg.util.Dados;
 import easyaccept.EasyAccept;
 
 /**
- * Classe Facade. Delega os métodos do controller QmaSistema.
+ * Classe Facade. Delega os métodos dos controllers.
  *
  */
 public class Facade {
-	/**
-	 * Inicializa um objeto da classe QmaSistema, controller do sistema Quem Me
-	 * Ajuda.
-	 */
+
 	private Caixa caixa;
 	private AjudaController ajuda;
 	private AlunoController alunoC;
 	private TutorController tutorC;
 	private Dados dados;
 
+	/**
+	 * Inicializa os atributos da Facade. Controllers de Aluno, Tutor, Ajuda, Caixa
+	 * e um objeto que armazena os dados do sistema (Dados).
+	 */
 	public Facade() {
 		dados = new Dados();
 		this.alunoC = new AlunoController(dados);
@@ -329,6 +330,7 @@ public class Facade {
 	public int totalDinheiroSistema() {
 		return this.caixa.totalDinheiroSistema();
 	}
+
 	/**
 	 * Configura a ordem da listagem de alunos passado o tipo da ordenação. A ordem
 	 * pode ser por nome, matricula ou email. Segue a ordenação lexicográfica.
@@ -342,11 +344,12 @@ public class Facade {
 	}
 
 	/**
-	 * Tenta salvar em arquivo o objeto da class Dados.
+	 * Tenta salvar em arquivo os objetos da class Dados.
 	 */
 	public void salvar() {
 		this.dados.salvar();
 	}
+
 	/**
 	 * Tentar carregar os atributos da classe Dados.
 	 * 
@@ -358,9 +361,9 @@ public class Facade {
 	public void carregar() throws ClassNotFoundException, IOException {
 		this.dados.carregar();
 	}
+
 	/**
-	 * Limpa os atributos da classe, isto é deixa-lhes composto apenas de seu
-	 * elemento neutro.
+	 * Limpa os dados do sistema, reinicializando-o.
 	 */
 	public void limpar() {
 		this.dados.limpar();
