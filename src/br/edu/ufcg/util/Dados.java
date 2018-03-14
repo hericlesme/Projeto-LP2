@@ -52,7 +52,7 @@ public class Dados {
 	/**
 	 * Retorna um Map de alunos.
 	 * 
-	 * @return: um Map de <String, Aluno>.
+	 * @return: um Map de String, Aluno.
 	 */
 	public Map<String, Aluno> getAlunos() {
 		return this.alunos;
@@ -61,7 +61,7 @@ public class Dados {
 	/**
 	 * Retorna um Map de tutores.
 	 * 
-	 * @return: um Map de <String, Aluno>.
+	 * @return: um Map de String, Aluno.
 	 */
 	public Map<String, Tutor> getTutores() {
 		return this.tutores;
@@ -100,9 +100,9 @@ public class Dados {
 	/**
 	 * Adiciona um Tutor no Map de tutores.
 	 * 
-	 * @param matricula:
-	 *                o identificador do tutor no Map.
-	 * @param tutor:
+	 * @param email
+	 *                o email do tutor.
+	 * @param tutor
 	 *                objeto da classe Tutor.
 	 */
 	public void adicionaTutor(String email, Tutor tutor) {
@@ -200,9 +200,9 @@ public class Dados {
 	/**
 	 * Tentar carregar os atributos da classe Dados.
 	 * 
-	 * @throws ClassNotFoundException:
+	 * @throws ClassNotFoundException
 	 *                 Caso a classe do arquivo não exista.
-	 * @throws IOException:
+	 * @throws IOException
 	 *                 caso o objeto não exista ou o carregamento seja interrompido.
 	 */
 	public void carregar() throws ClassNotFoundException, IOException {
