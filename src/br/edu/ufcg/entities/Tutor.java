@@ -229,7 +229,13 @@ public class Tutor implements Comparable<Tutor>, Serializable {
 	 */
 	@Override
 	public int compareTo(Tutor o) {
-		return (int) this.notaTutor - (int) o.notaTutor;
+		if (this.notaTutor - o.notaTutor < 0) {
+			return -1;
+		}
+		if (this.notaTutor - o.notaTutor > 0) {
+			return 1;
+		}
+		return 0;
 	}
 
 }

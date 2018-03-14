@@ -9,7 +9,7 @@ import br.edu.ufcg.comparators.OrdenacaoMatricula;
 import br.edu.ufcg.entities.Aluno;
 
 /**
- * Classe de teste de OrdenacaoMatriculaTest.
+ * Classe de teste de OrdenacaoMatricula.
  * 
  * Projeto Laboratório de Programação II
  * 
@@ -18,6 +18,9 @@ public class OrdenacaoMatriculaTest {
 	OrdenacaoMatricula ordMat, outroOrdMat;
 	Aluno aluno, outroAluno;
 
+	/**
+	 * Inicializa um Aluno e um OrdenacaoMatricula
+	 */
 	@Before
 	public void inicializa() {
 		aluno = new Aluno("Pickle", "156", 48, "", "eu@pickle.com", 1);

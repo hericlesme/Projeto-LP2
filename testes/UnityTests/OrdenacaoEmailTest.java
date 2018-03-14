@@ -10,7 +10,7 @@ import br.edu.ufcg.comparators.OrdenacaoEmail;
 import br.edu.ufcg.entities.Aluno;
 
 /**
- * Classe de teste de OrdenacaoEmailTest.
+ * Classe de teste de OrdenacaoEmail.
  * 
  * Projeto Laboratório de Programação II
  * 
