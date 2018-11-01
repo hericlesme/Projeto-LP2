@@ -1,4 +1,7 @@
 # Projeto-LP2
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/hericlesme/Projeto-LP2.svg)](https://greenkeeper.io/)
+
 Projeto Final - Laboratório de Programação II
 
 	* Integrantes do Projeto:
